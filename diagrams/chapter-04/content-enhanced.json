@@ -1,0 +1,95 @@
+{
+  "chapter": "chapter-04.md",
+  "diagrams": [
+    {
+      "template": "concept-map",
+      "placeholders": {
+        "CENTRAL_CONCEPT": "Soul.md Pattern",
+        "BRANCH_1": "Core Components",
+        "BRANCH_1_SUB_1": "Name: Agent Identity",
+        "BRANCH_1_SUB_2": "Core Truths: Principles",
+        "BRANCH_1_SUB_3": "Style: Communication",
+        "BRANCH_2": "Boundaries",
+        "BRANCH_2_SUB_1": "Privacy Constraints",
+        "BRANCH_2_SUB_2": "Action Limits",
+        "BRANCH_2_SUB_3": "Quality Standards",
+        "BRANCH_3": "Continuity",
+        "BRANCH_3_SUB_1": "Memory Integration",
+        "BRANCH_3_SUB_2": "Session Management",
+        "BRANCH_3_SUB_3": "Context Loading",
+        "BRANCH_4": "Multi-Agent",
+        "BRANCH_4_SUB_1": "Coordinated Identities",
+        "BRANCH_4_SUB_2": "Hierarchical Structure"
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "Session Start",
+        "DECISION_1": "Soul.md Exists?",
+        "CHOICE_1_YES": "Load Soul",
+        "CHOICE_1_NO": "Create Default",
+        "DECISION_2": "Valid Structure?",
+        "CHOICE_2_YES": "Apply to Runtime",
+        "CHOICE_2_NO": "Log Warning",
+        "ACTION_1": "Parse Sections",
+        "ACTION_2": "Inject System Prompt",
+        "ACTION_3": "Configure Tools",
+        "ACTION_4": "Load Memory",
+        "END_LABEL": "Agent Ready"
+      }
+    },
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "Soul Integration",
+        "COMPONENT_1": "SoulDoc",
+        "COMPONENT_1_LABEL": "Identity Constitution",
+        "COMPONENT_2": "SystemPrompt",
+        "COMPONENT_2_LABEL": "Runtime Injection",
+        "COMPONENT_3": "ToolPolicies",
+        "COMPONENT_3_LABEL": "Permission Control",
+        "EXTERNAL_1": "LLM",
+        "EXTERNAL_1_LABEL": "Language Model",
+        "EXTERNAL_2": "MemoryFiles",
+        "EXTERNAL_2_LABEL": "Context Persistence",
+        "FLOW_1": "Load",
+        "FLOW_2": "Inject",
+        "FLOW_3": "Enforce",
+        "FLOW_4": "Persist"
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "Start",
+        "DECISION_1": "Check Condition",
+        "CHOICE_1_YES": "Proceed",
+        "CHOICE_1_NO": "Retry",
+        "DECISION_2": "Validate",
+        "CHOICE_2_YES": "Success",
+        "CHOICE_2_NO": "Error",
+        "ACTION_1": "Process Data",
+        "ACTION_2": "Execute Task",
+        "ACTION_3": "Log Result",
+        "ACTION_4": "Cleanup",
+        "END_LABEL": "Complete"
+      }
+    },
+    {
+      "template": "comparison-table",
+      "placeholders": {
+        "OPTION_1_TITLE": "Approach A",
+        "OPTION_2_TITLE": "Approach B",
+        "OPTION_1_CRITERION_1": "Speed: Fast",
+        "OPTION_2_CRITERION_1": "Speed: Moderate",
+        "OPTION_1_CRITERION_2": "Cost: High",
+        "OPTION_2_CRITERION_2": "Cost: Low",
+        "OPTION_1_CRITERION_3": "Complexity: Simple",
+        "OPTION_2_CRITERION_3": "Complexity: Moderate",
+        "OPTION_1_CRITERION_4": "Scalability: Limited",
+        "OPTION_2_CRITERION_4": "Scalability: Excellent"
+      }
+    }
+  ]
+}

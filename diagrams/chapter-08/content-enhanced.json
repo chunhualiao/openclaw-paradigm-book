@@ -1,0 +1,156 @@
+{
+  "diagrams": [
+    {
+      "template": "flowchart",
+      "filename": "self-healing-ooda-loop",
+      "placeholders": {
+        "START_LABEL": "Failure Detected",
+        "DECISION_1": "Transient or Permanent?",
+        "CHOICE_1_YES": "Transient",
+        "CHOICE_1_NO": "Permanent",
+        "ACTION_1": "Implement Retry Strategy",
+        "ACTION_2": "Classify Error Type",
+        "DECISION_2": "Can Remediate?",
+        "CHOICE_2_YES": "Yes",
+        "CHOICE_2_NO": "No",
+        "ACTION_3": "Apply Healing Strategy",
+        "ACTION_4": "Escalate to Human",
+        "END_LABEL": "System Restored"
+      }
+    },
+    {
+      "template": "timeline",
+      "filename": "autonomy-spectrum",
+      "placeholders": {
+        "TIMELINE_TITLE": "Evolution of System Autonomy Levels",
+        "PHASE_1": "Manual Operation",
+        "EVENT_1_1": "Human-in-Loop",
+        "EVENT_1_1_DESC": "Human initiates all tasks",
+        "EVENT_1_2": "Tool Extension",
+        "EVENT_1_2_DESC": "AI provides suggestions only",
+        "PHASE_2": "Semi-Autonomous",
+        "EVENT_2_1": "Human-on-Loop",
+        "EVENT_2_1_DESC": "AI proposes, human approves",
+        "EVENT_2_2": "Supervised Autonomy",
+        "EVENT_2_2_DESC": "AI manages workflow with gates",
+        "PHASE_3": "Full Autonomy",
+        "EVENT_3_1": "Conditional Autonomy",
+        "EVENT_3_1_DESC": "Human only for exceptions",
+        "EVENT_3_2": "Human-out-of-Loop",
+        "EVENT_3_2_DESC": "Complete independent operation"
+      }
+    },
+    {
+      "template": "architecture",
+      "filename": "multi-agent-orchestration",
+      "placeholders": {
+        "SYSTEM_NAME": "Multi-Agent Autonomous System",
+        "COMPONENT_1": "Orchestrator",
+        "COMPONENT_1_LABEL": "Orchestrator\\nDecomposes goals",
+        "COMPONENT_2": "Researcher",
+        "COMPONENT_2_LABEL": "Researcher\\nGathers data",
+        "COMPONENT_3": "Writer",
+        "COMPONENT_3_LABEL": "Writer\\nSynthesizes content",
+        "EXTERNAL_1": "Goal",
+        "EXTERNAL_1_LABEL": "High-level\\nGoal",
+        "EXTERNAL_2": "Output",
+        "EXTERNAL_2_LABEL": "Final\\nArtifact",
+        "FLOW_1": "Goal specification",
+        "FLOW_2": "Task assignment",
+        "FLOW_3": "Research findings",
+        "FLOW_4": "Generated output"
+      }
+    },
+    {
+      "template": "sequence",
+      "placeholders": {
+        "ACTOR_1": "User",
+        "ACTOR_1_LABEL": "User",
+        "ACTOR_2": "System",
+        "ACTOR_2_LABEL": "System",
+        "ACTOR_3": "Service",
+        "ACTOR_3_LABEL": "Service",
+        "MESSAGE_1": "Request",
+        "MESSAGE_2": "Process",
+        "MESSAGE_3": "Query",
+        "NOTE_1": "Processing",
+        "RESPONSE_1": "Data",
+        "RESPONSE_2": "Result",
+        "RESPONSE_3": "Status",
+        "OPTIONAL_CONDITION": "If needed"
+      }
+    },
+    {
+      "template": "comparison-table",
+      "placeholders": {
+        "OPTION_1_TITLE": "Approach A",
+        "OPTION_2_TITLE": "Approach B",
+        "OPTION_1_CRITERION_1": "Speed: Fast",
+        "OPTION_2_CRITERION_1": "Speed: Moderate",
+        "OPTION_1_CRITERION_2": "Cost: High",
+        "OPTION_2_CRITERION_2": "Cost: Low",
+        "OPTION_1_CRITERION_3": "Complexity: Simple",
+        "OPTION_2_CRITERION_3": "Complexity: Moderate",
+        "OPTION_1_CRITERION_4": "Scalability: Limited",
+        "OPTION_2_CRITERION_4": "Scalability: Excellent"
+      }
+    },
+    {
+      "template": "gantt",
+      "placeholders": {
+        "CHART_TITLE": "Project Timeline",
+        "SECTION_1_TITLE": "Phase 1",
+        "TASK_1_1": "Task 1",
+        "TASK_1_1_ID": "t1",
+        "TASK_1_1_START": "2024-01-01",
+        "TASK_1_1_DURATION": "2d",
+        "TASK_1_2": "Task 2",
+        "TASK_1_2_ID": "t2",
+        "TASK_1_2_START": "2024-01-03",
+        "TASK_1_2_DURATION": "3d",
+        "TASK_1_3": "Task 3",
+        "TASK_1_3_ID": "t3",
+        "TASK_1_3_START": "2024-01-06",
+        "TASK_1_3_DURATION": "2d",
+        "SECTION_2_TITLE": "Phase 2",
+        "TASK_2_1": "Task 4",
+        "TASK_2_1_ID": "t4",
+        "TASK_2_1_START": "2024-01-08",
+        "TASK_2_1_DURATION": "4d",
+        "TASK_2_2": "Task 5",
+        "TASK_2_2_ID": "t5",
+        "TASK_2_2_START": "2024-01-12",
+        "TASK_2_2_DURATION": "2d",
+        "SECTION_3_TITLE": "Phase 3",
+        "TASK_3_1": "Task 6",
+        "TASK_3_1_ID": "t6",
+        "TASK_3_1_START": "2024-01-14",
+        "TASK_3_1_DURATION": "3d",
+        "TASK_3_2": "Task 7",
+        "TASK_3_2_ID": "t7",
+        "TASK_3_2_START": "2024-01-17",
+        "TASK_3_2_DURATION": "2d"
+      }
+    },
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "System Architecture",
+        "COMPONENT_1": "C1",
+        "COMPONENT_1_LABEL": "Component 1",
+        "COMPONENT_2": "C2",
+        "COMPONENT_2_LABEL": "Component 2",
+        "COMPONENT_3": "C3",
+        "COMPONENT_3_LABEL": "Component 3",
+        "EXTERNAL_1": "E1",
+        "EXTERNAL_1_LABEL": "External 1",
+        "EXTERNAL_2": "E2",
+        "EXTERNAL_2_LABEL": "External 2",
+        "FLOW_1": "Input",
+        "FLOW_2": "Process",
+        "FLOW_3": "Output",
+        "FLOW_4": "Feedback"
+      }
+    }
+  ]
+}

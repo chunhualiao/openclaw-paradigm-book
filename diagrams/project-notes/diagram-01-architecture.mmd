@@ -1,0 +1,23 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#4A90E2','primaryTextColor':'#fff','primaryBorderColor':'#2E5C8A','lineColor':'#333','secondaryColor':'#7B68EE','tertiaryColor':'#90EE90','background':'#f9f9f9','mainBkg':'#4A90E2','secondBkg':'#7B68EE','tertiaryBkg':'#90EE90'}}}%%
+graph TB
+    subgraph "AI-Native Book Creation Pipeline"
+        C1[SYSTEM.md - State Machine + Roles]
+        C2[AGENDA.md - Tasks + Timeline]
+        C3[agent_*_instructions.md - Specific Tasks]
+    end
+    
+    E1((Mission Input - Book Requirements))
+    E2((WORKLOG.md - Execution Log))
+    
+    E1 -->|Defines mission| C1
+    C1 -->|Breaks into tasks| C2
+    C2 -->|Provides context| C3
+    C3 -->|Logs execution| E2
+    
+    classDef primary fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef secondary fill:#7B68EE,stroke:#5A4FCF,stroke-width:2px,color:#fff
+    classDef external fill:#90EE90,stroke:#6DBE6D,stroke-width:2px,color:#333
+    
+    class C1,C2 primary
+    class C3 secondary
+    class E1,E2 external

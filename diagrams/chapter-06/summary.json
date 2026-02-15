@@ -1,0 +1,51 @@
+{
+  "source": "diagrams/chapter-06/content-enhanced.json",
+  "generated": "2026-02-15T16:40:49.815Z",
+  "diagrams": [
+    {
+      "index": 1,
+      "template": "flowchart",
+      "files": {
+        "source": "diagram-01-flowchart.mmd",
+        "svg": "diagram-01-flowchart.svg",
+        "png": "diagram-01-flowchart.png"
+      }
+    },
+    {
+      "index": 2,
+      "template": "concept-map",
+      "files": {
+        "source": "diagram-02-concept-map.mmd",
+        "svg": "diagram-02-concept-map.svg",
+        "png": "diagram-02-concept-map.png"
+      }
+    },
+    {
+      "index": 3,
+      "template": "timeline",
+      "files": {
+        "source": "diagram-03-timeline.mmd",
+        "svg": "diagram-03-timeline.svg",
+        "png": "diagram-03-timeline.png"
+      }
+    },
+    {
+      "index": 4,
+      "template": "class-diagram",
+      "files": {
+        "source": "diagram-04-class-diagram.mmd",
+        "svg": "diagram-04-class-diagram.svg",
+        "png": "diagram-04-class-diagram.png"
+      }
+    },
+    {
+      "index": 5,
+      "template": "radial-concept",
+      "files": {
+        "source": "diagram-05-radial-concept.mmd",
+        "svg": "diagram-05-radial-concept.svg",
+        "png": "diagram-05-radial-concept.png"
+      }
+    }
+  ]
+}

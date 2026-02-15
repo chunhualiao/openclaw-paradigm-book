@@ -1,0 +1,73 @@
+{
+  "diagrams": [
+    {
+      "template": "comparison",
+      "filename": "cost-quality-efficiency",
+      "placeholders": {
+        "COMPARISON_TITLE": "AI Model Cost vs Quality Efficiency Frontier",
+        "X_AXIS_LOW": "Low Cost",
+        "X_AXIS_HIGH": "High Cost",
+        "Y_AXIS_LOW": "Low Quality",
+        "Y_AXIS_HIGH": "High Quality",
+        "QUADRANT_1_LABEL": "Premium Zone",
+        "QUADRANT_2_LABEL": "Balanced Zone",
+        "QUADRANT_3_LABEL": "Budget Zone",
+        "QUADRANT_4_LABEL": "Inefficient Zone",
+        "ITEM_1": "Claude 3.5 Sonnet",
+        "X_1": "0.8",
+        "Y_1": "0.9",
+        "ITEM_2": "GPT-4o",
+        "X_2": "0.85",
+        "Y_2": "0.88",
+        "ITEM_3": "Claude 3 Haiku",
+        "X_3": "0.3",
+        "Y_3": "0.7",
+        "ITEM_4": "Gemini 1.5 Flash",
+        "X_4": "0.15",
+        "Y_4": "0.65",
+        "ITEM_5": "Llama 3 8B",
+        "X_5": "0.1",
+        "Y_5": "0.5"
+      }
+    },
+    {
+      "template": "architecture",
+      "filename": "three-tier-model-architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "Cost-Optimized Model Architecture",
+        "COMPONENT_1": "Tier3",
+        "COMPONENT_1_LABEL": "Tier 3: Fast\\nClassify & Summarize",
+        "COMPONENT_2": "Tier2",
+        "COMPONENT_2_LABEL": "Tier 2: Balanced\\nStandard Processing",
+        "COMPONENT_3": "Tier1",
+        "COMPONENT_3_LABEL": "Tier 1: Premium\\nComplex Reasoning",
+        "EXTERNAL_1": "Input",
+        "EXTERNAL_1_LABEL": "User\\nQuery",
+        "EXTERNAL_2": "Output",
+        "EXTERNAL_2_LABEL": "Final\\nResponse",
+        "FLOW_1": "Route by complexity",
+        "FLOW_2": "Escalate if needed",
+        "FLOW_3": "Deep analysis",
+        "FLOW_4": "High-quality result"
+      }
+    },
+    {
+      "template": "flowchart",
+      "filename": "early-compact-pattern",
+      "placeholders": {
+        "START_LABEL": "Large Context Input",
+        "DECISION_1": "Exceeds Token Budget?",
+        "CHOICE_1_YES": "Yes",
+        "CHOICE_1_NO": "No",
+        "ACTION_1": "Tier 3: Summarize Content",
+        "ACTION_2": "Use Full Context",
+        "DECISION_2": "Cache Available?",
+        "CHOICE_2_YES": "Hit",
+        "CHOICE_2_NO": "Miss",
+        "ACTION_3": "Return Cached Result",
+        "ACTION_4": "Tier 1: Process & Cache",
+        "END_LABEL": "Optimized Output"
+      }
+    }
+  ]
+}

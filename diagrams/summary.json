@@ -1,0 +1,42 @@
+{
+  "source": "/Users/username/.openclaw/workspace/openclaw-books/diagrams/introduction-diagrams.json",
+  "generated": "2026-02-15T17:23:54.296Z",
+  "diagrams": [
+    {
+      "index": 1,
+      "template": "timeline",
+      "files": {
+        "source": "diagram-01-timeline.mmd",
+        "svg": "diagram-01-timeline.svg",
+        "png": "diagram-01-timeline.png"
+      }
+    },
+    {
+      "index": 2,
+      "template": "architecture",
+      "files": {
+        "source": "diagram-02-architecture.mmd",
+        "svg": "diagram-02-architecture.svg",
+        "png": "diagram-02-architecture.png"
+      }
+    },
+    {
+      "index": 3,
+      "template": "comparison-table",
+      "files": {
+        "source": "diagram-03-comparison-table.mmd",
+        "svg": "diagram-03-comparison-table.svg",
+        "png": "diagram-03-comparison-table.png"
+      }
+    },
+    {
+      "index": 4,
+      "template": "mindmap",
+      "files": {
+        "source": "diagram-04-mindmap.mmd",
+        "svg": "diagram-04-mindmap.svg",
+        "png": "diagram-04-mindmap.png"
+      }
+    }
+  ]
+}

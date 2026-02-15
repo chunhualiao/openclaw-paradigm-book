@@ -1,0 +1,67 @@
+{
+  "diagrams": [
+    {
+      "template": "architecture",
+      "filename": "security-layers",
+      "title": "AI-Native Security Architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "AI-Native Security System",
+        "COMPONENT_1": "InputValidator",
+        "COMPONENT_1_LABEL": "Input Validation & Sanitization",
+        "COMPONENT_2": "GuardrailEngine",
+        "COMPONENT_2_LABEL": "Guardrail Safety Checks",
+        "COMPONENT_3": "ToolPermissions",
+        "COMPONENT_3_LABEL": "Permission-Based Tool Access",
+        "EXTERNAL_1": "UserRequest",
+        "EXTERNAL_1_LABEL": "User Request",
+        "EXTERNAL_2": "SecureExecution",
+        "EXTERNAL_2_LABEL": "Secure Execution",
+        "FLOW_1": "Validate Input",
+        "FLOW_2": "Check Guardrails",
+        "FLOW_3": "Verify Permissions",
+        "FLOW_4": "Execute Action"
+      }
+    },
+    {
+      "template": "flowchart",
+      "filename": "permission-check",
+      "title": "Permission-Based Tool Access Flow",
+      "placeholders": {
+        "START_LABEL": "Tool Call Request",
+        "DECISION_1": "Has Permission?",
+        "CHOICE_1_YES": "Yes",
+        "CHOICE_1_NO": "No",
+        "ACTION_1": "Load Tool Access Policy",
+        "ACTION_2": "Reject with Error",
+        "DECISION_2": "Violates Guardrails?",
+        "CHOICE_2_YES": "Yes",
+        "CHOICE_2_NO": "No",
+        "ACTION_3": "Block & Log Violation",
+        "ACTION_4": "Execute Tool Call",
+        "END_LABEL": "Tool Response"
+      }
+    },
+    {
+      "template": "concept-map",
+      "filename": "security-concepts",
+      "title": "AI-Native Security Concepts",
+      "placeholders": {
+        "CENTRAL_CONCEPT": "AI-Native Security",
+        "BRANCH_1": "Attack Surfaces",
+        "BRANCH_1_SUB_1": "Prompt Injection",
+        "BRANCH_1_SUB_2": "Tool Misuse",
+        "BRANCH_1_SUB_3": "Data Leakage",
+        "BRANCH_2": "Defense Patterns",
+        "BRANCH_2_SUB_1": "Environment-First Config",
+        "BRANCH_2_SUB_2": "Guardrail-First Safety",
+        "BRANCH_3": "Access Control",
+        "BRANCH_3_SUB_1": "RBAC Permissions",
+        "BRANCH_3_SUB_2": "ABAC Policies",
+        "BRANCH_3_SUB_3": "Least Privilege",
+        "BRANCH_4": "Privacy Design",
+        "BRANCH_4_SUB_1": "Data Minimization",
+        "BRANCH_4_SUB_2": "Differential Privacy"
+      }
+    }
+  ]
+}

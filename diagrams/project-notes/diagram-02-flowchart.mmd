@@ -1,0 +1,19 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#4A90E2','primaryTextColor':'#fff','primaryBorderColor':'#2E5C8A','lineColor':'#333','secondaryColor':'#7B68EE','tertiaryColor':'#90EE90'}}}%%
+flowchart TD
+    Start([INITIALIZING]) --> Decision1{Research Complete?}
+    Decision1 -->|No| Action1[PLANNING - Define scope]
+    Decision1 -->|Yes| Action2[RESEARCH - 3 parallel agents]
+    Action1 --> Decision2{Writing Done?}
+    Action2 --> Decision2
+    Decision2 -->|No| Action3[WRITING - 5 agents × 3 chapters]
+    Decision2 -->|Yes| Action4[REVIEWING - Quality check]
+    Action3 --> End([COMPLETE])
+    Action4 --> End
+    
+    classDef startEnd fill:#90EE90,stroke:#6DBE6D,stroke-width:3px,color:#333
+    classDef decision fill:#FFD700,stroke:#DAA520,stroke-width:2px,color:#333
+    classDef action fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    
+    class Start,End startEnd
+    class Decision1,Decision2 decision
+    class Action1,Action2,Action3,Action4 action

@@ -1,0 +1,24 @@
+flowchart TD
+    Start([Cron Trigger]) --> Director[Director Agent Starts]
+    Director --> ReadState[Read WORKLOG.md<br/>AGENDA.md State]
+    ReadState --> Decision{Work<br/>Needed?}
+    
+    Decision -->|No| Sleep[Sleep Until<br/>Next Cron]
+    Sleep --> Start
+    
+    Decision -->|Yes| SpawnAgent[Spawn Subagent<br/>with Task]
+    SpawnAgent --> WriteFiles[Subagent Writes<br/>Deliverables to Files]
+    WriteFiles --> UpdateLog[Subagent Updates<br/>WORKLOG.md Status]
+    UpdateLog --> GitCommit[Git Commit<br/>Checkpoint]
+    GitCommit --> Notify[Discord Notification<br/>Task Complete]
+    Notify --> Sleep
+    
+    style Start fill:#e1f5ff
+    style Director fill:#fff4e1
+    style Decision fill:#ffe1e1
+    style SpawnAgent fill:#e1ffe1
+    style WriteFiles fill:#e1ffe1
+    style UpdateLog fill:#e1ffe1
+    style GitCommit fill:#f0e1ff
+    style Notify fill:#ffe1f5
+    style Sleep fill:#f5f5f5

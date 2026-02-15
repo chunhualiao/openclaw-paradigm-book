@@ -1,0 +1,66 @@
+{
+  "diagrams": [
+    {
+      "template": "architecture",
+      "filename": "tooling-ecosystem",
+      "title": "OpenClaw Tooling Ecosystem Architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "OpenClaw Tooling Ecosystem",
+        "COMPONENT_1": "SkillDev",
+        "COMPONENT_1_LABEL": "Skill Development Tools",
+        "COMPONENT_2": "TestValidate",
+        "COMPONENT_2_LABEL": "Testing & Validation",
+        "COMPONENT_3": "DeployManage",
+        "COMPONENT_3_LABEL": "Deployment & Management",
+        "EXTERNAL_1": "Developer",
+        "EXTERNAL_1_LABEL": "Developer",
+        "EXTERNAL_2": "ClawHub",
+        "EXTERNAL_2_LABEL": "ClawHub Registry",
+        "FLOW_1": "Create Skill",
+        "FLOW_2": "Test & Validate",
+        "FLOW_3": "Package & Deploy",
+        "FLOW_4": "Publish to Hub"
+      }
+    },
+    {
+      "template": "flowchart",
+      "filename": "skill-workflow",
+      "title": "Skill Development Workflow",
+      "placeholders": {
+        "START_LABEL": "Skill Idea",
+        "DECISION_1": "Skill Exists?",
+        "CHOICE_1_YES": "Reuse",
+        "CHOICE_1_NO": "Create New",
+        "ACTION_1": "Search ClawHub Registry",
+        "ACTION_2": "Generate Skill Blueprint",
+        "DECISION_2": "Tests Pass?",
+        "CHOICE_2_YES": "Yes",
+        "CHOICE_2_NO": "No",
+        "ACTION_3": "Fix & Iterate",
+        "ACTION_4": "Publish to ClawHub",
+        "END_LABEL": "Skill Deployed"
+      }
+    },
+    {
+      "template": "sequence",
+      "filename": "ci-cd-pipeline",
+      "title": "CI/CD Pipeline Tool Interactions",
+      "placeholders": {
+        "ACTOR_1": "Developer",
+        "ACTOR_1_LABEL": "Developer",
+        "ACTOR_2": "GitHub",
+        "ACTOR_2_LABEL": "GitHub Actions",
+        "ACTOR_3": "Gateway",
+        "ACTOR_3_LABEL": "OpenClaw Gateway",
+        "MESSAGE_1": "Push Skill Code",
+        "NOTE_1": "Run claw-lint validation",
+        "MESSAGE_2": "Execute clawkick tests",
+        "RESPONSE_1": "Test Results",
+        "RESPONSE_2": "Build Status",
+        "OPTIONAL_CONDITION": "Tests Pass",
+        "MESSAGE_3": "Deploy to Gateway",
+        "RESPONSE_3": "Deployment Confirmed"
+      }
+    }
+  ]
+}

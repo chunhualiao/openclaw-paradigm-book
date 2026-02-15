@@ -1,0 +1,63 @@
+{
+  "diagrams": [
+    {
+      "template": "flowchart",
+      "filename": "tool-error-recovery",
+      "placeholders": {
+        "START_LABEL": "Tool Call Initiated",
+        "DECISION_1": "Tool Execution Success?",
+        "CHOICE_1_YES": "Success",
+        "CHOICE_1_NO": "Failure",
+        "ACTION_1": "Return OK Status",
+        "ACTION_2": "Diagnose Error Type",
+        "DECISION_2": "Recoverable Error?",
+        "CHOICE_2_YES": "Yes",
+        "CHOICE_2_NO": "No",
+        "ACTION_3": "Apply Recovery Strategy",
+        "ACTION_4": "Return FAIL Status",
+        "END_LABEL": "Tool Execution Complete"
+      }
+    },
+    {
+      "template": "sequence",
+      "filename": "multi-agent-debug-interaction",
+      "placeholders": {
+        "ACTOR_1": "MainAgent",
+        "ACTOR_1_LABEL": "Main Agent",
+        "ACTOR_2": "Gateway",
+        "ACTOR_2_LABEL": "Gateway",
+        "ACTOR_3": "SubAgent",
+        "ACTOR_3_LABEL": "Sub Agent",
+        "MESSAGE_1": "Execute task with tool",
+        "NOTE_1": "Route to sub-agent",
+        "MESSAGE_2": "Tool call request",
+        "RESPONSE_1": "Tool result + status",
+        "RESPONSE_2": "Task complete + logs",
+        "OPTIONAL_CONDITION": "If error detected",
+        "MESSAGE_3": "Request error details",
+        "RESPONSE_3": "Diagnostic logs"
+      }
+    },
+    {
+      "template": "architecture",
+      "filename": "structured-logging-system",
+      "placeholders": {
+        "SYSTEM_NAME": "AI-Native Logging Architecture",
+        "COMPONENT_1": "AILogs",
+        "COMPONENT_1_LABEL": "AI Interaction\\nPrompts & Responses",
+        "COMPONENT_2": "ToolLogs",
+        "COMPONENT_2_LABEL": "Tool Execution\\nInputs & Outputs",
+        "COMPONENT_3": "SystemLogs",
+        "COMPONENT_3_LABEL": "System Events\\nPerformance & Errors",
+        "EXTERNAL_1": "Sources",
+        "EXTERNAL_1_LABEL": "Agent\\nSessions",
+        "EXTERNAL_2": "Analysis",
+        "EXTERNAL_2_LABEL": "Debug\\nDashboard",
+        "FLOW_1": "Capture interactions",
+        "FLOW_2": "Aggregate logs",
+        "FLOW_3": "Structured events",
+        "FLOW_4": "Visualize & analyze"
+      }
+    }
+  ]
+}

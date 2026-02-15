@@ -1,0 +1,149 @@
+{
+  "chapter": "chapter-02.md",
+  "diagrams": [
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "OpenClaw Architecture",
+        "COMPONENT_1": "Gateway",
+        "COMPONENT_1_LABEL": "WebSocket Control Plane",
+        "COMPONENT_2": "Agents",
+        "COMPONENT_2_LABEL": "Main/Sub/Cron Agents",
+        "COMPONENT_3": "Skills",
+        "COMPONENT_3_LABEL": "Micro-Skill Library",
+        "EXTERNAL_1": "Channels",
+        "EXTERNAL_1_LABEL": "Discord/Telegram/CLI",
+        "EXTERNAL_2": "Tools",
+        "EXTERNAL_2_LABEL": "Read/Write/Exec/Message",
+        "FLOW_1": "Connect",
+        "FLOW_2": "Route",
+        "FLOW_3": "Execute",
+        "FLOW_4": "Respond"
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "User Request",
+        "DECISION_1": "Gateway Receive?",
+        "CHOICE_1_YES": "Parse Request",
+        "CHOICE_1_NO": "Wait",
+        "DECISION_2": "Skill Needed?",
+        "CHOICE_2_YES": "Load Skill",
+        "CHOICE_2_NO": "Direct Execute",
+        "ACTION_1": "Route to Agent",
+        "ACTION_2": "Execute Tool",
+        "ACTION_3": "Return Result",
+        "ACTION_4": "Error Response",
+        "END_LABEL": "User Receives Response"
+      }
+    },
+    {
+      "template": "comparison",
+      "placeholders": {
+        "COMPARISON_TITLE": "AI-Augmented vs AI-Native",
+        "X_AXIS_LOW": "Low AI Capability",
+        "X_AXIS_HIGH": "High AI Capability",
+        "Y_AXIS_LOW": "Traditional Architecture",
+        "Y_AXIS_HIGH": "AI-Optimized Architecture",
+        "QUADRANT_1_LABEL": "AI-Native Target",
+        "QUADRANT_2_LABEL": "Future Direction",
+        "QUADRANT_3_LABEL": "Legacy Systems",
+        "QUADRANT_4_LABEL": "AI-Augmented",
+        "ITEM_1": "Traditional App",
+        "X_1": 0.1,
+        "Y_1": 0.2,
+        "ITEM_2": "ChatGPT Plugins",
+        "X_2": 0.4,
+        "Y_2": 0.3,
+        "ITEM_3": "Copilot Enhanced",
+        "X_3": 0.5,
+        "Y_3": 0.4,
+        "ITEM_4": "OpenClaw",
+        "X_4": 0.85,
+        "Y_4": 0.8,
+        "ITEM_5": "AutoGPT",
+        "X_5": 0.7,
+        "Y_5": 0.6
+      }
+    },
+    {
+      "template": "sequence",
+      "placeholders": {
+        "ACTOR_1": "User",
+        "ACTOR_1_LABEL": "Human User",
+        "ACTOR_2": "Agent",
+        "ACTOR_2_LABEL": "AI Agent",
+        "ACTOR_3": "Gateway",
+        "ACTOR_3_LABEL": "Gateway Process",
+        "MESSAGE_1": "Invoke skill",
+        "MESSAGE_2": "Request tool execution",
+        "MESSAGE_3": "Direct query",
+        "NOTE_1": "Process request",
+        "RESPONSE_1": "Tool result",
+        "RESPONSE_2": "Formatted response",
+        "RESPONSE_3": "Direct answer",
+        "OPTIONAL_CONDITION": "Bypass agent"
+      }
+    },
+    {
+      "template": "gantt",
+      "placeholders": {
+        "CHART_TITLE": "OpenClaw Deployment Timeline",
+        "SECTION_1_TITLE": "Setup Phase",
+        "TASK_1_1": "Install Dependencies",
+        "TASK_1_1_ID": "dep",
+        "TASK_1_1_START": "2024-01-01",
+        "TASK_1_1_DURATION": "2d",
+        "TASK_1_2": "Configure Environment",
+        "TASK_1_2_ID": "env",
+        "TASK_1_2_START": "2024-01-03",
+        "TASK_1_2_DURATION": "1d",
+        "TASK_1_3": "Setup Channels",
+        "TASK_1_3_ID": "chan",
+        "TASK_1_3_START": "2024-01-04",
+        "TASK_1_3_DURATION": "1d",
+        "SECTION_2_TITLE": "Agent Configuration",
+        "TASK_2_1": "Create SOUL.md",
+        "TASK_2_1_ID": "soul",
+        "TASK_2_1_START": "2024-01-04",
+        "TASK_2_1_DURATION": "1d",
+        "TASK_2_2": "Add Skills",
+        "TASK_2_2_ID": "skills",
+        "TASK_2_2_START": "2024-01-05",
+        "TASK_2_2_DURATION": "2d",
+        "SECTION_3_TITLE": "Testing & Launch",
+        "TASK_3_1": "Health Check",
+        "TASK_3_1_ID": "health",
+        "TASK_3_1_START": "2024-01-07",
+        "TASK_3_1_DURATION": "1d",
+        "TASK_3_2": "Production Deploy",
+        "TASK_3_2_ID": "prod",
+        "TASK_3_2_START": "2024-01-08",
+        "TASK_3_2_DURATION": "1d"
+      }
+    },
+    {
+      "template": "mindmap",
+      "placeholders": {
+        "ROOT_CONCEPT": "OpenClaw Ecosystem",
+        "BRANCH_1": "Core Components",
+        "BRANCH_1_CHILD_1": "Gateway",
+        "BRANCH_1_CHILD_2": "Agents",
+        "BRANCH_1_CHILD_3": "Skills",
+        "BRANCH_2": "Communication",
+        "BRANCH_2_CHILD_1": "Discord",
+        "BRANCH_2_CHILD_2": "Telegram",
+        "BRANCH_2_CHILD_3": "CLI",
+        "BRANCH_3": "Community",
+        "BRANCH_3_CHILD_1": "Contributors",
+        "BRANCH_3_CHILD_2": "Maintainers",
+        "BRANCH_3_CHILD_3": "Users",
+        "BRANCH_4": "Development",
+        "BRANCH_4_CHILD_1": "GitHub",
+        "BRANCH_4_CHILD_2": "Skills Library",
+        "BRANCH_4_CHILD_3": "Documentation"
+      }
+    }
+  ]
+}

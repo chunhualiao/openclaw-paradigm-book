@@ -1,0 +1,63 @@
+{
+  "chapter": "chapter-03.md",
+  "diagrams": [
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "Health Check Start",
+        "DECISION_1": "Gateway Running?",
+        "CHOICE_1_YES": "Check Providers",
+        "CHOICE_1_NO": "Report FAIL",
+        "DECISION_2": "Providers OK?",
+        "CHOICE_2_YES": "Check Channels",
+        "CHOICE_2_NO": "Report WARN",
+        "ACTION_1": "Verify Process",
+        "ACTION_2": "Test API Keys",
+        "ACTION_3": "Verify Credentials",
+        "ACTION_4": "Final Report",
+        "END_LABEL": "Health Report Complete"
+      }
+    },
+    {
+      "template": "concept-map",
+      "placeholders": {
+        "CENTRAL_CONCEPT": "Founder Coach Skill",
+        "BRANCH_1": "File-Based Memory",
+        "BRANCH_1_SUB_1": "Profile Management",
+        "BRANCH_1_SUB_2": "Append-Only Updates",
+        "BRANCH_1_SUB_3": "Session Summaries",
+        "BRANCH_2": "Socratic Coaching",
+        "BRANCH_2_SUB_1": "Question-Based Dialog",
+        "BRANCH_2_SUB_2": "Mental Models",
+        "BRANCH_2_SUB_3": "Anti-Pattern Detection",
+        "BRANCH_3": "Skill Blueprint",
+        "BRANCH_3_SUB_1": "YAML Frontmatter",
+        "BRANCH_3_SUB_2": "Workflow Section",
+        "BRANCH_3_SUB_3": "Guardrails",
+        "BRANCH_4": "Integration",
+        "BRANCH_4_SUB_1": "PhoenixClaw",
+        "BRANCH_4_SUB_2": "Daily Journal"
+      }
+    },
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "Skill Blueprint Pattern",
+        "COMPONENT_1": "SkillDoc",
+        "COMPONENT_1_LABEL": "Documentation",
+        "COMPONENT_2": "YAMLFrontmatter",
+        "COMPONENT_2_LABEL": "Metadata",
+        "COMPONENT_3": "Implementation",
+        "COMPONENT_3_LABEL": "Python/Bash Code",
+        "EXTERNAL_1": "Gateway",
+        "EXTERNAL_1_LABEL": "Discovery",
+        "EXTERNAL_2": "AIAgent",
+        "EXTERNAL_2_LABEL": "Execution",
+        "FLOW_1": "Load",
+        "FLOW_2": "Parse",
+        "FLOW_3": "Execute",
+        "FLOW_4": "Return"
+      }
+    }
+  ]
+}

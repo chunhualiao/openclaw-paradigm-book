@@ -1,0 +1,157 @@
+{
+  "chapter": "chapter-05.md",
+  "diagrams": [
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "Gateway-Mediated Multi-Agent",
+        "COMPONENT_1": "Gateway",
+        "COMPONENT_1_LABEL": "Central Coordinator",
+        "COMPONENT_2": "MainAgent",
+        "COMPONENT_2_LABEL": "Primary Handler",
+        "COMPONENT_3": "SubAgents",
+        "COMPONENT_3_LABEL": "Specialized Tasks",
+        "EXTERNAL_1": "User",
+        "EXTERNAL_1_LABEL": "Request Source",
+        "EXTERNAL_2": "Tools",
+        "EXTERNAL_2_LABEL": "Execution Layer",
+        "FLOW_1": "Request",
+        "FLOW_2": "Orchestrate",
+        "FLOW_3": "Execute",
+        "FLOW_4": "Respond"
+      }
+    },
+    {
+      "template": "sequence",
+      "placeholders": {
+        "ACTOR_1": "User",
+        "ACTOR_1_LABEL": "Human User",
+        "ACTOR_2": "Gateway",
+        "ACTOR_2_LABEL": "Central Hub",
+        "ACTOR_3": "MainAgent",
+        "ACTOR_3_LABEL": "Primary Agent",
+        "MESSAGE_1": "Submit Request",
+        "NOTE_1": "Parse Intent",
+        "MESSAGE_2": "Spawn Sub-Agent",
+        "RESPONSE_1": "Task Result",
+        "RESPONSE_2": "Synthesize Response",
+        "OPTIONAL_CONDITION": "If Complex Task"
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "New Request",
+        "DECISION_1": "Single Agent?",
+        "CHOICE_1_YES": "Route to Agent",
+        "CHOICE_1_NO": "Decompose Task",
+        "DECISION_2": "Agents Ready?",
+        "CHOICE_2_YES": "Execute Parallel",
+        "CHOICE_2_NO": "Queue & Wait",
+        "ACTION_1": "Spawn Sub-Agents",
+        "ACTION_2": "Aggregate Results",
+        "ACTION_3": "Synthesize Output",
+        "ACTION_4": "Return to User",
+        "END_LABEL": "Complete"
+      }
+    },
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "System Architecture",
+        "COMPONENT_1": "C1",
+        "COMPONENT_1_LABEL": "Component 1",
+        "COMPONENT_2": "C2",
+        "COMPONENT_2_LABEL": "Component 2",
+        "COMPONENT_3": "C3",
+        "COMPONENT_3_LABEL": "Component 3",
+        "EXTERNAL_1": "E1",
+        "EXTERNAL_1_LABEL": "External 1",
+        "EXTERNAL_2": "E2",
+        "EXTERNAL_2_LABEL": "External 2",
+        "FLOW_1": "Input",
+        "FLOW_2": "Process",
+        "FLOW_3": "Output",
+        "FLOW_4": "Feedback"
+      }
+    },
+    {
+      "template": "sequence",
+      "placeholders": {
+        "ACTOR_1": "User",
+        "ACTOR_1_LABEL": "User",
+        "ACTOR_2": "System",
+        "ACTOR_2_LABEL": "System",
+        "ACTOR_3": "Service",
+        "ACTOR_3_LABEL": "Service",
+        "MESSAGE_1": "Request",
+        "MESSAGE_2": "Process",
+        "MESSAGE_3": "Query",
+        "NOTE_1": "Processing",
+        "RESPONSE_1": "Data",
+        "RESPONSE_2": "Result",
+        "RESPONSE_3": "Status",
+        "OPTIONAL_CONDITION": "If needed"
+      }
+    },
+    {
+      "template": "gantt",
+      "placeholders": {
+        "CHART_TITLE": "Project Timeline",
+        "SECTION_1_TITLE": "Phase 1",
+        "TASK_1_1": "Task 1",
+        "TASK_1_1_ID": "t1",
+        "TASK_1_1_START": "2024-01-01",
+        "TASK_1_1_DURATION": "2d",
+        "TASK_1_2": "Task 2",
+        "TASK_1_2_ID": "t2",
+        "TASK_1_2_START": "2024-01-03",
+        "TASK_1_2_DURATION": "3d",
+        "TASK_1_3": "Task 3",
+        "TASK_1_3_ID": "t3",
+        "TASK_1_3_START": "2024-01-06",
+        "TASK_1_3_DURATION": "2d",
+        "SECTION_2_TITLE": "Phase 2",
+        "TASK_2_1": "Task 4",
+        "TASK_2_1_ID": "t4",
+        "TASK_2_1_START": "2024-01-08",
+        "TASK_2_1_DURATION": "4d",
+        "TASK_2_2": "Task 5",
+        "TASK_2_2_ID": "t5",
+        "TASK_2_2_START": "2024-01-12",
+        "TASK_2_2_DURATION": "2d",
+        "SECTION_3_TITLE": "Phase 3",
+        "TASK_3_1": "Task 6",
+        "TASK_3_1_ID": "t6",
+        "TASK_3_1_START": "2024-01-14",
+        "TASK_3_1_DURATION": "3d",
+        "TASK_3_2": "Task 7",
+        "TASK_3_2_ID": "t7",
+        "TASK_3_2_START": "2024-01-17",
+        "TASK_3_2_DURATION": "2d"
+      }
+    },
+    {
+      "template": "mindmap",
+      "placeholders": {
+        "ROOT_CONCEPT": "Central Concept",
+        "BRANCH_1": "Branch 1",
+        "BRANCH_1_CHILD_1": "Item 1",
+        "BRANCH_1_CHILD_2": "Item 2",
+        "BRANCH_1_CHILD_3": "Item 3",
+        "BRANCH_2": "Branch 2",
+        "BRANCH_2_CHILD_1": "Item 4",
+        "BRANCH_2_CHILD_2": "Item 5",
+        "BRANCH_2_CHILD_3": "Item 6",
+        "BRANCH_3": "Branch 3",
+        "BRANCH_3_CHILD_1": "Item 7",
+        "BRANCH_3_CHILD_2": "Item 8",
+        "BRANCH_3_CHILD_3": "Item 9",
+        "BRANCH_4": "Branch 4",
+        "BRANCH_4_CHILD_1": "Item 10",
+        "BRANCH_4_CHILD_2": "Item 11",
+        "BRANCH_4_CHILD_3": "Item 12"
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "chapter": "chapter-06.md",
+  "diagrams": [
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "Agent Session",
+        "DECISION_1": "Query Type?",
+        "CHOICE_1_YES": "Load Recent Memory",
+        "CHOICE_1_NO": "Load Historical",
+        "DECISION_2": "Token Limit?",
+        "CHOICE_2_YES": "Summarize First",
+        "CHOICE_2_NO": "Load Direct",
+        "ACTION_1": "Parse Daily Log",
+        "ACTION_2": "Apply Summarization",
+        "ACTION_3": "Build Context",
+        "ACTION_4": "Execute Task",
+        "END_LABEL": "Task Complete"
+      }
+    },
+    {
+      "template": "concept-map",
+      "placeholders": {
+        "CENTRAL_CONCEPT": "File-Based Memory",
+        "BRANCH_1": "Daily Memory",
+        "BRANCH_1_SUB_1": "YYYY-MM-DD.md",
+        "BRANCH_1_SUB_2": "Session Logs",
+        "BRANCH_1_SUB_3": "Timestamped Entries",
+        "BRANCH_2": "Long-Term Memory",
+        "BRANCH_2_SUB_1": "MEMORY.md",
+        "BRANCH_2_SUB_2": "Curated Insights",
+        "BRANCH_2_SUB_3": "Project Context",
+        "BRANCH_3": "Append-Only",
+        "BRANCH_3_SUB_1": "Immutable History",
+        "BRANCH_3_SUB_2": "Audit Trail",
+        "BRANCH_3_SUB_3": "Version Control",
+        "BRANCH_4": "Contextual Loading",
+        "BRANCH_4_SUB_1": "Recency-Based",
+        "BRANCH_4_SUB_2": "Semantic Search",
+        "BRANCH_4_SUB_3": "Progressive Summarization"
+      }
+    },
+    {
+      "template": "timeline",
+      "placeholders": {
+        "TIMELINE_TITLE": "Progressive Summarization",
+        "PHASE_1": "Raw Data",
+        "EVENT_1_1": "Daily Logs",
+        "EVENT_1_1_DESC": "Unfiltered session data",
+        "EVENT_1_2": "Full Context",
+        "EVENT_1_2_DESC": "Complete interaction record",
+        "PHASE_2": "Daily Summary",
+        "EVENT_2_1": "End of Day",
+        "EVENT_2_1_DESC": "AI generates summary",
+        "EVENT_2_2": "Human Review",
+        "EVENT_2_2_DESC": "Approval and curation",
+        "PHASE_3": "Long-Term",
+        "EVENT_3_1": "Weekly/Monthly",
+        "EVENT_3_1_DESC": "High-level insights",
+        "EVENT_3_2": "MEMORY.md",
+        "EVENT_3_2_DESC": "Curated permanent knowledge"
+      }
+    }
+  ]
+}

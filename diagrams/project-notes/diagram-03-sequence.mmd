@@ -1,0 +1,20 @@
+%%{init: {'theme':'base', 'themeVariables': { 'actorBkg':'#4A90E2','actorBorder':'#2E5C8A','actorTextColor':'#fff','signalColor':'#333','signalTextColor':'#333','labelBoxBkgColor':'#7B68EE','labelBoxBorderColor':'#5A4FCF','labelTextColor':'#fff','loopTextColor':'#333','noteBorderColor':'#FFD700','noteBkgColor':'#FFFACD','noteTextColor':'#333'}}}%%
+sequenceDiagram
+    participant Director as Director Agent - TitanBot
+    participant Research as Research Agent - gemini-2.5-pro
+    participant Writing as Writing Agent - claude-sonnet-4-5
+    
+    Director->>Research: Spawn task-research.md
+    activate Research
+    Note over Research: Analyze 3000+ skills and extract patterns
+    Research->>Writing: Request synthesis
+    activate Writing
+    Writing-->>Research: pattern-synthesis.md: 8 patterns + 5 anti-patterns
+    deactivate Writing
+    Research-->>Director: Research complete - Update WORKLOG.md
+    deactivate Research
+    
+    opt Quality issues detected
+        Director->>Writing: Spawn task-polish.md
+        Writing-->>Director: Revisions complete
+    end

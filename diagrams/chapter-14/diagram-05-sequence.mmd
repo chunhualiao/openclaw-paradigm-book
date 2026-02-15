@@ -1,0 +1,20 @@
+%%{init: {'theme':'base', 'themeVariables': { 'actorBkg':'#4A90E2','actorBorder':'#2E5C8A','actorTextColor':'#fff','signalColor':'#333','signalTextColor':'#333','labelBoxBkgColor':'#7B68EE','labelBoxBorderColor':'#5A4FCF','labelTextColor':'#fff','loopTextColor':'#333','noteBorderColor':'#FFD700','noteBkgColor':'#FFFACD','noteTextColor':'#333'}}}%%
+sequenceDiagram
+    participant User as User
+    participant System as System
+    participant Service as Service
+    
+    User->>System: Request
+    activate System
+    Note over System: Processing
+    System->>Service: Process
+    activate Service
+    Service-->>System: Data
+    deactivate Service
+    System-->>User: Result
+    deactivate System
+    
+    opt If needed
+        User->>Service: Query
+        Service-->>User: Status
+    end

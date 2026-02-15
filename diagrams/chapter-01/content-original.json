@@ -1,0 +1,68 @@
+{
+  "chapter": "chapter-01.md",
+  "diagrams": [
+    {
+      "template": "concept-map",
+      "placeholders": {
+        "CENTRAL_CONCEPT": "AI-Native Development",
+        "BRANCH_1": "Historical Context",
+        "BRANCH_1_SUB_1": "Era 1: AI as Tool",
+        "BRANCH_1_SUB_2": "Era 2: AI-Augmented",
+        "BRANCH_1_SUB_3": "Era 3: AI-Native",
+        "BRANCH_2": "Core Principles",
+        "BRANCH_2_SUB_1": "Pragmatism Over Purity",
+        "BRANCH_2_SUB_2": "Human-Centric Design",
+        "BRANCH_2_SUB_3": "File-Based Architecture",
+        "BRANCH_3": "Taxonomy Categories",
+        "BRANCH_3_SUB_1": "Architectural Patterns",
+        "BRANCH_3_SUB_2": "Skill Design Patterns",
+        "BRANCH_3_SUB_3": "Data/Memory Patterns",
+        "BRANCH_4": "8 Architectural Patterns",
+        "BRANCH_4_SUB_1": "Skill Blueprint",
+        "BRANCH_4_SUB_2": "Gateway-Mediated",
+        "BRANCH_4_SUB_3": "Tool-Based Recovery"
+      }
+    },
+    {
+      "template": "timeline",
+      "placeholders": {
+        "TIMELINE_TITLE": "Evolution of AI in Software",
+        "PHASE_1": "Era 1 - Specialized Tool",
+        "EVENT_1_1": "Pre-2010s",
+        "EVENT_1_1_DESC": "ML for specific domains",
+        "EVENT_1_2": "High Barrier",
+        "EVENT_1_2_DESC": "Requires data science expertise",
+        "PHASE_2": "Era 2 - AI-Augmented",
+        "EVENT_2_1": "2010s-2020s",
+        "EVENT_2_1_DESC": "AI assists human developers",
+        "EVENT_2_2": "Copilot Integration",
+        "EVENT_2_2_DESC": "Code completion and testing",
+        "PHASE_3": "Era 3 - AI-Native",
+        "EVENT_3_1": "Emerging Now",
+        "EVENT_3_1_DESC": "AI as first-class component",
+        "EVENT_3_2": "Autonomous Agents",
+        "EVENT_3_2_DESC": "Human-AI collaboration"
+      }
+    },
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "OpenClaw Platform",
+        "COMPONENT_1": "Gateway",
+        "COMPONENT_1_LABEL": "Central Control Plane",
+        "COMPONENT_2": "Agents",
+        "COMPONENT_2_LABEL": "AI Personalities",
+        "COMPONENT_3": "Skills",
+        "COMPONENT_3_LABEL": "Micro-Skill Capabilities",
+        "EXTERNAL_1": "User",
+        "EXTERNAL_1_LABEL": "Human User",
+        "EXTERNAL_2": "Channel",
+        "EXTERNAL_2_LABEL": "Discord/Telegram/CLI",
+        "FLOW_1": "Request",
+        "FLOW_2": "Route",
+        "FLOW_3": "Execute",
+        "FLOW_4": "Response"
+      }
+    }
+  ]
+}

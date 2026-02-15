@@ -1,0 +1,181 @@
+{
+  "diagrams": [
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "AI-Native Book Creation Pipeline",
+        "COMPONENT_1_LABEL": "SYSTEM.md - State Machine + Roles",
+        "COMPONENT_2_LABEL": "AGENDA.md - Tasks + Timeline",
+        "COMPONENT_3_LABEL": "agent_*_instructions.md - Specific Tasks",
+        "EXTERNAL_1_LABEL": "Mission Input - Book Requirements",
+        "EXTERNAL_2_LABEL": "WORKLOG.md - Execution Log",
+        "FLOW_1": "Defines mission",
+        "FLOW_2": "Breaks into tasks",
+        "FLOW_3": "Provides context",
+        "FLOW_4": "Logs execution"
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "INITIALIZING",
+        "DECISION_1": "Research Complete?",
+        "CHOICE_1_YES": "No",
+        "CHOICE_1_NO": "Yes",
+        "ACTION_1": "PLANNING - Define scope",
+        "ACTION_2": "RESEARCH - 3 parallel agents",
+        "DECISION_2": "Writing Done?",
+        "CHOICE_2_YES": "No",
+        "CHOICE_2_NO": "Yes",
+        "ACTION_3": "WRITING - 5 agents × 3 chapters",
+        "ACTION_4": "REVIEWING - Quality check",
+        "END_LABEL": "COMPLETE"
+      }
+    },
+    {
+      "template": "sequence",
+      "placeholders": {
+        "ACTOR_1": "Director",
+        "ACTOR_1_LABEL": "Director Agent - TitanBot",
+        "ACTOR_2": "Research",
+        "ACTOR_2_LABEL": "Research Agent - gemini-2.5-pro",
+        "ACTOR_3": "Writing",
+        "ACTOR_3_LABEL": "Writing Agent - claude-sonnet-4-5",
+        "MESSAGE_1": "Spawn task-research.md",
+        "NOTE_1": "Analyze 3000+ skills and extract patterns",
+        "MESSAGE_2": "Request synthesis",
+        "RESPONSE_1": "pattern-synthesis.md: 8 patterns + 5 anti-patterns",
+        "RESPONSE_2": "Research complete - Update WORKLOG.md",
+        "OPTIONAL_CONDITION": "Quality issues detected",
+        "MESSAGE_3": "Spawn task-polish.md",
+        "RESPONSE_3": "Revisions complete"
+      }
+    },
+    {
+      "template": "concept-map",
+      "placeholders": {
+        "CENTRAL_CONCEPT": "Progressive Summarization",
+        "BRANCH_1": "Level 1: Raw Data",
+        "BRANCH_1_SUB_1": "3000+ skills",
+        "BRANCH_1_SUB_2": "100+ GitHub repos",
+        "BRANCH_1_SUB_3": "Community chats",
+        "BRANCH_2": "Level 2: Reports",
+        "BRANCH_2_SUB_1": "skills-analysis.md",
+        "BRANCH_2_SUB_2": "github-analysis.md",
+        "BRANCH_2_SUB_3": "community-analysis.md",
+        "BRANCH_3": "Level 3: Synthesis",
+        "BRANCH_3_SUB_1": "8 core patterns",
+        "BRANCH_3_SUB_2": "5 anti-patterns",
+        "BRANCH_3_SUB_3": "pattern-synthesis.md",
+        "BRANCH_4": "Level 4: Content",
+        "BRANCH_4_SUB_1": "14 chapters",
+        "BRANCH_4_SUB_2": "88,000 words"
+      }
+    },
+    {
+      "template": "gantt",
+      "placeholders": {
+        "CHART_TITLE": "8-Day AI-Native Book Sprint - Planned Timeline",
+        "SECTION_1_TITLE": "Research & Planning",
+        "TASK_1_1": "Research - 3 agents parallel",
+        "TASK_1_1_ID": "research",
+        "TASK_1_1_START": "2026-02-12",
+        "TASK_1_1_DURATION": "1d",
+        "TASK_1_2": "Pattern synthesis",
+        "TASK_1_2_ID": "synthesis",
+        "TASK_1_2_START": "after research",
+        "TASK_1_2_DURATION": "1d",
+        "TASK_1_3": "Outline creation",
+        "TASK_1_3_ID": "outline",
+        "TASK_1_3_START": "after synthesis",
+        "TASK_1_3_DURATION": "1d",
+        "SECTION_2_TITLE": "Writing & Review",
+        "TASK_2_1": "Writing - 5 agents × 3 chapters",
+        "TASK_2_1_ID": "writing",
+        "TASK_2_1_START": "after outline",
+        "TASK_2_1_DURATION": "3d",
+        "TASK_2_2": "Quality review",
+        "TASK_2_2_ID": "review",
+        "TASK_2_2_START": "after writing",
+        "TASK_2_2_DURATION": "2d",
+        "SECTION_3_TITLE": "Integration & Publishing",
+        "TASK_3_1": "Chapter integration",
+        "TASK_3_1_ID": "integration",
+        "TASK_3_1_START": "after review",
+        "TASK_3_1_DURATION": "1d",
+        "TASK_3_2": "Polish & publish",
+        "TASK_3_2_ID": "publish",
+        "TASK_3_2_START": "after integration",
+        "TASK_3_2_DURATION": "1d"
+      }
+    },
+    {
+      "template": "comparison-table",
+      "placeholders": {
+        "OPTION_1_TITLE": "Traditional Writing",
+        "OPTION_1_CRITERION_1": "Author outlines, writes sequentially",
+        "OPTION_1_CRITERION_2": "Months to years duration",
+        "OPTION_1_CRITERION_3": "Email, meetings coordination",
+        "OPTION_1_CRITERION_4": "Subjective quality control",
+        "OPTION_2_TITLE": "AI-Native - This Project",
+        "OPTION_2_CRITERION_1": "5 agents write 15 chapters in parallel",
+        "OPTION_2_CRITERION_2": "48 hours - 11.1× faster",
+        "OPTION_2_CRITERION_3": "Markdown files, git commits",
+        "OPTION_2_CRITERION_4": "Objective metrics - 85% score threshold"
+      }
+    },
+    {
+      "template": "timeline",
+      "placeholders": {
+        "TIMELINE_TITLE": "Actual Execution Timeline - 17 hours 19 minutes",
+        "PHASE_1": "Feb 12 - Initialization",
+        "EVENT_1_1": "2133 PST",
+        "EVENT_1_1_DESC": "INITIALIZING state",
+        "EVENT_1_2": "0000 PST",
+        "EVENT_1_2_DESC": "PLANNING to RESEARCH transition",
+        "PHASE_2": "Feb 13 - Execution",
+        "EVENT_2_1": "0600 PST",
+        "EVENT_2_1_DESC": "WRITING phase - 5 agents",
+        "EVENT_2_2": "1200 PST",
+        "EVENT_2_2_DESC": "REVIEWING phase",
+        "PHASE_3": "Feb 13 - Completion",
+        "EVENT_3_1": "1315 PST",
+        "EVENT_3_1_DESC": "INTEGRATING phase",
+        "EVENT_3_2": "1452 PST",
+        "EVENT_3_2_DESC": "COMPLETE - 11.1× ahead of schedule"
+      }
+    },
+    {
+      "template": "class-diagram",
+      "placeholders": {
+        "CLASS_1_NAME": "DirectorAgent",
+        "CLASS_1_ATTR_1": "model: claude-opus-4-6",
+        "CLASS_1_ATTR_2": "role: Project manager",
+        "CLASS_1_ATTR_3": "capabilities: spawn, monitor",
+        "CLASS_1_METHOD_1": "spawnAgent(task, label)",
+        "CLASS_1_METHOD_2": "monitorProgress()",
+        "CLASS_1_METHOD_3": "makeGoNoGoDecision()",
+        "CLASS_2_NAME": "ResearchAgent",
+        "CLASS_2_ATTR_1": "model: gemini-2.5-pro",
+        "CLASS_2_ATTR_2": "role: Data analyst",
+        "CLASS_2_ATTR_3": "capabilities: read, analyze",
+        "CLASS_2_METHOD_1": "analyzeSkills()",
+        "CLASS_2_METHOD_2": "extractPatterns()",
+        "CLASS_2_METHOD_3": "generateReport()",
+        "CLASS_3_NAME": "WritingAgent",
+        "CLASS_3_ATTR_1": "model: claude-sonnet-4-5",
+        "CLASS_3_ATTR_2": "role: Technical writer",
+        "CLASS_3_ATTR_3": "capabilities: read, write",
+        "CLASS_3_METHOD_1": "readSynthesis()",
+        "CLASS_3_METHOD_2": "writeChapter()",
+        "CLASS_3_METHOD_3": "updateWorklog()",
+        "REL_1_TYPE": "<|--",
+        "REL_1_LABEL": "delegates to",
+        "REL_2_TYPE": "-->",
+        "REL_2_LABEL": "provides data to",
+        "REL_3_TYPE": "..>",
+        "REL_3_LABEL": "depends on"
+      }
+    }
+  ]
+}

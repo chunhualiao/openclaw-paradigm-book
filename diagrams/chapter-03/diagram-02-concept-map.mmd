@@ -1,0 +1,48 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#4A90E2','primaryTextColor':'#fff','primaryBorderColor':'#2E5C8A','lineColor':'#333','secondaryColor':'#7B68EE','tertiaryColor':'#90EE90'}}}%%
+graph LR
+    Central["Founder Coach Skill"]
+    
+    B1["File-Based Memory"]
+    B1S1["Profile Management"]
+    B1S2["Append-Only Updates"]
+    B1S3["Session Summaries"]
+    
+    B2["Socratic Coaching"]
+    B2S1["Question-Based Dialog"]
+    B2S2["Mental Models"]
+    
+    B3["Skill Blueprint"]
+    B3S1["YAML Frontmatter"]
+    B3S2["Workflow Section"]
+    B3S3["Guardrails"]
+    
+    B4["Integration"]
+    B4S1["PhoenixClaw"]
+    B4S2["Daily Journal"]
+    
+    Central --- B1
+    Central --- B2
+    Central --- B3
+    Central --- B4
+    
+    B1 --- B1S1
+    B1 --- B1S2
+    B1 --- B1S3
+    
+    B2 --- B2S1
+    B2 --- B2S2
+    
+    B3 --- B3S1
+    B3 --- B3S2
+    B3 --- B3S3
+    
+    B4 --- B4S1
+    B4 --- B4S2
+    
+    classDef central fill:#4A90E2,stroke:#2E5C8A,stroke-width:4px,color:#fff,font-size:16px,font-weight:bold
+    classDef branch fill:#7B68EE,stroke:#5A4FCF,stroke-width:3px,color:#fff,font-size:14px
+    classDef leaf fill:#90EE90,stroke:#6DBE6D,stroke-width:2px,color:#333,font-size:12px
+    
+    class Central central
+    class B1,B2,B3,B4 branch
+    class B1S1,B1S2,B1S3,B2S1,B2S2,B3S1,B3S2,B3S3,B4S1,B4S2 leaf

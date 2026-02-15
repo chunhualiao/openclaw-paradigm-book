@@ -1,0 +1,48 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#4A90E2','primaryTextColor':'#fff','primaryBorderColor':'#2E5C8A','lineColor':'#333','secondaryColor':'#7B68EE','tertiaryColor':'#90EE90'}}}%%
+graph LR
+    Central["Progressive Summarization"]
+    
+    B1["Level 1: Raw Data"]
+    B1S1["3000+ skills"]
+    B1S2["100+ GitHub repos"]
+    B1S3["Community chats"]
+    
+    B2["Level 2: Reports"]
+    B2S1["skills-analysis.md"]
+    B2S2["github-analysis.md"]
+    
+    B3["Level 3: Synthesis"]
+    B3S1["8 core patterns"]
+    B3S2["5 anti-patterns"]
+    B3S3["pattern-synthesis.md"]
+    
+    B4["Level 4: Content"]
+    B4S1["14 chapters"]
+    B4S2["88,000 words"]
+    
+    Central --- B1
+    Central --- B2
+    Central --- B3
+    Central --- B4
+    
+    B1 --- B1S1
+    B1 --- B1S2
+    B1 --- B1S3
+    
+    B2 --- B2S1
+    B2 --- B2S2
+    
+    B3 --- B3S1
+    B3 --- B3S2
+    B3 --- B3S3
+    
+    B4 --- B4S1
+    B4 --- B4S2
+    
+    classDef central fill:#4A90E2,stroke:#2E5C8A,stroke-width:4px,color:#fff,font-size:16px,font-weight:bold
+    classDef branch fill:#7B68EE,stroke:#5A4FCF,stroke-width:3px,color:#fff,font-size:14px
+    classDef leaf fill:#90EE90,stroke:#6DBE6D,stroke-width:2px,color:#333,font-size:12px
+    
+    class Central central
+    class B1,B2,B3,B4 branch
+    class B1S1,B1S2,B1S3,B2S1,B2S2,B3S1,B3S2,B3S3,B4S1,B4S2 leaf

@@ -1,0 +1,104 @@
+{
+  "diagrams": [
+    {
+      "template": "architecture",
+      "filename": "tooling-ecosystem",
+      "title": "OpenClaw Tooling Ecosystem Architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "OpenClaw Tooling Ecosystem",
+        "COMPONENT_1": "SkillDev",
+        "COMPONENT_1_LABEL": "Skill Development Tools",
+        "COMPONENT_2": "TestValidate",
+        "COMPONENT_2_LABEL": "Testing & Validation",
+        "COMPONENT_3": "DeployManage",
+        "COMPONENT_3_LABEL": "Deployment & Management",
+        "EXTERNAL_1": "Developer",
+        "EXTERNAL_1_LABEL": "Developer",
+        "EXTERNAL_2": "ClawHub",
+        "EXTERNAL_2_LABEL": "ClawHub Registry",
+        "FLOW_1": "Create Skill",
+        "FLOW_2": "Test & Validate",
+        "FLOW_3": "Package & Deploy",
+        "FLOW_4": "Publish to Hub"
+      }
+    },
+    {
+      "template": "flowchart",
+      "filename": "skill-workflow",
+      "title": "Skill Development Workflow",
+      "placeholders": {
+        "START_LABEL": "Skill Idea",
+        "DECISION_1": "Skill Exists?",
+        "CHOICE_1_YES": "Reuse",
+        "CHOICE_1_NO": "Create New",
+        "ACTION_1": "Search ClawHub Registry",
+        "ACTION_2": "Generate Skill Blueprint",
+        "DECISION_2": "Tests Pass?",
+        "CHOICE_2_YES": "Yes",
+        "CHOICE_2_NO": "No",
+        "ACTION_3": "Fix & Iterate",
+        "ACTION_4": "Publish to ClawHub",
+        "END_LABEL": "Skill Deployed"
+      }
+    },
+    {
+      "template": "sequence",
+      "filename": "ci-cd-pipeline",
+      "title": "CI/CD Pipeline Tool Interactions",
+      "placeholders": {
+        "ACTOR_1": "Developer",
+        "ACTOR_1_LABEL": "Developer",
+        "ACTOR_2": "GitHub",
+        "ACTOR_2_LABEL": "GitHub Actions",
+        "ACTOR_3": "Gateway",
+        "ACTOR_3_LABEL": "OpenClaw Gateway",
+        "MESSAGE_1": "Push Skill Code",
+        "NOTE_1": "Run claw-lint validation",
+        "MESSAGE_2": "Execute clawkick tests",
+        "RESPONSE_1": "Test Results",
+        "RESPONSE_2": "Build Status",
+        "OPTIONAL_CONDITION": "Tests Pass",
+        "MESSAGE_3": "Deploy to Gateway",
+        "RESPONSE_3": "Deployment Confirmed"
+      }
+    },
+    {
+      "template": "timeline",
+      "placeholders": {
+        "TIMELINE_TITLE": "Process Timeline",
+        "PHASE_1": "Phase 1",
+        "EVENT_1_1": "Step 1",
+        "EVENT_1_1_DESC": "Initial Setup",
+        "EVENT_1_2": "Step 2",
+        "EVENT_1_2_DESC": "Configuration",
+        "PHASE_2": "Phase 2",
+        "EVENT_2_1": "Step 3",
+        "EVENT_2_1_DESC": "Implementation",
+        "EVENT_2_2": "Step 4",
+        "EVENT_2_2_DESC": "Testing",
+        "PHASE_3": "Phase 3",
+        "EVENT_3_1": "Step 5",
+        "EVENT_3_1_DESC": "Deployment",
+        "EVENT_3_2": "Step 6",
+        "EVENT_3_2_DESC": "Monitoring"
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "Start",
+        "DECISION_1": "Check Condition",
+        "CHOICE_1_YES": "Proceed",
+        "CHOICE_1_NO": "Retry",
+        "DECISION_2": "Validate",
+        "CHOICE_2_YES": "Success",
+        "CHOICE_2_NO": "Error",
+        "ACTION_1": "Process Data",
+        "ACTION_2": "Execute Task",
+        "ACTION_3": "Log Result",
+        "ACTION_4": "Cleanup",
+        "END_LABEL": "Complete"
+      }
+    }
+  ]
+}

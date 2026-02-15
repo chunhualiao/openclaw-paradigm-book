@@ -1,0 +1,23 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#4A90E2','primaryTextColor':'#fff','primaryBorderColor':'#2E5C8A','lineColor':'#333','secondaryColor':'#7B68EE','tertiaryColor':'#90EE90'}}}%%
+graph LR
+    subgraph "Traditional Writing"
+        direction TB
+        O1C1["Author outlines, writes sequentially"]
+        O1C2["Months to years duration"]
+        O1C3["Email, meetings coordination"]
+        O1C4["Subjective quality control"]
+    end
+    
+    subgraph "AI-Native - This Project"
+        direction TB
+        O2C1["5 agents write 15 chapters in parallel"]
+        O2C2["48 hours - 11.1× faster"]
+        O2C3["Markdown files, git commits"]
+        O2C4["Objective metrics - 85% score threshold"]
+    end
+    
+    classDef option1 fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef option2 fill:#7B68EE,stroke:#5A4FCF,stroke-width:2px,color:#fff
+    
+    class O1C1,O1C2,O1C3,O1C4 option1
+    class O2C1,O2C2,O2C3,O2C4 option2

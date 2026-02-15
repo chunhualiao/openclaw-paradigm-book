@@ -1,0 +1,63 @@
+{
+  "chapter": "chapter-07.md",
+  "diagrams": [
+    {
+      "template": "timeline",
+      "placeholders": {
+        "TIMELINE_TITLE": "Cron Scheduling Patterns",
+        "PHASE_1": "Time-Based",
+        "EVENT_1_1": "Fixed Intervals",
+        "EVENT_1_1_DESC": "Hourly/Daily/Weekly",
+        "EVENT_1_2": "Calendar Aware",
+        "EVENT_1_2_DESC": "Business hours only",
+        "PHASE_2": "Event-Triggered",
+        "EVENT_2_1": "File System",
+        "EVENT_2_1_DESC": "Watch directory changes",
+        "EVENT_2_2": "API Webhooks",
+        "EVENT_2_2_DESC": "External triggers",
+        "PHASE_3": "Adaptive",
+        "EVENT_3_1": "Load-Based",
+        "EVENT_3_1_DESC": "Defer during peak",
+        "EVENT_3_2": "Retry Backoff",
+        "EVENT_3_2_DESC": "Exponential wait"
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "Scheduled Task",
+        "DECISION_1": "System Ready?",
+        "CHOICE_1_YES": "Execute Task",
+        "CHOICE_1_NO": "Wait & Retry",
+        "DECISION_2": "Execution Success?",
+        "CHOICE_2_YES": "Log Result",
+        "CHOICE_2_NO": "Classify Error",
+        "ACTION_1": "Check Dependencies",
+        "ACTION_2": "Retry with Backoff",
+        "ACTION_3": "Notify Human",
+        "ACTION_4": "Archive Task",
+        "END_LABEL": "Task Complete"
+      }
+    },
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "Cron Agent System",
+        "COMPONENT_1": "CronAgent",
+        "COMPONENT_1_LABEL": "Scheduler",
+        "COMPONENT_2": "JobQueue",
+        "COMPONENT_2_LABEL": "Pending Tasks",
+        "COMPONENT_3": "ExecutionEngine",
+        "COMPONENT_3_LABEL": "Tool Runner",
+        "EXTERNAL_1": "Gateway",
+        "EXTERNAL_1_LABEL": "Message Route",
+        "EXTERNAL_2": "Notification",
+        "EXTERNAL_2_LABEL": "Discord/Email",
+        "FLOW_1": "Trigger",
+        "FLOW_2": "Queue",
+        "FLOW_3": "Execute",
+        "FLOW_4": "Report"
+      }
+    }
+  ]
+}

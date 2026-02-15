@@ -1,0 +1,67 @@
+{
+  "diagrams": [
+    {
+      "template": "flowchart",
+      "filename": "learning-path",
+      "title": "AI-Native Developer Learning Path",
+      "placeholders": {
+        "START_LABEL": "New to AI-Native",
+        "DECISION_1": "Technical Background?",
+        "CHOICE_1_YES": "Yes",
+        "CHOICE_1_NO": "No",
+        "ACTION_1": "Study Core Patterns",
+        "ACTION_2": "Start with Fundamentals",
+        "DECISION_2": "Ready to Build?",
+        "CHOICE_2_YES": "Yes",
+        "CHOICE_2_NO": "No",
+        "ACTION_3": "Practice with Examples",
+        "ACTION_4": "Create First Skill",
+        "END_LABEL": "Contributing Developer"
+      }
+    },
+    {
+      "template": "concept-map",
+      "filename": "community-structure",
+      "title": "OpenClaw Community Ecosystem",
+      "placeholders": {
+        "CENTRAL_CONCEPT": "OpenClaw Community",
+        "BRANCH_1": "Learning Resources",
+        "BRANCH_1_SUB_1": "Documentation",
+        "BRANCH_1_SUB_2": "Interactive Tutorials",
+        "BRANCH_1_SUB_3": "Mentorship Programs",
+        "BRANCH_2": "Contribution Paths",
+        "BRANCH_2_SUB_1": "Skill Developers",
+        "BRANCH_2_SUB_2": "Tool Builders",
+        "BRANCH_3": "Collaboration Tools",
+        "BRANCH_3_SUB_1": "GitHub Ecosystem",
+        "BRANCH_3_SUB_2": "Community Forums",
+        "BRANCH_3_SUB_3": "ClawHub Marketplace",
+        "BRANCH_4": "Governance",
+        "BRANCH_4_SUB_1": "Core Council",
+        "BRANCH_4_SUB_2": "Maintainer Teams"
+      }
+    },
+    {
+      "template": "architecture",
+      "filename": "contribution-flow",
+      "title": "AI-First Contribution Architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "Contribution Review System",
+        "COMPONENT_1": "AIAssist",
+        "COMPONENT_1_LABEL": "AI-Assisted Development",
+        "COMPONENT_2": "AutoReview",
+        "COMPONENT_2_LABEL": "Automated Review Tools",
+        "COMPONENT_3": "HumanReview",
+        "COMPONENT_3_LABEL": "Human Final Approval",
+        "EXTERNAL_1": "Contributor",
+        "EXTERNAL_1_LABEL": "Contributor",
+        "EXTERNAL_2": "MainRepo",
+        "EXTERNAL_2_LABEL": "Main Repository",
+        "FLOW_1": "Create with AI",
+        "FLOW_2": "Auto-Test & Lint",
+        "FLOW_3": "Maintainer Review",
+        "FLOW_4": "Merge to Main"
+      }
+    }
+  ]
+}

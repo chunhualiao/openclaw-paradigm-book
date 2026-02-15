@@ -1,0 +1,23 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#4A90E2','primaryTextColor':'#fff','primaryBorderColor':'#2E5C8A','lineColor':'#333','secondaryColor':'#7B68EE','tertiaryColor':'#90EE90'}}}%%
+graph LR
+    subgraph "AI-Augmented Development"
+        direction TB
+        O1C1["Core: Deterministic logic"]
+        O1C2["AI Role: Enhancement layer"]
+        O1C3["Interface: Traditional APIs"]
+        O1C4["Example: Code completion"]
+    end
+    
+    subgraph "AI-Native Development"
+        direction TB
+        O2C1["Core: AI-first architecture"]
+        O2C2["AI Role: Foundation component"]
+        O2C3["Interface: Natural language"]
+        O2C4["Example: Autonomous agents"]
+    end
+    
+    classDef option1 fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef option2 fill:#7B68EE,stroke:#5A4FCF,stroke-width:2px,color:#fff
+    
+    class O1C1,O1C2,O1C3,O1C4 option1
+    class O2C1,O2C2,O2C3,O2C4 option2

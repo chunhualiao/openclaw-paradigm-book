@@ -1,0 +1,69 @@
+{
+  "source": "diagrams/chapter-08/content-enhanced.json",
+  "generated": "2026-02-15T16:41:19.269Z",
+  "diagrams": [
+    {
+      "index": 1,
+      "template": "flowchart",
+      "files": {
+        "source": "diagram-01-flowchart.mmd",
+        "svg": "diagram-01-flowchart.svg",
+        "png": "diagram-01-flowchart.png"
+      }
+    },
+    {
+      "index": 2,
+      "template": "timeline",
+      "files": {
+        "source": "diagram-02-timeline.mmd",
+        "svg": "diagram-02-timeline.svg",
+        "png": "diagram-02-timeline.png"
+      }
+    },
+    {
+      "index": 3,
+      "template": "architecture",
+      "files": {
+        "source": "diagram-03-architecture.mmd",
+        "svg": "diagram-03-architecture.svg",
+        "png": "diagram-03-architecture.png"
+      }
+    },
+    {
+      "index": 4,
+      "template": "sequence",
+      "files": {
+        "source": "diagram-04-sequence.mmd",
+        "svg": "diagram-04-sequence.svg",
+        "png": "diagram-04-sequence.png"
+      }
+    },
+    {
+      "index": 5,
+      "template": "comparison-table",
+      "files": {
+        "source": "diagram-05-comparison-table.mmd",
+        "svg": "diagram-05-comparison-table.svg",
+        "png": "diagram-05-comparison-table.png"
+      }
+    },
+    {
+      "index": 6,
+      "template": "gantt",
+      "files": {
+        "source": "diagram-06-gantt.mmd",
+        "svg": "diagram-06-gantt.svg",
+        "png": "diagram-06-gantt.png"
+      }
+    },
+    {
+      "index": 7,
+      "template": "architecture",
+      "files": {
+        "source": "diagram-07-architecture.mmd",
+        "svg": "diagram-07-architecture.svg",
+        "png": "diagram-07-architecture.png"
+      }
+    }
+  ]
+}

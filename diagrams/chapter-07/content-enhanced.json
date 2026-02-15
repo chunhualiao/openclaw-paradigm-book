@@ -1,0 +1,130 @@
+{
+  "chapter": "chapter-07.md",
+  "diagrams": [
+    {
+      "template": "timeline",
+      "placeholders": {
+        "TIMELINE_TITLE": "Cron Scheduling Patterns",
+        "PHASE_1": "Time-Based",
+        "EVENT_1_1": "Fixed Intervals",
+        "EVENT_1_1_DESC": "Hourly/Daily/Weekly",
+        "EVENT_1_2": "Calendar Aware",
+        "EVENT_1_2_DESC": "Business hours only",
+        "PHASE_2": "Event-Triggered",
+        "EVENT_2_1": "File System",
+        "EVENT_2_1_DESC": "Watch directory changes",
+        "EVENT_2_2": "API Webhooks",
+        "EVENT_2_2_DESC": "External triggers",
+        "PHASE_3": "Adaptive",
+        "EVENT_3_1": "Load-Based",
+        "EVENT_3_1_DESC": "Defer during peak",
+        "EVENT_3_2": "Retry Backoff",
+        "EVENT_3_2_DESC": "Exponential wait"
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "Scheduled Task",
+        "DECISION_1": "System Ready?",
+        "CHOICE_1_YES": "Execute Task",
+        "CHOICE_1_NO": "Wait & Retry",
+        "DECISION_2": "Execution Success?",
+        "CHOICE_2_YES": "Log Result",
+        "CHOICE_2_NO": "Classify Error",
+        "ACTION_1": "Check Dependencies",
+        "ACTION_2": "Retry with Backoff",
+        "ACTION_3": "Notify Human",
+        "ACTION_4": "Archive Task",
+        "END_LABEL": "Task Complete"
+      }
+    },
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "Cron Agent System",
+        "COMPONENT_1": "CronAgent",
+        "COMPONENT_1_LABEL": "Scheduler",
+        "COMPONENT_2": "JobQueue",
+        "COMPONENT_2_LABEL": "Pending Tasks",
+        "COMPONENT_3": "ExecutionEngine",
+        "COMPONENT_3_LABEL": "Tool Runner",
+        "EXTERNAL_1": "Gateway",
+        "EXTERNAL_1_LABEL": "Message Route",
+        "EXTERNAL_2": "Notification",
+        "EXTERNAL_2_LABEL": "Discord/Email",
+        "FLOW_1": "Trigger",
+        "FLOW_2": "Queue",
+        "FLOW_3": "Execute",
+        "FLOW_4": "Report"
+      }
+    },
+    {
+      "template": "timeline",
+      "placeholders": {
+        "TIMELINE_TITLE": "Process Timeline",
+        "PHASE_1": "Phase 1",
+        "EVENT_1_1": "Step 1",
+        "EVENT_1_1_DESC": "Initial Setup",
+        "EVENT_1_2": "Step 2",
+        "EVENT_1_2_DESC": "Configuration",
+        "PHASE_2": "Phase 2",
+        "EVENT_2_1": "Step 3",
+        "EVENT_2_1_DESC": "Implementation",
+        "EVENT_2_2": "Step 4",
+        "EVENT_2_2_DESC": "Testing",
+        "PHASE_3": "Phase 3",
+        "EVENT_3_1": "Step 5",
+        "EVENT_3_1_DESC": "Deployment",
+        "EVENT_3_2": "Step 6",
+        "EVENT_3_2_DESC": "Monitoring"
+      }
+    },
+    {
+      "template": "comparison",
+      "placeholders": {
+        "COMPARISON_TITLE": "System Comparison",
+        "X_AXIS_LOW": "Simple",
+        "X_AXIS_HIGH": "Complex",
+        "Y_AXIS_LOW": "Manual",
+        "Y_AXIS_HIGH": "Automated",
+        "QUADRANT_1_LABEL": "Ideal Zone",
+        "QUADRANT_2_LABEL": "Advanced",
+        "QUADRANT_3_LABEL": "Basic",
+        "QUADRANT_4_LABEL": "Intermediate",
+        "ITEM_1": "Option A",
+        "X_1": 0.3,
+        "Y_1": 0.4,
+        "ITEM_2": "Option B",
+        "X_2": 0.6,
+        "Y_2": 0.7,
+        "ITEM_3": "Option C",
+        "X_3": 0.8,
+        "Y_3": 0.5,
+        "ITEM_4": "Option D",
+        "X_4": 0.4,
+        "Y_4": 0.8,
+        "ITEM_5": "Option E",
+        "X_5": 0.2,
+        "Y_5": 0.3
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "Start",
+        "DECISION_1": "Check Condition",
+        "CHOICE_1_YES": "Proceed",
+        "CHOICE_1_NO": "Retry",
+        "DECISION_2": "Validate",
+        "CHOICE_2_YES": "Success",
+        "CHOICE_2_NO": "Error",
+        "ACTION_1": "Process Data",
+        "ACTION_2": "Execute Task",
+        "ACTION_3": "Log Result",
+        "ACTION_4": "Cleanup",
+        "END_LABEL": "Complete"
+      }
+    }
+  ]
+}

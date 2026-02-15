@@ -1,0 +1,20 @@
+%%{init: {'theme':'base', 'themeVariables': { 'actorBkg':'#4A90E2','actorBorder':'#2E5C8A','actorTextColor':'#fff','signalColor':'#333','signalTextColor':'#333','labelBoxBkgColor':'#7B68EE','labelBoxBorderColor':'#5A4FCF','labelTextColor':'#fff','loopTextColor':'#333','noteBorderColor':'#FFD700','noteBkgColor':'#FFFACD','noteTextColor':'#333'}}}%%
+sequenceDiagram
+    participant MainAgent as Main Agent
+    participant Gateway as Gateway
+    participant SubAgent as Sub Agent
+    
+    MainAgent->>Gateway: Execute task with tool
+    activate Gateway
+    Note over Gateway: Route to sub-agent
+    Gateway->>SubAgent: Tool call request
+    activate SubAgent
+    SubAgent-->>Gateway: Tool result + status
+    deactivate SubAgent
+    Gateway-->>MainAgent: Task complete + logs
+    deactivate Gateway
+    
+    opt If error detected
+        MainAgent->>SubAgent: Request error details
+        SubAgent-->>MainAgent: Diagnostic logs
+    end

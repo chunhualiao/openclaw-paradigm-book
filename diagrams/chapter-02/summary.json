@@ -1,0 +1,60 @@
+{
+  "source": "content-enhanced.json",
+  "generated": "2026-02-15T16:38:14.318Z",
+  "diagrams": [
+    {
+      "index": 1,
+      "template": "architecture",
+      "files": {
+        "source": "diagram-01-architecture.mmd",
+        "svg": "diagram-01-architecture.svg",
+        "png": "diagram-01-architecture.png"
+      }
+    },
+    {
+      "index": 2,
+      "template": "flowchart",
+      "files": {
+        "source": "diagram-02-flowchart.mmd",
+        "svg": "diagram-02-flowchart.svg",
+        "png": "diagram-02-flowchart.png"
+      }
+    },
+    {
+      "index": 3,
+      "template": "comparison",
+      "files": {
+        "source": "diagram-03-comparison.mmd",
+        "svg": "diagram-03-comparison.svg",
+        "png": "diagram-03-comparison.png"
+      }
+    },
+    {
+      "index": 4,
+      "template": "sequence",
+      "files": {
+        "source": "diagram-04-sequence.mmd",
+        "svg": "diagram-04-sequence.svg",
+        "png": "diagram-04-sequence.png"
+      }
+    },
+    {
+      "index": 5,
+      "template": "gantt",
+      "files": {
+        "source": "diagram-05-gantt.mmd",
+        "svg": "diagram-05-gantt.svg",
+        "png": "diagram-05-gantt.png"
+      }
+    },
+    {
+      "index": 6,
+      "template": "mindmap",
+      "files": {
+        "source": "diagram-06-mindmap.mmd",
+        "svg": "diagram-06-mindmap.svg",
+        "png": "diagram-06-mindmap.png"
+      }
+    }
+  ]
+}

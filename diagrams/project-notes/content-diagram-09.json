@@ -1,0 +1,11 @@
+{
+  "diagrams": [
+    {
+      "id": "diagram-09-flowchart",
+      "title": "Automation Loop: Cron-Driven Agent Orchestration",
+      "description": "Shows how cron triggers director, which reads state, spawns subagents, and loops back for continuous automation with minimal human intervention.",
+      "type": "flowchart",
+      "mermaidFile": "diagram-09-flowchart.mmd"
+    }
+  ]
+}

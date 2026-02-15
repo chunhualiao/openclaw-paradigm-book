@@ -1,0 +1,149 @@
+{
+  "diagrams": [
+    {
+      "template": "comparison",
+      "filename": "cost-quality-efficiency",
+      "placeholders": {
+        "COMPARISON_TITLE": "AI Model Cost vs Quality Efficiency Frontier",
+        "X_AXIS_LOW": "Low Cost",
+        "X_AXIS_HIGH": "High Cost",
+        "Y_AXIS_LOW": "Low Quality",
+        "Y_AXIS_HIGH": "High Quality",
+        "QUADRANT_1_LABEL": "Premium Zone",
+        "QUADRANT_2_LABEL": "Balanced Zone",
+        "QUADRANT_3_LABEL": "Budget Zone",
+        "QUADRANT_4_LABEL": "Inefficient Zone",
+        "ITEM_1": "Claude 3.5 Sonnet",
+        "X_1": "0.8",
+        "Y_1": "0.9",
+        "ITEM_2": "GPT-4o",
+        "X_2": "0.85",
+        "Y_2": "0.88",
+        "ITEM_3": "Claude 3 Haiku",
+        "X_3": "0.3",
+        "Y_3": "0.7",
+        "ITEM_4": "Gemini 1.5 Flash",
+        "X_4": "0.15",
+        "Y_4": "0.65",
+        "ITEM_5": "Llama 3 8B",
+        "X_5": "0.1",
+        "Y_5": "0.5"
+      }
+    },
+    {
+      "template": "architecture",
+      "filename": "three-tier-model-architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "Cost-Optimized Model Architecture",
+        "COMPONENT_1": "Tier3",
+        "COMPONENT_1_LABEL": "Tier 3: Fast\\nClassify & Summarize",
+        "COMPONENT_2": "Tier2",
+        "COMPONENT_2_LABEL": "Tier 2: Balanced\\nStandard Processing",
+        "COMPONENT_3": "Tier1",
+        "COMPONENT_3_LABEL": "Tier 1: Premium\\nComplex Reasoning",
+        "EXTERNAL_1": "Input",
+        "EXTERNAL_1_LABEL": "User\\nQuery",
+        "EXTERNAL_2": "Output",
+        "EXTERNAL_2_LABEL": "Final\\nResponse",
+        "FLOW_1": "Route by complexity",
+        "FLOW_2": "Escalate if needed",
+        "FLOW_3": "Deep analysis",
+        "FLOW_4": "High-quality result"
+      }
+    },
+    {
+      "template": "flowchart",
+      "filename": "early-compact-pattern",
+      "placeholders": {
+        "START_LABEL": "Large Context Input",
+        "DECISION_1": "Exceeds Token Budget?",
+        "CHOICE_1_YES": "Yes",
+        "CHOICE_1_NO": "No",
+        "ACTION_1": "Tier 3: Summarize Content",
+        "ACTION_2": "Use Full Context",
+        "DECISION_2": "Cache Available?",
+        "CHOICE_2_YES": "Hit",
+        "CHOICE_2_NO": "Miss",
+        "ACTION_3": "Return Cached Result",
+        "ACTION_4": "Tier 1: Process & Cache",
+        "END_LABEL": "Optimized Output"
+      }
+    },
+    {
+      "template": "mindmap",
+      "placeholders": {
+        "ROOT_CONCEPT": "Central Concept",
+        "BRANCH_1": "Branch 1",
+        "BRANCH_1_CHILD_1": "Item 1",
+        "BRANCH_1_CHILD_2": "Item 2",
+        "BRANCH_1_CHILD_3": "Item 3",
+        "BRANCH_2": "Branch 2",
+        "BRANCH_2_CHILD_1": "Item 4",
+        "BRANCH_2_CHILD_2": "Item 5",
+        "BRANCH_2_CHILD_3": "Item 6",
+        "BRANCH_3": "Branch 3",
+        "BRANCH_3_CHILD_1": "Item 7",
+        "BRANCH_3_CHILD_2": "Item 8",
+        "BRANCH_3_CHILD_3": "Item 9",
+        "BRANCH_4": "Branch 4",
+        "BRANCH_4_CHILD_1": "Item 10",
+        "BRANCH_4_CHILD_2": "Item 11",
+        "BRANCH_4_CHILD_3": "Item 12"
+      }
+    },
+    {
+      "template": "class-diagram",
+      "placeholders": {
+        "CLASS_1_NAME": "Agent",
+        "CLASS_1_ATTR_1": "personality",
+        "CLASS_1_ATTR_2": "memory",
+        "CLASS_1_ATTR_3": "skills",
+        "CLASS_1_METHOD_1": "process()",
+        "CLASS_1_METHOD_2": "respond()",
+        "CLASS_1_METHOD_3": "learn()",
+        "CLASS_2_NAME": "Skill",
+        "CLASS_2_ATTR_1": "name",
+        "CLASS_2_ATTR_2": "triggers",
+        "CLASS_2_ATTR_3": "guardrails",
+        "CLASS_2_METHOD_1": "execute()",
+        "CLASS_2_METHOD_2": "validate()",
+        "CLASS_2_METHOD_3": "report()",
+        "CLASS_3_NAME": "Tool",
+        "CLASS_3_ATTR_1": "type",
+        "CLASS_3_ATTR_2": "policy",
+        "CLASS_3_ATTR_3": "status",
+        "CLASS_3_METHOD_1": "invoke()",
+        "CLASS_3_METHOD_2": "check()",
+        "CLASS_3_METHOD_3": "log()",
+        "REL_1_TYPE": "composition",
+        "REL_1_LABEL": "uses",
+        "REL_2_TYPE": "inheritance",
+        "REL_2_LABEL": "extends",
+        "REL_3_TYPE": "association",
+        "REL_3_LABEL": "interacts"
+      }
+    },
+    {
+      "template": "radial-concept",
+      "placeholders": {
+        "CENTRAL_CONCEPT": "Core Pattern",
+        "LEVEL_1_LABEL": "Principles",
+        "LEVEL_1_NODE_1": "Pragmatism",
+        "LEVEL_1_NODE_2": "Human-Centric",
+        "LEVEL_1_NODE_3": "Composability",
+        "LEVEL_2_LABEL": "Implementation",
+        "LEVEL_2_NODE_1": "File-Based",
+        "LEVEL_2_NODE_2": "Tool-Oriented",
+        "LEVEL_2_NODE_3": "Example-Driven",
+        "LEVEL_3_LABEL": "Practices",
+        "LEVEL_3_NODE_1": "Documentation",
+        "LEVEL_3_NODE_2": "Testing",
+        "LEVEL_3_NODE_3": "Collaboration",
+        "LEVEL_4_LABEL": "Community",
+        "LEVEL_4_NODE_1": "Open Source",
+        "LEVEL_4_NODE_2": "Contribution",
+        "LEVEL_4_NODE_3": "Evolution"
+      }
+    }
+  ]
+}

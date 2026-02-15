@@ -1,0 +1,80 @@
+{
+  "diagrams": [
+    {
+      "template": "timeline",
+      "filename": "ai-dev-evolution",
+      "title": "Evolution of AI-Native Development",
+      "placeholders": {
+        "TIMELINE_TITLE": "From Tool-Assisted to Autonomous Development",
+        "PHASE_1": "Tool-Assisted (Current)",
+        "EVENT_1_1": "AI suggests code",
+        "EVENT_1_1_DESC": "Humans control architecture",
+        "EVENT_1_2": "Bug fixes & docs",
+        "EVENT_1_2_DESC": "AI assists implementation",
+        "PHASE_2": "Co-Piloted (Near Future)",
+        "EVENT_2_1": "Routine decisions",
+        "EVENT_2_1_DESC": "AI handles within parameters",
+        "EVENT_2_2": "High-level specs",
+        "EVENT_2_2_DESC": "Humans review critical components",
+        "PHASE_3": "Autonomous (Future)",
+        "EVENT_3_1": "Self-improvement",
+        "EVENT_3_1_DESC": "AI extends own capabilities",
+        "EVENT_3_2": "Business requirements",
+        "EVENT_3_2_DESC": "AI architects complete solutions"
+      }
+    },
+    {
+      "template": "comparison",
+      "filename": "model-strategies",
+      "title": "Specialist Ensembles vs Generalist Giants",
+      "placeholders": {
+        "COMPARISON_TITLE": "Model Architecture Strategies",
+        "X_AXIS_LOW": "Low Specialization",
+        "X_AXIS_HIGH": "High Specialization",
+        "Y_AXIS_LOW": "Low Scale",
+        "Y_AXIS_HIGH": "High Scale",
+        "QUADRANT_1_LABEL": "Generalist Giants",
+        "QUADRANT_2_LABEL": "Hybrid Approach",
+        "QUADRANT_3_LABEL": "Simple Models",
+        "QUADRANT_4_LABEL": "Specialist Ensembles",
+        "ITEM_1": "10T+ Generalist",
+        "X_1": 0.2,
+        "Y_1": 0.9,
+        "ITEM_2": "100M-10B Specialist",
+        "X_2": 0.8,
+        "Y_2": 0.4,
+        "ITEM_3": "Edge AI Model",
+        "X_3": 0.7,
+        "Y_3": 0.2,
+        "ITEM_4": "Coordinated Ensemble",
+        "X_4": 0.6,
+        "Y_4": 0.7,
+        "ITEM_5": "Unified Reasoning",
+        "X_5": 0.3,
+        "Y_5": 0.8
+      }
+    },
+    {
+      "template": "concept-map",
+      "filename": "emerging-tech",
+      "title": "Emerging Technologies in AI-Native Development",
+      "placeholders": {
+        "CENTRAL_CONCEPT": "Future AI Technologies",
+        "BRANCH_1": "Advanced Architectures",
+        "BRANCH_1_SUB_1": "Large World Models",
+        "BRANCH_1_SUB_2": "Multimodal Integration",
+        "BRANCH_1_SUB_3": "Edge AI Specialization",
+        "BRANCH_2": "Memory Systems",
+        "BRANCH_2_SUB_1": "Neural-Symbolic Reasoning",
+        "BRANCH_2_SUB_2": "Knowledge Graphs",
+        "BRANCH_3": "Development Tools",
+        "BRANCH_3_SUB_1": "AI-Native OS",
+        "BRANCH_3_SUB_2": "Natural Language Interface",
+        "BRANCH_3_SUB_3": "Self-Evolving Code",
+        "BRANCH_4": "Sustainability",
+        "BRANCH_4_SUB_1": "Energy Efficiency",
+        "BRANCH_4_SUB_2": "Carbon-Aware Computing"
+      }
+    }
+  ]
+}

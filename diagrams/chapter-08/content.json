@@ -1,0 +1,65 @@
+{
+  "diagrams": [
+    {
+      "template": "flowchart",
+      "filename": "self-healing-ooda-loop",
+      "placeholders": {
+        "START_LABEL": "Failure Detected",
+        "DECISION_1": "Transient or Permanent?",
+        "CHOICE_1_YES": "Transient",
+        "CHOICE_1_NO": "Permanent",
+        "ACTION_1": "Implement Retry Strategy",
+        "ACTION_2": "Classify Error Type",
+        "DECISION_2": "Can Remediate?",
+        "CHOICE_2_YES": "Yes",
+        "CHOICE_2_NO": "No",
+        "ACTION_3": "Apply Healing Strategy",
+        "ACTION_4": "Escalate to Human",
+        "END_LABEL": "System Restored"
+      }
+    },
+    {
+      "template": "timeline",
+      "filename": "autonomy-spectrum",
+      "placeholders": {
+        "TIMELINE_TITLE": "Evolution of System Autonomy Levels",
+        "PHASE_1": "Manual Operation",
+        "EVENT_1_1": "Human-in-Loop",
+        "EVENT_1_1_DESC": "Human initiates all tasks",
+        "EVENT_1_2": "Tool Extension",
+        "EVENT_1_2_DESC": "AI provides suggestions only",
+        "PHASE_2": "Semi-Autonomous",
+        "EVENT_2_1": "Human-on-Loop",
+        "EVENT_2_1_DESC": "AI proposes, human approves",
+        "EVENT_2_2": "Supervised Autonomy",
+        "EVENT_2_2_DESC": "AI manages workflow with gates",
+        "PHASE_3": "Full Autonomy",
+        "EVENT_3_1": "Conditional Autonomy",
+        "EVENT_3_1_DESC": "Human only for exceptions",
+        "EVENT_3_2": "Human-out-of-Loop",
+        "EVENT_3_2_DESC": "Complete independent operation"
+      }
+    },
+    {
+      "template": "architecture",
+      "filename": "multi-agent-orchestration",
+      "placeholders": {
+        "SYSTEM_NAME": "Multi-Agent Autonomous System",
+        "COMPONENT_1": "Orchestrator",
+        "COMPONENT_1_LABEL": "Orchestrator\\nDecomposes goals",
+        "COMPONENT_2": "Researcher",
+        "COMPONENT_2_LABEL": "Researcher\\nGathers data",
+        "COMPONENT_3": "Writer",
+        "COMPONENT_3_LABEL": "Writer\\nSynthesizes content",
+        "EXTERNAL_1": "Goal",
+        "EXTERNAL_1_LABEL": "High-level\\nGoal",
+        "EXTERNAL_2": "Output",
+        "EXTERNAL_2_LABEL": "Final\\nArtifact",
+        "FLOW_1": "Goal specification",
+        "FLOW_2": "Task assignment",
+        "FLOW_3": "Research findings",
+        "FLOW_4": "Generated output"
+      }
+    }
+  ]
+}

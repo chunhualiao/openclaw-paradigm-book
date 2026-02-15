@@ -1,0 +1,20 @@
+%%{init: {'theme':'base', 'themeVariables': { 'actorBkg':'#4A90E2','actorBorder':'#2E5C8A','actorTextColor':'#fff','signalColor':'#333','signalTextColor':'#333','labelBoxBkgColor':'#7B68EE','labelBoxBorderColor':'#5A4FCF','labelTextColor':'#fff','loopTextColor':'#333','noteBorderColor':'#FFD700','noteBkgColor':'#FFFACD','noteTextColor':'#333'}}}%%
+sequenceDiagram
+    participant User as Human User
+    participant Gateway as Central Hub
+    participant MainAgent as Primary Agent
+    
+    User->>Gateway: Submit Request
+    activate Gateway
+    Note over Gateway: Parse Intent
+    Gateway->>MainAgent: Spawn Sub-Agent
+    activate MainAgent
+    MainAgent-->>Gateway: Task Result
+    deactivate MainAgent
+    Gateway-->>User: Synthesize Response
+    deactivate Gateway
+    
+    opt If Complex Task
+        User->>MainAgent: {{MESSAGE_3}}
+        MainAgent-->>User: {{RESPONSE_3}}
+    end

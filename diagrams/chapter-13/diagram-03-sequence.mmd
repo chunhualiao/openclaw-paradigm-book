@@ -1,0 +1,20 @@
+%%{init: {'theme':'base', 'themeVariables': { 'actorBkg':'#4A90E2','actorBorder':'#2E5C8A','actorTextColor':'#fff','signalColor':'#333','signalTextColor':'#333','labelBoxBkgColor':'#7B68EE','labelBoxBorderColor':'#5A4FCF','labelTextColor':'#fff','loopTextColor':'#333','noteBorderColor':'#FFD700','noteBkgColor':'#FFFACD','noteTextColor':'#333'}}}%%
+sequenceDiagram
+    participant Developer as Developer
+    participant GitHub as GitHub Actions
+    participant Gateway as OpenClaw Gateway
+    
+    Developer->>GitHub: Push Skill Code
+    activate GitHub
+    Note over GitHub: Run claw-lint validation
+    GitHub->>Gateway: Execute clawkick tests
+    activate Gateway
+    Gateway-->>GitHub: Test Results
+    deactivate Gateway
+    GitHub-->>Developer: Build Status
+    deactivate GitHub
+    
+    opt Tests Pass
+        Developer->>Gateway: Deploy to Gateway
+        Gateway-->>Developer: Deployment Confirmed
+    end

@@ -1,0 +1,19 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#4A90E2','primaryTextColor':'#fff','primaryBorderColor':'#2E5C8A','lineColor':'#333','secondaryColor':'#7B68EE','tertiaryColor':'#90EE90'}}}%%
+flowchart TD
+    Start([Large Context Input]) --> Decision1{Exceeds Token Budget?}
+    Decision1 -->|Yes| Action1[Tier 3: Summarize Content]
+    Decision1 -->|No| Action2[Use Full Context]
+    Action1 --> Decision2{Cache Available?}
+    Action2 --> Decision2
+    Decision2 -->|Hit| Action3[Return Cached Result]
+    Decision2 -->|Miss| Action4[Tier 1: Process & Cache]
+    Action3 --> End([Optimized Output])
+    Action4 --> End
+    
+    classDef startEnd fill:#90EE90,stroke:#6DBE6D,stroke-width:3px,color:#333
+    classDef decision fill:#FFD700,stroke:#DAA520,stroke-width:2px,color:#333
+    classDef action fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    
+    class Start,End startEnd
+    class Decision1,Decision2 decision
+    class Action1,Action2,Action3,Action4 action

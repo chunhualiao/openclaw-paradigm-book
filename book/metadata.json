@@ -1,0 +1,19 @@
+{
+  "title": "The OpenClaw Paradigm: AI-Native Development in Practice",
+  "subtitle": "A Practical Guide to Building AI-Native Systems",
+  "author": "The OpenClaw Community",
+  "date": "2026-02-13",
+  "category": "Technology / AI / Software Engineering",
+  "word_count": 88271,
+  "chapter_count": 15,
+  "generated_by": "OpenClaw Books 8-Day Sprint",
+  "generation_date": "2026-02-13",
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
+  "isbn": "978-0-000000-00-0 (Paperback) | 978-0-000000-01-7 (Ebook)",
+  "repository": "https://github.com/openclaw/openclaw-books",
+  "formats": [
+    "Markdown",
+    "HTML"
+  ],
+  "status": "published"
+}

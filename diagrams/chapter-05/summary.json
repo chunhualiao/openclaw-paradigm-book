@@ -1,0 +1,69 @@
+{
+  "source": "diagrams/chapter-05/content-enhanced.json",
+  "generated": "2026-02-15T16:40:38.504Z",
+  "diagrams": [
+    {
+      "index": 1,
+      "template": "architecture",
+      "files": {
+        "source": "diagram-01-architecture.mmd",
+        "svg": "diagram-01-architecture.svg",
+        "png": "diagram-01-architecture.png"
+      }
+    },
+    {
+      "index": 2,
+      "template": "sequence",
+      "files": {
+        "source": "diagram-02-sequence.mmd",
+        "svg": "diagram-02-sequence.svg",
+        "png": "diagram-02-sequence.png"
+      }
+    },
+    {
+      "index": 3,
+      "template": "flowchart",
+      "files": {
+        "source": "diagram-03-flowchart.mmd",
+        "svg": "diagram-03-flowchart.svg",
+        "png": "diagram-03-flowchart.png"
+      }
+    },
+    {
+      "index": 4,
+      "template": "architecture",
+      "files": {
+        "source": "diagram-04-architecture.mmd",
+        "svg": "diagram-04-architecture.svg",
+        "png": "diagram-04-architecture.png"
+      }
+    },
+    {
+      "index": 5,
+      "template": "sequence",
+      "files": {
+        "source": "diagram-05-sequence.mmd",
+        "svg": "diagram-05-sequence.svg",
+        "png": "diagram-05-sequence.png"
+      }
+    },
+    {
+      "index": 6,
+      "template": "gantt",
+      "files": {
+        "source": "diagram-06-gantt.mmd",
+        "svg": "diagram-06-gantt.svg",
+        "png": "diagram-06-gantt.png"
+      }
+    },
+    {
+      "index": 7,
+      "template": "mindmap",
+      "files": {
+        "source": "diagram-07-mindmap.mmd",
+        "svg": "diagram-07-mindmap.svg",
+        "png": "diagram-07-mindmap.png"
+      }
+    }
+  ]
+}

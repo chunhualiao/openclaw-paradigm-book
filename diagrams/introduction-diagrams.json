@@ -1,0 +1,76 @@
+{
+  "chapter": "introduction.md",
+  "diagrams": [
+    {
+      "template": "timeline",
+      "placeholders": {
+        "TIMELINE_TITLE": "Evolution of Software Development Paradigms",
+        "PHASE_1": "1950s-1970s",
+        "EVENT_1_1": "Machine Code",
+        "EVENT_1_1_DESC": "Direct binary instructions",
+        "EVENT_1_2": "Assembly & High-Level",
+        "EVENT_1_2_DESC": "FORTRAN, C, procedural abstraction",
+        "PHASE_2": "1980s-2000s",
+        "EVENT_2_1": "Object-Oriented",
+        "EVENT_2_1_DESC": "Encapsulation, reusable components",
+        "EVENT_2_2": "Web & Cloud",
+        "EVENT_2_2_DESC": "Distributed systems, microservices",
+        "PHASE_3": "2020s-Present",
+        "EVENT_3_1": "AI-Native Era",
+        "EVENT_3_1_DESC": "Natural language interfaces",
+        "EVENT_3_2": "Autonomous Agents",
+        "EVENT_3_2_DESC": "Adaptive, context-aware systems"
+      }
+    },
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "OpenClaw Platform Architecture",
+        "COMPONENT_1_LABEL": "Gateway",
+        "COMPONENT_2_LABEL": "Skills",
+        "COMPONENT_3_LABEL": "Tools",
+        "EXTERNAL_1_LABEL": "User via Channels",
+        "EXTERNAL_2_LABEL": "External Systems",
+        "FLOW_1": "Natural language request",
+        "FLOW_2": "Coordinate & route",
+        "FLOW_3": "Execute actions",
+        "FLOW_4": "Return results"
+      }
+    },
+    {
+      "template": "comparison-table",
+      "placeholders": {
+        "OPTION_1_TITLE": "AI-Augmented Development",
+        "OPTION_1_CRITERION_1": "Core: Deterministic logic",
+        "OPTION_1_CRITERION_2": "AI Role: Enhancement layer",
+        "OPTION_1_CRITERION_3": "Interface: Traditional APIs",
+        "OPTION_1_CRITERION_4": "Example: Code completion",
+        "OPTION_2_TITLE": "AI-Native Development",
+        "OPTION_2_CRITERION_1": "Core: AI-first architecture",
+        "OPTION_2_CRITERION_2": "AI Role: Foundation component",
+        "OPTION_2_CRITERION_3": "Interface: Natural language",
+        "OPTION_2_CRITERION_4": "Example: Autonomous agents"
+      }
+    },
+    {
+      "template": "mindmap",
+      "placeholders": {
+        "ROOT_CONCEPT": "OpenClaw Paradigm Book",
+        "BRANCH_1": "Part 1: Foundations",
+        "BRANCH_1_CHILD_1": "AI-Native Concepts",
+        "BRANCH_1_CHILD_2": "Ecosystem Overview",
+        "BRANCH_1_CHILD_3": "Case Studies",
+        "BRANCH_2": "Part 2: Orchestration",
+        "BRANCH_2_CHILD_1": "Soul.md Pattern",
+        "BRANCH_2_CHILD_2": "Multi-Agent Patterns",
+        "BRANCH_3": "Part 3: Automation",
+        "BRANCH_3_CHILD_1": "Scheduled Tasks",
+        "BRANCH_3_CHILD_2": "Autonomous Systems",
+        "BRANCH_3_CHILD_3": "Cost Optimization",
+        "BRANCH_4": "Part 4 & 5: Advanced",
+        "BRANCH_4_CHILD_1": "Security & Debugging",
+        "BRANCH_4_CHILD_2": "Tooling & Community"
+      }
+    }
+  ]
+}

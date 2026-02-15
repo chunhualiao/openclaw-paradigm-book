@@ -1,0 +1,59 @@
+{
+  "chapter": "chapter-05.md",
+  "diagrams": [
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "Gateway-Mediated Multi-Agent",
+        "COMPONENT_1": "Gateway",
+        "COMPONENT_1_LABEL": "Central Coordinator",
+        "COMPONENT_2": "MainAgent",
+        "COMPONENT_2_LABEL": "Primary Handler",
+        "COMPONENT_3": "SubAgents",
+        "COMPONENT_3_LABEL": "Specialized Tasks",
+        "EXTERNAL_1": "User",
+        "EXTERNAL_1_LABEL": "Request Source",
+        "EXTERNAL_2": "Tools",
+        "EXTERNAL_2_LABEL": "Execution Layer",
+        "FLOW_1": "Request",
+        "FLOW_2": "Orchestrate",
+        "FLOW_3": "Execute",
+        "FLOW_4": "Respond"
+      }
+    },
+    {
+      "template": "sequence",
+      "placeholders": {
+        "ACTOR_1": "User",
+        "ACTOR_1_LABEL": "Human User",
+        "ACTOR_2": "Gateway",
+        "ACTOR_2_LABEL": "Central Hub",
+        "ACTOR_3": "MainAgent",
+        "ACTOR_3_LABEL": "Primary Agent",
+        "MESSAGE_1": "Submit Request",
+        "NOTE_1": "Parse Intent",
+        "MESSAGE_2": "Spawn Sub-Agent",
+        "RESPONSE_1": "Task Result",
+        "RESPONSE_2": "Synthesize Response",
+        "OPTIONAL_CONDITION": "If Complex Task"
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "New Request",
+        "DECISION_1": "Single Agent?",
+        "CHOICE_1_YES": "Route to Agent",
+        "CHOICE_1_NO": "Decompose Task",
+        "DECISION_2": "Agents Ready?",
+        "CHOICE_2_YES": "Execute Parallel",
+        "CHOICE_2_NO": "Queue & Wait",
+        "ACTION_1": "Spawn Sub-Agents",
+        "ACTION_2": "Aggregate Results",
+        "ACTION_3": "Synthesize Output",
+        "ACTION_4": "Return to User",
+        "END_LABEL": "Complete"
+      }
+    }
+  ]
+}

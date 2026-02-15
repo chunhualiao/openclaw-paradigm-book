@@ -1,0 +1,130 @@
+{
+  "diagrams": [
+    {
+      "template": "flowchart",
+      "filename": "tool-error-recovery",
+      "placeholders": {
+        "START_LABEL": "Tool Call Initiated",
+        "DECISION_1": "Tool Execution Success?",
+        "CHOICE_1_YES": "Success",
+        "CHOICE_1_NO": "Failure",
+        "ACTION_1": "Return OK Status",
+        "ACTION_2": "Diagnose Error Type",
+        "DECISION_2": "Recoverable Error?",
+        "CHOICE_2_YES": "Yes",
+        "CHOICE_2_NO": "No",
+        "ACTION_3": "Apply Recovery Strategy",
+        "ACTION_4": "Return FAIL Status",
+        "END_LABEL": "Tool Execution Complete"
+      }
+    },
+    {
+      "template": "sequence",
+      "filename": "multi-agent-debug-interaction",
+      "placeholders": {
+        "ACTOR_1": "MainAgent",
+        "ACTOR_1_LABEL": "Main Agent",
+        "ACTOR_2": "Gateway",
+        "ACTOR_2_LABEL": "Gateway",
+        "ACTOR_3": "SubAgent",
+        "ACTOR_3_LABEL": "Sub Agent",
+        "MESSAGE_1": "Execute task with tool",
+        "NOTE_1": "Route to sub-agent",
+        "MESSAGE_2": "Tool call request",
+        "RESPONSE_1": "Tool result + status",
+        "RESPONSE_2": "Task complete + logs",
+        "OPTIONAL_CONDITION": "If error detected",
+        "MESSAGE_3": "Request error details",
+        "RESPONSE_3": "Diagnostic logs"
+      }
+    },
+    {
+      "template": "architecture",
+      "filename": "structured-logging-system",
+      "placeholders": {
+        "SYSTEM_NAME": "AI-Native Logging Architecture",
+        "COMPONENT_1": "AILogs",
+        "COMPONENT_1_LABEL": "AI Interaction\\nPrompts & Responses",
+        "COMPONENT_2": "ToolLogs",
+        "COMPONENT_2_LABEL": "Tool Execution\\nInputs & Outputs",
+        "COMPONENT_3": "SystemLogs",
+        "COMPONENT_3_LABEL": "System Events\\nPerformance & Errors",
+        "EXTERNAL_1": "Sources",
+        "EXTERNAL_1_LABEL": "Agent\\nSessions",
+        "EXTERNAL_2": "Analysis",
+        "EXTERNAL_2_LABEL": "Debug\\nDashboard",
+        "FLOW_1": "Capture interactions",
+        "FLOW_2": "Aggregate logs",
+        "FLOW_3": "Structured events",
+        "FLOW_4": "Visualize & analyze"
+      }
+    },
+    {
+      "template": "timeline",
+      "placeholders": {
+        "TIMELINE_TITLE": "Process Timeline",
+        "PHASE_1": "Phase 1",
+        "EVENT_1_1": "Step 1",
+        "EVENT_1_1_DESC": "Initial Setup",
+        "EVENT_1_2": "Step 2",
+        "EVENT_1_2_DESC": "Configuration",
+        "PHASE_2": "Phase 2",
+        "EVENT_2_1": "Step 3",
+        "EVENT_2_1_DESC": "Implementation",
+        "EVENT_2_2": "Step 4",
+        "EVENT_2_2_DESC": "Testing",
+        "PHASE_3": "Phase 3",
+        "EVENT_3_1": "Step 5",
+        "EVENT_3_1_DESC": "Deployment",
+        "EVENT_3_2": "Step 6",
+        "EVENT_3_2_DESC": "Monitoring"
+      }
+    },
+    {
+      "template": "flowchart",
+      "placeholders": {
+        "START_LABEL": "Start",
+        "DECISION_1": "Check Condition",
+        "CHOICE_1_YES": "Proceed",
+        "CHOICE_1_NO": "Retry",
+        "DECISION_2": "Validate",
+        "CHOICE_2_YES": "Success",
+        "CHOICE_2_NO": "Error",
+        "ACTION_1": "Process Data",
+        "ACTION_2": "Execute Task",
+        "ACTION_3": "Log Result",
+        "ACTION_4": "Cleanup",
+        "END_LABEL": "Complete"
+      }
+    },
+    {
+      "template": "comparison",
+      "placeholders": {
+        "COMPARISON_TITLE": "System Comparison",
+        "X_AXIS_LOW": "Simple",
+        "X_AXIS_HIGH": "Complex",
+        "Y_AXIS_LOW": "Manual",
+        "Y_AXIS_HIGH": "Automated",
+        "QUADRANT_1_LABEL": "Ideal Zone",
+        "QUADRANT_2_LABEL": "Advanced",
+        "QUADRANT_3_LABEL": "Basic",
+        "QUADRANT_4_LABEL": "Intermediate",
+        "ITEM_1": "Option A",
+        "X_1": 0.3,
+        "Y_1": 0.4,
+        "ITEM_2": "Option B",
+        "X_2": 0.6,
+        "Y_2": 0.7,
+        "ITEM_3": "Option C",
+        "X_3": 0.8,
+        "Y_3": 0.5,
+        "ITEM_4": "Option D",
+        "X_4": 0.4,
+        "Y_4": 0.8,
+        "ITEM_5": "Option E",
+        "X_5": 0.2,
+        "Y_5": 0.3
+      }
+    }
+  ]
+}

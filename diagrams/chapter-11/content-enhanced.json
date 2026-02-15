@@ -1,0 +1,180 @@
+{
+  "diagrams": [
+    {
+      "template": "architecture",
+      "filename": "security-layers",
+      "title": "AI-Native Security Architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "AI-Native Security System",
+        "COMPONENT_1": "InputValidator",
+        "COMPONENT_1_LABEL": "Input Validation & Sanitization",
+        "COMPONENT_2": "GuardrailEngine",
+        "COMPONENT_2_LABEL": "Guardrail Safety Checks",
+        "COMPONENT_3": "ToolPermissions",
+        "COMPONENT_3_LABEL": "Permission-Based Tool Access",
+        "EXTERNAL_1": "UserRequest",
+        "EXTERNAL_1_LABEL": "User Request",
+        "EXTERNAL_2": "SecureExecution",
+        "EXTERNAL_2_LABEL": "Secure Execution",
+        "FLOW_1": "Validate Input",
+        "FLOW_2": "Check Guardrails",
+        "FLOW_3": "Verify Permissions",
+        "FLOW_4": "Execute Action"
+      }
+    },
+    {
+      "template": "flowchart",
+      "filename": "permission-check",
+      "title": "Permission-Based Tool Access Flow",
+      "placeholders": {
+        "START_LABEL": "Tool Call Request",
+        "DECISION_1": "Has Permission?",
+        "CHOICE_1_YES": "Yes",
+        "CHOICE_1_NO": "No",
+        "ACTION_1": "Load Tool Access Policy",
+        "ACTION_2": "Reject with Error",
+        "DECISION_2": "Violates Guardrails?",
+        "CHOICE_2_YES": "Yes",
+        "CHOICE_2_NO": "No",
+        "ACTION_3": "Block & Log Violation",
+        "ACTION_4": "Execute Tool Call",
+        "END_LABEL": "Tool Response"
+      }
+    },
+    {
+      "template": "concept-map",
+      "filename": "security-concepts",
+      "title": "AI-Native Security Concepts",
+      "placeholders": {
+        "CENTRAL_CONCEPT": "AI-Native Security",
+        "BRANCH_1": "Attack Surfaces",
+        "BRANCH_1_SUB_1": "Prompt Injection",
+        "BRANCH_1_SUB_2": "Tool Misuse",
+        "BRANCH_1_SUB_3": "Data Leakage",
+        "BRANCH_2": "Defense Patterns",
+        "BRANCH_2_SUB_1": "Environment-First Config",
+        "BRANCH_2_SUB_2": "Guardrail-First Safety",
+        "BRANCH_3": "Access Control",
+        "BRANCH_3_SUB_1": "RBAC Permissions",
+        "BRANCH_3_SUB_2": "ABAC Policies",
+        "BRANCH_3_SUB_3": "Least Privilege",
+        "BRANCH_4": "Privacy Design",
+        "BRANCH_4_SUB_1": "Data Minimization",
+        "BRANCH_4_SUB_2": "Differential Privacy"
+      }
+    },
+    {
+      "template": "sequence",
+      "placeholders": {
+        "ACTOR_1": "User",
+        "ACTOR_1_LABEL": "User",
+        "ACTOR_2": "System",
+        "ACTOR_2_LABEL": "System",
+        "ACTOR_3": "Service",
+        "ACTOR_3_LABEL": "Service",
+        "MESSAGE_1": "Request",
+        "MESSAGE_2": "Process",
+        "MESSAGE_3": "Query",
+        "NOTE_1": "Processing",
+        "RESPONSE_1": "Data",
+        "RESPONSE_2": "Result",
+        "RESPONSE_3": "Status",
+        "OPTIONAL_CONDITION": "If needed"
+      }
+    },
+    {
+      "template": "architecture",
+      "placeholders": {
+        "SYSTEM_NAME": "System Architecture",
+        "COMPONENT_1": "C1",
+        "COMPONENT_1_LABEL": "Component 1",
+        "COMPONENT_2": "C2",
+        "COMPONENT_2_LABEL": "Component 2",
+        "COMPONENT_3": "C3",
+        "COMPONENT_3_LABEL": "Component 3",
+        "EXTERNAL_1": "E1",
+        "EXTERNAL_1_LABEL": "External 1",
+        "EXTERNAL_2": "E2",
+        "EXTERNAL_2_LABEL": "External 2",
+        "FLOW_1": "Input",
+        "FLOW_2": "Process",
+        "FLOW_3": "Output",
+        "FLOW_4": "Feedback"
+      }
+    },
+    {
+      "template": "comparison-table",
+      "placeholders": {
+        "OPTION_1_TITLE": "Approach A",
+        "OPTION_2_TITLE": "Approach B",
+        "OPTION_1_CRITERION_1": "Speed: Fast",
+        "OPTION_2_CRITERION_1": "Speed: Moderate",
+        "OPTION_1_CRITERION_2": "Cost: High",
+        "OPTION_2_CRITERION_2": "Cost: Low",
+        "OPTION_1_CRITERION_3": "Complexity: Simple",
+        "OPTION_2_CRITERION_3": "Complexity: Moderate",
+        "OPTION_1_CRITERION_4": "Scalability: Limited",
+        "OPTION_2_CRITERION_4": "Scalability: Excellent"
+      }
+    },
+    {
+      "template": "gantt",
+      "placeholders": {
+        "CHART_TITLE": "Project Timeline",
+        "SECTION_1_TITLE": "Phase 1",
+        "TASK_1_1": "Task 1",
+        "TASK_1_1_ID": "t1",
+        "TASK_1_1_START": "2024-01-01",
+        "TASK_1_1_DURATION": "2d",
+        "TASK_1_2": "Task 2",
+        "TASK_1_2_ID": "t2",
+        "TASK_1_2_START": "2024-01-03",
+        "TASK_1_2_DURATION": "3d",
+        "TASK_1_3": "Task 3",
+        "TASK_1_3_ID": "t3",
+        "TASK_1_3_START": "2024-01-06",
+        "TASK_1_3_DURATION": "2d",
+        "SECTION_2_TITLE": "Phase 2",
+        "TASK_2_1": "Task 4",
+        "TASK_2_1_ID": "t4",
+        "TASK_2_1_START": "2024-01-08",
+        "TASK_2_1_DURATION": "4d",
+        "TASK_2_2": "Task 5",
+        "TASK_2_2_ID": "t5",
+        "TASK_2_2_START": "2024-01-12",
+        "TASK_2_2_DURATION": "2d",
+        "SECTION_3_TITLE": "Phase 3",
+        "TASK_3_1": "Task 6",
+        "TASK_3_1_ID": "t6",
+        "TASK_3_1_START": "2024-01-14",
+        "TASK_3_1_DURATION": "3d",
+        "TASK_3_2": "Task 7",
+        "TASK_3_2_ID": "t7",
+        "TASK_3_2_START": "2024-01-17",
+        "TASK_3_2_DURATION": "2d"
+      }
+    },
+    {
+      "template": "mindmap",
+      "placeholders": {
+        "ROOT_CONCEPT": "Central Concept",
+        "BRANCH_1": "Branch 1",
+        "BRANCH_1_CHILD_1": "Item 1",
+        "BRANCH_1_CHILD_2": "Item 2",
+        "BRANCH_1_CHILD_3": "Item 3",
+        "BRANCH_2": "Branch 2",
+        "BRANCH_2_CHILD_1": "Item 4",
+        "BRANCH_2_CHILD_2": "Item 5",
+        "BRANCH_2_CHILD_3": "Item 6",
+        "BRANCH_3": "Branch 3",
+        "BRANCH_3_CHILD_1": "Item 7",
+        "BRANCH_3_CHILD_2": "Item 8",
+        "BRANCH_3_CHILD_3": "Item 9",
+        "BRANCH_4": "Branch 4",
+        "BRANCH_4_CHILD_1": "Item 10",
+        "BRANCH_4_CHILD_2": "Item 11",
+        "BRANCH_4_CHILD_3": "Item 12"
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "source": "diagrams/chapter-09/content-enhanced.json",
+  "generated": "2026-02-15T16:41:32.895Z",
+  "diagrams": [
+    {
+      "index": 1,
+      "template": "comparison",
+      "files": {
+        "source": "diagram-01-comparison.mmd",
+        "svg": "diagram-01-comparison.svg",
+        "png": "diagram-01-comparison.png"
+      }
+    },
+    {
+      "index": 2,
+      "template": "architecture",
+      "files": {
+        "source": "diagram-02-architecture.mmd",
+        "svg": "diagram-02-architecture.svg",
+        "png": "diagram-02-architecture.png"
+      }
+    },
+    {
+      "index": 3,
+      "template": "flowchart",
+      "files": {
+        "source": "diagram-03-flowchart.mmd",
+        "svg": "diagram-03-flowchart.svg",
+        "png": "diagram-03-flowchart.png"
+      }
+    },
+    {
+      "index": 4,
+      "template": "mindmap",
+      "files": {
+        "source": "diagram-04-mindmap.mmd",
+        "svg": "diagram-04-mindmap.svg",
+        "png": "diagram-04-mindmap.png"
+      }
+    },
+    {
+      "index": 5,
+      "template": "class-diagram",
+      "files": {
+        "source": "diagram-05-class-diagram.mmd",
+        "svg": "diagram-05-class-diagram.svg",
+        "png": "diagram-05-class-diagram.png"
+      }
+    },
+    {
+      "index": 6,
+      "template": "radial-concept",
+      "files": {
+        "source": "diagram-06-radial-concept.mmd",
+        "svg": "diagram-06-radial-concept.svg",
+        "png": "diagram-06-radial-concept.png"
+      }
+    }
+  ]
+}

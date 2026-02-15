@@ -1,0 +1,60 @@
+{
+  "source": "diagrams/chapter-10/content-enhanced.json",
+  "generated": "2026-02-15T16:41:46.298Z",
+  "diagrams": [
+    {
+      "index": 1,
+      "template": "flowchart",
+      "files": {
+        "source": "diagram-01-flowchart.mmd",
+        "svg": "diagram-01-flowchart.svg",
+        "png": "diagram-01-flowchart.png"
+      }
+    },
+    {
+      "index": 2,
+      "template": "sequence",
+      "files": {
+        "source": "diagram-02-sequence.mmd",
+        "svg": "diagram-02-sequence.svg",
+        "png": "diagram-02-sequence.png"
+      }
+    },
+    {
+      "index": 3,
+      "template": "architecture",
+      "files": {
+        "source": "diagram-03-architecture.mmd",
+        "svg": "diagram-03-architecture.svg",
+        "png": "diagram-03-architecture.png"
+      }
+    },
+    {
+      "index": 4,
+      "template": "timeline",
+      "files": {
+        "source": "diagram-04-timeline.mmd",
+        "svg": "diagram-04-timeline.svg",
+        "png": "diagram-04-timeline.png"
+      }
+    },
+    {
+      "index": 5,
+      "template": "flowchart",
+      "files": {
+        "source": "diagram-05-flowchart.mmd",
+        "svg": "diagram-05-flowchart.svg",
+        "png": "diagram-05-flowchart.png"
+      }
+    },
+    {
+      "index": 6,
+      "template": "comparison",
+      "files": {
+        "source": "diagram-06-comparison.mmd",
+        "svg": "diagram-06-comparison.svg",
+        "png": "diagram-06-comparison.png"
+      }
+    }
+  ]
+}

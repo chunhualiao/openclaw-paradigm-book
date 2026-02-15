@@ -1,0 +1,28 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#4A90E2','primaryTextColor':'#fff','primaryBorderColor':'#2E5C8A','lineColor':'#333','secondaryColor':'#7B68EE','tertiaryColor':'#90EE90'}}}%%
+classDiagram
+    class Agent {
+        personality
+        memory
+        skills
+        process()
+        respond()
+    }
+    
+    class Skill {
+        name
+        triggers
+        execute()
+    }
+    
+    class Tool {
+        type
+        policy
+        status
+        invoke()
+        check()
+        log()
+    }
+    
+    Agent composition Skill : uses
+    Skill inheritance Tool : extends
+    Agent association Tool : interacts

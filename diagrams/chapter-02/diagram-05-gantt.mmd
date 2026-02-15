@@ -1,0 +1,17 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#4A90E2','primaryTextColor':'#fff','primaryBorderColor':'#2E5C8A','lineColor':'#333','secondaryColor':'#7B68EE','tertiaryColor':'#90EE90'}}}%%
+gantt
+    title OpenClaw Deployment Timeline
+    dateFormat YYYY-MM-DD
+    
+    section Setup Phase
+    Install Dependencies           :dep, 2024-01-01, 2d
+    Configure Environment           :env, 2024-01-03, 1d
+    Setup Channels           :chan, 2024-01-04, 1d
+    
+    section Agent Configuration
+    Create SOUL.md           :soul, 2024-01-04, 1d
+    Add Skills           :skills, 2024-01-05, 2d
+    
+    section Testing & Launch
+    Health Check           :health, 2024-01-07, 1d
+    Production Deploy           :prod, 2024-01-08, 1d
