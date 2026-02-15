@@ -11,22 +11,22 @@ A practical guide to building AI-native systems, using the OpenClaw platform as 
 
 ## Chapters
 
-| Part | Chapter | Topic |
-|------|---------|-------|
-| **Foundations** | [1](chapters/chapter-01.md) | Foundations of AI-Native Development |
-| | [2](chapters/chapter-02.md) | The OpenClaw Ecosystem |
-| | [3](chapters/chapter-03.md) | Case Studies in AI-Native Development |
-| **Core Patterns** | [4](chapters/chapter-04.md) | The Soul.md Pattern |
-| | [5](chapters/chapter-05.md) | Multi-Agent Orchestration |
-| | [6](chapters/chapter-06.md) | File Coordination and Memory |
-| **Operations** | [7](chapters/chapter-07.md) | Cron and Scheduled Automation |
-| | [8](chapters/chapter-08.md) | Autonomous Systems Design |
-| | [9](chapters/chapter-09.md) | Cost Optimization |
-| **Security & Future** | [10](chapters/chapter-10.md) | Debugging AI-Native Systems |
-| | [11](chapters/chapter-11.md) | Security Patterns |
-| | [12](chapters/chapter-12.md) | The Future of AI-Native Development |
-| **Tools & Community** | [13](chapters/chapter-13.md) | Tooling Ecosystem |
-| | [14](chapters/chapter-14.md) | Education and Community |
+| Part | Chapter |
+|------|---------|
+| **Foundations** | [1. Foundations of AI-Native Development](chapters/chapter-01.md) |
+| | [2. The OpenClaw Ecosystem](chapters/chapter-02.md) |
+| | [3. Case Studies in AI-Native Development](chapters/chapter-03.md) |
+| **Core Patterns** | [4. The Soul.md Pattern](chapters/chapter-04.md) |
+| | [5. Multi-Agent Orchestration](chapters/chapter-05.md) |
+| | [6. File Coordination and Memory](chapters/chapter-06.md) |
+| **Operations** | [7. Cron and Scheduled Automation](chapters/chapter-07.md) |
+| | [8. Autonomous Systems Design](chapters/chapter-08.md) |
+| | [9. Cost Optimization](chapters/chapter-09.md) |
+| **Security & Future** | [10. Debugging AI-Native Systems](chapters/chapter-10.md) |
+| | [11. Security Patterns](chapters/chapter-11.md) |
+| | [12. The Future of AI-Native Development](chapters/chapter-12.md) |
+| **Tools & Community** | [13. Tooling Ecosystem](chapters/chapter-13.md) |
+| | [14. Education and Community](chapters/chapter-14.md) |
 
 ## Repository Layout
 
