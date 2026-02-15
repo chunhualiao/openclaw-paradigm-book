@@ -2,7 +2,7 @@
 
 A practical guide to building AI-native systems, using the OpenClaw platform as a living case study. 14 chapters, 42 diagrams, 88,000+ words.
 
-**This book documents AI-native development patterns by using those exact patterns to create itself** — 5 parallel AI agents wrote 86,000 words in under 5 hours. See [how it was built](project-notes/README.md).
+**This book documents AI-native development patterns by using those exact patterns to create itself** — 5 parallel AI agents wrote 88,000+ words in under 5 hours. See [how it was built](project-notes/README.md).
 
 ## Read the Book
 
