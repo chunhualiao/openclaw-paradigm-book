@@ -1,5 +1,7 @@
 # Chapter 6: File Coordination and Memory Patterns
 
+> *Chapter 5 explored how multiple agents coordinate through spawning and messaging. But coordination only works if agents can remember what happened before. This chapter covers the memory side: how OpenClaw agents persist knowledge across sessions, share context safely, and build long-term intelligence from short-term interactions.*
+
 In the burgeoning field of AI-native development, we often reach for familiar tools to solve novel problems. When it comes to memory and state management for artificial intelligence agents, the conventional wisdom might point toward databases—structured, scalable, and battle-tested. Yet a powerful counter-pattern has emerged at the heart of the OpenClaw ecosystem: the humble file system as a primary memory layer.
 
 This chapter explores not just the *how* of file-based memory, but the *why* that makes it the right choice for AI-native agents that collaborate closely with humans. We will examine OpenClaw's actual three-tier memory architecture—the same system described in AGENTS.md that every deployed OpenClaw agent lives by—and show how daily notes, long-term memory, and behavioral config files work together to give an agent genuine continuity across sessions. We'll cover the session continuity model (why files are the *only* persistence an LLM has), heartbeat-driven memory maintenance, memory security boundaries, and the emerging hybrid model that layers vector embeddings on top of file-based foundations. From simple daily logs to semantic retrieval across thousands of entries, you'll discover how this human-readable, version-controllable approach provides a robust and transparent memory layer for sophisticated AI systems.
@@ -355,7 +357,7 @@ def should_load_long_term_memory(session_context: dict) -> bool:
 | Group Telegram | No | Partial | Yes | Yes |
 | Subagent / cron job | No | Task-specific | Yes | Yes |
 
-Daily notes in shared contexts are loaded selectively—recent entries relevant to the current task, but not entries containing private information.
+Daily notes should be loaded selectively in shared contexts—include only recent entries relevant to the current task, and avoid loading entries containing private information. See AGENTS.md for your workspace's specific rules.
 
 ### PII Redaction
 
@@ -480,7 +482,6 @@ def rotate_if_needed(filepath: str, max_mb: float = 10.0):
 
 An AI agent cannot load its entire memory history into a single context window. The **Contextual Loading Pattern** addresses this by intelligently selecting the most relevant memory slices for the current task.
 
-![Contextual Loading Decision Flow](../diagrams/chapter-06/diagram-01-flowchart.svg)
 
 ### Loading Strategy
 
@@ -942,7 +943,7 @@ def smart_memory_load(query: str, workspace: str,
 
 ### OpenClaw Context: memory_search and memory_get
 
-OpenClaw's built-in `memory_search` tool performs hybrid retrieval. When an agent calls `memory_search("Chapter 6 revision decisions")`, the tool:
+OpenClaw's `memory_search` tool (available when the memory plugin is configured) performs hybrid retrieval. When an agent calls `memory_search("Chapter 6 revision decisions")`, the tool:
 
 1. Checks the vector index for semantically relevant entries
 2. Returns matching excerpts with source file and date
@@ -1171,8 +1172,8 @@ The patterns explored here form the memory foundation that Chapter 7 builds upon
 | **Book Repo** | [chunhualiao/openclaw-paradigm-book](https://github.com/chunhualiao/openclaw-paradigm-book) |
 | **Book-Writer Skill** | [git-repo-to-book](https://clawhub.ai/chunhualiao/git-repo-to-book) |
 | **Research Source** | AGENTS.md (workspace) + OpenClaw skill analysis |
-| **Illustrations** | 6 × Z.AI scrapbook |
-| **Illustration Cost** | $0.09 |
+| **Illustrations** | 5 × Z.AI scrapbook (illus-01 through illus-05) |
+| **Illustration Cost** | $0.075 (5 × $0.015 via Z.AI) |
 | **Writer Model** | `anthropic/claude-sonnet-4-6` |
 | **Reviewer Model** | `anthropic/claude-sonnet-4-6` |
 | **Revision Date** | 2026-02-28 |
