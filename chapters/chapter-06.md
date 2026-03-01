@@ -1,60 +1,35 @@
 # Chapter 6: File Coordination and Memory Patterns
 
-In the burgeoning field of AI-native development, we often find ourselves reaching for familiar tools to solve novel problems. When it comes to memory and state management for artificial intelligence, the conventional wisdom might point towards databases—structured, scalable, and proven. However, a powerful and surprisingly effective counter-pattern has emerged within the OpenClaw ecosystem and similar AI-native frameworks: the use of the humble file system as a primary memory layer.
+In the burgeoning field of AI-native development, we often reach for familiar tools to solve novel problems. When it comes to memory and state management for artificial intelligence agents, the conventional wisdom might point toward databases—structured, scalable, and battle-tested. Yet a powerful counter-pattern has emerged at the heart of the OpenClaw ecosystem: the humble file system as a primary memory layer.
 
-This chapter explores the "why" and "how" of file-based memory patterns. We will delve into the architectural choices, practical implementations, and trade-offs of using files for AI state, context, and coordination. From simple daily logs to complex multi-agent coordination, you'll discover how this human-readable, version-controllable approach provides a robust and transparent foundation for building sophisticated AI systems.
+This chapter explores not just the *how* of file-based memory, but the *why* that makes it the right choice for AI-native agents that collaborate closely with humans. We will examine OpenClaw's actual three-tier memory architecture—the same system described in AGENTS.md that every deployed OpenClaw agent lives by—and show how daily notes, long-term memory, and behavioral config files work together to give an agent genuine continuity across sessions. We'll cover the session continuity model (why files are the *only* persistence an LLM has), heartbeat-driven memory maintenance, memory security boundaries, and the emerging hybrid model that layers vector embeddings on top of file-based foundations. From simple daily logs to semantic retrieval across thousands of entries, you'll discover how this human-readable, version-controllable approach provides a robust and transparent memory layer for sophisticated AI systems.
+
+![Three-Tier Memory Architecture](../diagrams/chapter-06/illus-01.png)
 
 ## 6.1 Why Files for AI Memory?
 
-The decision to use the file system as a database is not merely a novelty; it is a deliberate design choice with profound implications for how developers and AIs interact with the system's memory. Let's explore the fundamental advantages that make this pattern so compelling for AI-native applications.
+The decision to use the file system as a memory store is not a novelty—it is a deliberate architectural choice with profound implications for how developers and AI agents interact with the system's state.
 
 ### Human-Readable Format Advantages
 
-AI-native systems are not black boxes. They are collaborative environments where humans and AI agents work in tandem. Using human-readable formats like Markdown, YAML, or JSON for memory files makes the AI's "thought process" transparent and accessible. A developer can open a memory file in a standard text editor and immediately understand the agent's history, context, and recent decisions. This transparency is invaluable for debugging, auditing, and building trust in the system.
+AI-native systems are collaborative environments where humans and AI work in tandem. Using human-readable formats like Markdown, YAML, or JSON means a developer can open any memory file in a standard text editor and immediately understand the agent's history, recent decisions, and current context. This transparency is invaluable for debugging, auditing, and building trust. The AI's "thought process" is not locked inside a database—it is right there on disk, inspectable and editable by anyone with filesystem access.
 
-### Version Control Compatibility (Git)
+### Version Control Compatibility
 
-By treating memory as a collection of text files, we can leverage the most powerful and widely adopted version control system in the world: Git. AI memory can be versioned, branched, and merged just like source code. This enables:
-
-*   **Experimentation:** Create a new branch to test a change in an agent's behavior, and easily revert if the experiment is unsuccessful.
-*   **Auditing:** Use `git blame` to see exactly when and why a piece of information was added to the agent's memory.
-*   **Collaboration:** Multiple developers (or agents) can work on different aspects of the AI's memory in parallel and merge their changes.
+By treating memory as a collection of text files, we gain the most powerful version control system in the world: Git. AI memory can be versioned, branched, and merged just like source code. This enables experimentation (branch to test a behavior change, revert if unsuccessful), auditing (`git blame` reveals exactly when information was added), and collaboration (multiple contributors can work on different memory sections in parallel).
 
 ### Simplicity and Zero-Dependency Deployment
 
-File-based memory requires no special infrastructure. There is no database server to install, configure, or maintain. This zero-dependency approach simplifies deployment and reduces the operational overhead of running an AI-native system. An entire AI agent and its memory can be contained within a single directory, making it highly portable and easy to back up or migrate.
+File-based memory requires no special infrastructure. No database server to install, configure, or maintain. An entire AI agent and its memory can live in a single directory, making it portable, easy to back up, and trivial to migrate. This zero-dependency property is critical for rapid prototyping and for deployments on edge devices with no network connectivity.
 
-### AI Accessibility and Parsability
+### Cognitive Alignment with LLMs
 
-Large Language Models (LLMs) are, at their core, text-processing engines. They "think" in terms of tokens and text streams. Providing memory in the form of structured text files aligns perfectly with how these models process information. An AI agent can be prompted to "read the last 20 lines of `memory/2026-02-13.md`" or "summarize the key points from `MEMORY.md`". This direct, tool-based access to memory is a cornerstone of the OpenClaw paradigm.
-
-### Historical Context: From Databases to File-Based AI Systems
-
-The shift toward file-based memory represents a broader trend in AI-native development. Traditional software engineering has long relied on databases for state persistence, with good reason: they offer transactional guarantees, complex querying, and scalability. However, AI systems introduce unique requirements:
-
-1.  **Interpretability over Transactions:** Understanding why an AI made a decision is often more important than guaranteeing ACID compliance for that decision.
-2.  **Human-in-the-Loop Collaboration:** AI-native systems frequently involve humans reviewing, editing, and augmenting AI outputs—a workflow that benefits from human-readable formats.
-3.  **Rapid Prototyping:** The simplicity of file-based systems enables faster iteration during the experimental phases of AI development.
-
-This historical context helps explain why many AI-native frameworks, including OpenClaw, have gravitated toward file-based approaches despite the availability of sophisticated database technologies. The trade-off favors transparency, simplicity, and collaboration over traditional database advantages.
-
-### Pattern Synthesis Insights
-
-Our research synthesis identified **File-Based Memory** as Pattern 6 in the catalog of AI-native development patterns. The analysis revealed that this pattern is not merely a convenience but a fundamental architectural choice with several distinctive characteristics:
-
-*   **Human-Centric Design:** Unlike traditional databases optimized for machine efficiency, file-based memory prioritizes human readability and collaboration. This aligns with the collaborative nature of AI-native systems where humans and AI agents work together.
-*   **Version Control as First-Class Citizen:** By using text files, the pattern naturally integrates with Git and other version control systems, providing built-in audit trails, experiment tracking, and collaborative editing capabilities.
-*   **Minimal Infrastructure Dependencies:** The pattern eliminates the need for database servers, reducing deployment complexity and operational overhead—a critical advantage for prototyping and small-to-medium scale applications.
-*   **Cognitive Alignment with LLMs:** Large Language Models process information as text streams, making file-based memory a natural fit. Agents can be directly prompted to read, analyze, and summarize their own memory files.
-
-The synthesis also highlighted that file-based memory is often paired with other patterns: **Append-Only History** for auditability, **Contextual Loading** for managing AI context windows, and **Progressive Summarization** for information density management. These complementary patterns form a cohesive approach to AI memory management that scales from simple prototypes to complex production systems.
+Large Language Models process information as text streams. Providing memory in the form of structured text files aligns naturally with how these models consume information. An agent can be prompted to "read the last 30 lines of `memory/2026-02-28.md`" or "summarize the key points from `MEMORY.md`"—no query language, no schema negotiation, just natural language access to structured text.
 
 ### Comparative Analysis: Files vs. Databases for AI Memory
 
-To understand when file-based memory is appropriate, consider this comparative analysis:
-
 | **Criteria** | **File-Based Memory** | **Traditional Database** |
-|--------------|----------------------|--------------------------|
+|---|---|---|
 | **Human Readability** | Excellent (Markdown, YAML, JSON) | Poor (binary/structured formats) |
 | **Version Control Integration** | Native (Git) | Complex (requires migration scripts) |
 | **Deployment Complexity** | Low (no external dependencies) | High (database server required) |
@@ -64,915 +39,1602 @@ To understand when file-based memory is appropriate, consider this comparative a
 | **Auditability** | Built-in (append-only, Git history) | Requires additional logging systems |
 | **AI Accessibility** | Direct (text prompts to read files) | Indirect (requires query translation) |
 | **Development Velocity** | High (immediate feedback, easy debugging) | Moderate (schema design, migration management) |
-| **Operational Overhead** | Minimal (backup, monitoring standard) | Significant (performance tuning, replication) |
 
-**Decision Framework:**
-1.  **Choose file-based memory when:** You prioritize human-AI collaboration, need rapid prototyping, have small-to-medium data volumes, value transparency over performance, or want zero infrastructure dependencies.
-2.  **Choose traditional databases when:** You require complex queries across large datasets, need high-volume concurrent writes, must ensure ACID transactions, or have enterprise-scale performance requirements.
+The key insight: for many AI-native applications, the benefits of human readability, version control compatibility, and zero infrastructure outweigh the limitations when compared to traditional databases. For very large memory stores, the hybrid approach—files for curated facts, vector stores for semantic recall—bridges the gap, as we'll cover in §6.9.
 
-Many successful AI-native systems adopt a hybrid approach: using file-based memory for recent interactions and human-editable content while storing historical data, embeddings, and metadata in databases for efficient querying. This leverages the strengths of both approaches while mitigating their limitations.
+---
 
-## 6.2 File-Based Memory Pattern
+## 6.2 OpenClaw Memory Architecture
 
-The **File-Based Memory Pattern**, identified as a key architectural pattern in our research synthesis, involves using structured files and directories for persistent state management. This pattern trades the complex querying capabilities of a traditional database for simplicity, transparency, and direct accessibility for both humans and AI.
+OpenClaw's memory system is not just a convention—it is a formal architecture specified in AGENTS.md, the behavioral contract every agent loads at session start. Understanding this three-tier model is essential context for everything else in this chapter.
 
-![File-Based Memory Conceptual Overview](../diagrams/chapter-06/diagram-02-concept-map.svg)
+### The Three-Tier Model
 
-#### 6.2.1 Core Concepts
+OpenClaw organizes agent memory into three distinct tiers, each serving a different time horizon and purpose:
 
-*   **Structured Formats:** While plain text is an option, using structured formats like Markdown, JSON, YAML, or CSV is crucial. Markdown is particularly favored for its balance of human readability and machine parsability.
-*   **Directory Organization:** A consistent directory structure is essential for locating and managing memory files. A common pattern is to have a root `memory/` directory with subdirectories for different types of memory (e.g., daily logs, long-term summaries, user profiles).
-*   **File Naming Conventions:** Clear and consistent file naming conventions (e.g., `YYYY-MM-DD.md` for daily logs) allow for programmatic access and chronological organization.
+```
++------------------------------------------+
+|  TIER 1: Long-Term Memory                |
+|  MEMORY.md                               |
+|  Curated wisdom · Main sessions only     |
++------------------------------------------+
+|  TIER 2: Daily Notes                     |
+|  memory/YYYY-MM-DD.md                    |
+|  Raw session logs · Recent context       |
++------------------------------------------+
+|  TIER 3: Working Memory / Config         |
+|  AGENTS.md · TOOLS.md · HEARTBEAT.md    |
+|  SOUL.md · USER.md                       |
+|  Behavioral spec · Every session         |
++------------------------------------------+
+```
 
-#### 6.2.2 Implementation Examples
+**Tier 1 — Long-Term Memory (`MEMORY.md`)**
 
-##### 6.2.2.1 Daily Memory Files (`memory/YYYY-MM-DD.md`)
+`MEMORY.md` is the agent's curated, distilled knowledge base. It contains significant events, important decisions, lessons learned, user preferences, and ongoing project context—the *essence* of accumulated experience, not raw logs.
 
-This is the most common implementation of file-based memory. A new Markdown file is created each day to log the agent's activities, observations, and decisions.
+Critically, `MEMORY.md` is **only loaded in main sessions** (direct one-on-one conversations with the agent's primary human operator). It must **never** be loaded in group chats, Discord servers, or any shared context. This is a security boundary, not merely a convention—we'll explore the reasons in §6.5.
 
-*   **Purpose:** Session logs, daily activity tracking, and a short-term "scratchpad" for the agent.
-*   **Structure:** Typically, a chronological log with timestamps. Each entry might include the source of the information (e.g., user message, tool output) and the agent's response.
-*   **Usage:** The agent can be prompted to review its daily memory to understand the context of a conversation or to recall recent events.
-*   **Example (TitanBot's memory system):**
-    ```markdown
-    # Memory for 2026-02-13
+```markdown
+# MEMORY.md — Example
 
-    [08:35 PST] **User:** Start writing Chapter 6.
-    [08:36 PST] **Tool Call:** `read(path='chapters/chapter-06-outline.md')`
-    [08:36 PST] **Tool Output:** [Error: File not found]
-    [08:37 PST] **Thought:** I need to change my working directory to the `openclaw-books` directory.
-    ```
+## User Preferences
+- Prefers concise bullet summaries over long prose
+- Working hours: 09:00–17:00 PST
+- Code reviews: focus on correctness first, style second
 
-##### 6.2.2.2 Long-Term Memory (`MEMORY.md`)
+## Project: OpenClaw Book
+- Target audience: experienced developers new to AI-native concepts
+- Tone: professional but not stuffy; include real examples
+- Current state: Chapters 1–5 complete; Chapter 6 in revision
 
-While daily memory files are ephemeral, `MEMORY.md` serves as the agent's curated, long-term knowledge base.
+## Lessons Learned
+- [2026-02-20] Never run git push without checking branch first
+- [2026-02-24] User prefers Z.AI illustrations over SVG diagrams
+```
 
-*   **Purpose:** To store important facts, decisions, and learned principles that should persist across sessions.
-*   **Structure:** Organized by topic or project, often using Markdown headers.
-*   **Usage:** The agent consults this file to recall key information, such as user preferences, project goals, or successful strategies from past tasks.
-*   **Example:**
-    ```markdown
-    # Long-Term Memory
+**Tier 2 — Daily Notes (`memory/YYYY-MM-DD.md`)**
 
-    ## User Preferences
-    *   The user prefers concise summaries.
-    *   The user's working hours are 09:00-17:00 PST.
+Daily notes are the raw operational log of each session. Unlike `MEMORY.md`, they capture everything in chronological order: what was asked, what tools were called, what decisions were made, what errors occurred, and what was resolved. They form the agent's short-term episodic memory.
 
-    ## Project: OpenClaw Book
-    *   The target audience is experienced developers new to AI-native concepts.
-    *   The tone should be professional and technical.
-    ```
+```markdown
+# memory/2026-02-28.md
 
-##### 6.2.2.3 Founder Profile System
+[08:15 PST] User asked to revise Chapter 6 of OpenClaw book
+[08:16 PST] Read existing chapter-06.md (7,317 words)
+[08:17 PST] Read adjacent chapters 5 and 7 for context
+[08:20 PST] User added requirement: must cover vector memory
+[08:25 PST] Started revision pipeline R1-R7
+[09:45 PST] Generated 6 Z.AI illustrations for chapter
+[10:00 PST] Chapter revised to 9,200 words with metadata block
+```
 
-The `founder-coach` skill in OpenClaw uses a file-based pattern to maintain a persistent profile for each user.
+**Tier 3 — Working Memory / Behavioral Config**
 
-*   **Purpose:** To track a user's progress, goals, and challenges over time.
-*   **Structure:** A structured Markdown file (`founder-profile.md`) with sections for different aspects of the user's profile.
-*   **Usage:** The `founder-coach` agent reads this file at the beginning of each interaction to personalize its coaching and appends new notes at the end.
+Tier 3 is loaded *every session*, regardless of context. These files define who the agent is and how it behaves:
 
-#### 6.2.3 Format Comparison and Selection
+| File | Purpose |
+|------|---------|
+| `AGENTS.md` | Master behavioral instructions: memory protocol, pipeline discipline, safety rules |
+| `SOUL.md` | Persona and tone: "be genuinely helpful, not performatively helpful" |
+| `USER.md` | Information about the human operator |
+| `TOOLS.md` | Environment-specific notes: camera names, SSH hosts, voice preferences |
+| `HEARTBEAT.md` | Checklist for periodic proactive tasks |
 
-Choosing the right file format is critical for the success of a file-based memory system. Each format has distinct advantages and trade-offs:
+The distinction between Tier 3 and Tier 1 is important: Tier 3 is *structural* (how the agent behaves universally), while Tier 1 is *contextual* (what the agent knows about this particular human and their projects).
 
-| Format | Human Readability | Machine Parsability | Structure Support | Performance | Tooling Ecosystem | AI-Friendly |
-|--------|-------------------|---------------------|-------------------|-------------|-------------------|-------------|
-| **Markdown** | Excellent | Good (requires parsing) | Basic (headers, lists, code blocks) | Moderate (line-based) | Extensive (pandoc, VS Code) | High (natural language) |
-| **JSON** | Poor (without formatting) | Excellent | Rich (nested objects, arrays) | Fast (native parsing) | Excellent (jq, JSONPath) | Moderate (structured) |
-| **YAML** | Good | Excellent | Rich (similar to JSON) | Moderate (complex parsing) | Good (yq, yamllint) | Moderate (structured) |
-| **CSV** | Fair (for small datasets) | Excellent | Tabular (rows and columns) | Very fast (streaming) | Good (spreadsheets, pandas) | Low (no semantics) |
-| **JSONL** | Poor | Excellent | Per-line JSON objects | Very fast (append-only) | Good (jq, streaming) | Moderate (structured per line) |
-| **TOML** | Good | Excellent | Moderate (key-value) | Fast | Limited (toml libraries) | Low (configuration) |
+### Why Three Tiers?
 
-**Performance Characteristics:**
-- **Markdown:** Well-suited for linear reading and writing; parsing overhead increases with file size. Use lightweight parsers like `commonmark` for efficiency.
-- **JSON:** Fast parsing with native browser/Node.js support; memory intensive for large files due to full-document parsing. Consider streaming JSON parsers for large datasets.
-- **YAML:** Slower parsing due to complex syntax; human-friendly but can be ambiguous. Use with caution for high-frequency writes.
-- **CSV:** Extremely fast for sequential reads/writes; limited to tabular data. Use for time-series logs or export/import operations.
-- **JSONL:** Optimal for append-only workloads; each line independent enables parallel processing and efficient compression.
-- **TOML:** Good for configuration files; not typically used for large memory stores.
+The three-tier design solves three different problems simultaneously:
 
-**Tooling Ecosystem:** Consider the availability of command-line tools, libraries, and editor support. For example, `jq` for JSON, `yq` for YAML, `pandoc` for Markdown conversion, and `csvkit` for CSV processing.
+1. **Security**: Sensitive personal context (Tier 1) stays out of shared contexts; behavioral rules (Tier 3) can be safely loaded anywhere
+2. **Efficiency**: Not everything needs to be in the context window every time—Tier 2 files are selectively loaded based on recency
+3. **Durability**: Tier 3 config is stable and low-maintenance; Tier 2 accumulates automatically; Tier 1 grows deliberately through curation
 
-**AI-Friendly Considerations:** Formats that preserve natural language (Markdown) are easier for LLMs to understand directly. Structured formats (JSON, YAML) require the AI to understand schema but enable precise extraction. Choose based on how the AI will interact with the data: if the AI needs to read and summarize, Markdown is ideal; if the AI needs to extract specific fields, JSON/YAML is better.
+---
 
-#### 6.2.4 File Naming Conventions and Versioning
+## 6.3 Session Continuity: The "Wakes Fresh" Model
 
-Consistent file naming is essential for programmatic access and organization. Effective naming conventions enable chronological sorting, pattern matching, and automated processing.
+The most important thing to understand about AI agent memory is this: **every LLM turn starts with a blank slate**. The model itself has no memory of previous interactions. It does not "remember" last Tuesday's conversation. It does not hold any state between invocations.
 
-**Common Naming Patterns:**
+This is not a bug—it is a fundamental property of transformer-based language models. And it is precisely why the file-based memory system exists.
 
-1.  **Chronological:** `YYYY-MM-DD.md` for daily logs, `YYYY-MM-DD-HH-mm.jsonl` for high-frequency logs. ISO 8601 format ensures lexicographic ordering matches chronological order.
-2.  **Semantic:** `project-name_status_v1.2.3.md` includes project, status, and version. Useful for curated memory files.
-3.  **Hierarchical:** Combine date and topic: `2026/02/13/project-a.md` uses directory structure for organization.
-4.  **UUID-Based:** `c3a4b5d6-e7f8-90a1-b2c3-d4e5f6a7b8c9.json` ensures uniqueness but obscures content.
+![Session Continuity Model](../diagrams/chapter-06/illus-02.png)
 
-**Versioning Strategies:**
+### Files Are the Only Persistence
 
-- **Semantic Versioning:** Use `v1.0.0`, `v1.0.1` for curated memory files that evolve over time.
-- **Timestamp Versioning:** Append timestamp: `memory_20260213T143000Z.md` for precise version tracking.
-- **Hash-Based:** Use content hash (SHA-256) as filename: ensures integrity and deduplication.
+When an OpenClaw agent is invoked, the runtime loads a set of files into the context window at session start:
 
-**Implementation Example:**
+```python
+# Conceptual session initialization
+context = []
+context += read("AGENTS.md")      # Behavioral rules (always)
+context += read("SOUL.md")         # Persona (always)
+context += read("USER.md")         # Human context (always)
+
+if is_main_session():
+    context += read("MEMORY.md")   # Long-term memory (main sessions only)
+
+context += read(f"memory/{today}.md")      # Today's notes
+context += read(f"memory/{yesterday}.md")  # Yesterday's notes
+
+context += user_message            # The actual input
+```
+
+Without this loading step, the agent would have no idea who it is talking to, what projects are underway, or what was discussed yesterday. Files are not a *supplement* to memory—they *are* memory.
+
+### The "Mental Note" Anti-Pattern
+
+A common mistake in AI-native systems is trusting the model to "remember" something across turns. Instructions like "remember for later" have no effect unless the information is actually written to a file.
+
+AGENTS.md makes this explicit:
+
+> "Mental notes don't survive session restarts. Files do. When someone says 'remember this' → update `memory/YYYY-MM-DD.md` or relevant file. When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill."
+
+The practical implication: every important piece of information—a user preference, a project decision, a debugging insight—must be written to disk before the session ends, or it is permanently lost.
+
 ```bash
-# Daily memory file naming
-memory_file="memory/$(date +%Y-%m-%d).md"
+# Correct: persist the information
+echo "[$(date +%H:%M)] User prefers Python 3.11 for this project" \
+  >> memory/$(date +%Y-%m-%d).md
 
-# Versioned configuration file
-config_file="config/project-config_v$(cat version.txt).yaml"
-
-# UUID-based session log
-session_log="sessions/$(uuidgen).jsonl"
+# Wrong: "mental note" — survives exactly zero restarts
+# The model cannot retain this across turns without file persistence
 ```
 
-**Best Practices:**
-1.  **Use ISO 8601 dates** for chronological files: `2026-02-13.md` not `02-13-2026.md`.
-2.  **Include version suffix** for files that change: `profile_v1.md`, `profile_v2.md`.
-3.  **Avoid spaces and special characters**; use hyphens or underscores.
-4.  **Consider filesystem limits:** Maximum filename length (255 bytes on most systems), case sensitivity.
-5.  **Document naming conventions** in a `CONVENTIONS.md` file within the memory directory.
+### Session Loading Strategy
 
-**Version Control Integration:** File naming conventions complement Git versioning. While Git tracks changes within files, naming conventions help organize different types of memory and facilitate automated workflows (e.g., cron jobs that process yesterday's logs).
+Different session types load different memory slices. OpenClaw's session loader applies these rules:
 
-**Guidelines for Format Selection:**
-1.  **Use Markdown** when human readability and documentation are priorities, especially for logs and notes that humans will regularly review.
-2.  **Use JSON or YAML** for configuration files and structured data that require complex nesting and programmatic access.
-3.  **Use CSV** for tabular data that might be analyzed in spreadsheet software or exported to other systems.
-4.  **Use JSONL** for high-volume append-only logs where each line represents a complete event record.
+```python
+from datetime import date, timedelta
+from os import path
 
-#### 6.2.4 Advantages and Trade-offs
+def load_session_context(session_type: str, workspace: str) -> list[str]:
+    """Load appropriate memory files for session type."""
+    context_files = [
+        f"{workspace}/AGENTS.md",
+        f"{workspace}/SOUL.md",
+        f"{workspace}/USER.md",
+        f"{workspace}/TOOLS.md",
+    ]
+    
+    # Long-term memory: ONLY in private main sessions
+    if session_type == "main":
+        context_files.append(f"{workspace}/MEMORY.md")
+    
+    # Recent daily notes (always load last 2 days)
+    today = date.today().isoformat()
+    yesterday = (date.today() - timedelta(days=1)).isoformat()
+    context_files.extend([
+        f"{workspace}/memory/{today}.md",
+        f"{workspace}/memory/{yesterday}.md",
+    ])
+    
+    # Heartbeat checklist if active
+    heartbeat = f"{workspace}/HEARTBEAT.md"
+    if path.exists(heartbeat):
+        context_files.append(heartbeat)
+    
+    return [f for f in context_files if path.exists(f)]
+```
 
-*   **Advantages:** As discussed, this pattern offers simplicity, transparency, version control, and requires no external database.
-*   **Trade-offs:**
-    *   **Performance at Scale:** Searching through a large number of files or very large files can be slow.
-    *   **Concurrency:** Handling simultaneous writes from multiple agents can be complex, often requiring file locking mechanisms.
-    *   **Query Capabilities:** Complex queries that would be simple in SQL (e.g., "find all user interactions from the last month that mention 'Project X'") are difficult to implement.
+This pattern ensures the agent has exactly the right context for each situation—no more, no less.
 
-#### 6.2.5 When to Use and When to Avoid
+---
 
-**Use File-Based Memory When:**
-- You're building a prototype or proof-of-concept
-- The dataset is small to medium (e.g., less than 10,000 files or 1GB total)
-- Human readability and transparency are high priorities
-- You want zero external dependencies for deployment
-- Your access patterns are primarily sequential or by filename
+## 6.4 File-Based Memory Pattern
 
-**Avoid File-Based Memory When:**
-- You need complex queries across the entire dataset
-- You have high-volume concurrent writes from multiple agents
-- The dataset exceeds available disk I/O capacity
-- You require real-time analytics or aggregations
-- ACID transactions are critical for data integrity
+With the three-tier architecture as foundation, let's examine the core File-Based Memory Pattern in detail: how files are structured, named, and accessed in practice.
 
-## 6.3 Append-Only History Pattern
+### Core Concepts
 
-A crucial sub-pattern of file-based memory is the **Append-Only History Pattern**. Instead of modifying files in place, new information is always appended to the end. This creates an immutable log of all events, which is critical for auditability and debugging.
+**Structured Formats**: While plain text works, structured formats like Markdown balance human readability with machine parsability. Markdown is the default throughout OpenClaw because it renders beautifully in editors and UIs while remaining trivially parseable.
 
-#### 6.3.1 Pattern Definition
+**Directory Organization**: A consistent structure is essential. The standard OpenClaw layout:
 
-*   **Immutability:** Once written, data is never changed or deleted.
-*   **Chronological Order:** New entries are added to the end of the file, creating a natural timeline.
-*   **Traceability:** Every piece of information in the memory can be traced back to its origin.
+```
+workspace/
++-- AGENTS.md          # Behavioral config (Tier 3)
++-- SOUL.md            # Persona (Tier 3)
++-- USER.md            # Human profile (Tier 3)
++-- TOOLS.md           # Environment notes (Tier 3)
++-- MEMORY.md          # Long-term memory (Tier 1)
++-- HEARTBEAT.md       # Proactive task checklist (Tier 3)
++-- memory/
+|   +-- 2026-02-28.md  # Daily notes (Tier 2)
+|   +-- 2026-02-27.md
+|   +-- heartbeat-state.json  # Last-check timestamps
++-- skills/            # Skill definitions
+```
 
-#### 6.3.2 Implementation Strategies
+**File Naming Conventions**: ISO 8601 date format (`YYYY-MM-DD.md`) ensures lexicographic ordering matches chronological order—a critical property when scripting over date ranges.
 
-##### Simple File Appending
-The most straightforward approach is to open a file in append mode and write new entries. This works well for simple text logs but lacks structure.
+### Format Selection Guide
 
-**Implementation Example:**
+| Format | Best For | Human-Readable | Machine-Parseable |
+|--------|----------|---------------|-------------------|
+| **Markdown** | Notes, logs, long-form memory | Excellent | Good |
+| **JSON** | Structured state, config | Poor | Excellent |
+| **YAML** | Configuration files | Good | Excellent |
+| **JSONL** | High-frequency append-only logs | Poor | Excellent |
+| **CSV** | Tabular data, exports | Fair | Excellent |
+
+OpenClaw defaults to Markdown for human-facing memory (MEMORY.md, daily notes) and JSON for machine-managed state (heartbeat-state.json, tool outputs).
+
+### Daily Note Structure
+
+A well-structured daily note captures not just *what* happened but *why* and *what to do next*:
+
+```markdown
+# memory/2026-02-28.md
+
+## Session 1 (08:15–10:30 PST)
+
+[08:15] User: Revise Chapter 6 of OpenClaw book
+[08:16] Action: Read existing chapter (7,317 words). Identified gaps:
+  - Missing three-tier memory architecture
+  - Missing session continuity model
+  - Missing heartbeat maintenance
+  - No vector memory coverage
+[08:20] User added: Must include vector memory section
+[08:25] Started R1-R7 revision pipeline
+
+## Decisions Made
+- New chapter structure: 13 sections instead of 10
+- Vector memory section placed before Performance (§6.9)
+- Target: 8,500–10,000 words
+
+## Next Session
+- Verify all illustration links resolve
+- Run validate_links.py before final commit
+```
+
+### Advantages and Trade-offs
+
+**Advantages:**
+- Simplicity, transparency, and version control integration
+- Zero external infrastructure requirements
+- Direct AI accessibility via natural language file reads
+- Human editability — no query language needed
+
+**Trade-offs:**
+- Performance degrades beyond ~10K files or very large individual files
+- Concurrent writes from multiple agents require explicit locking
+- Complex queries (cross-file aggregations, joins) are cumbersome
+
+**When to use:** Small-to-medium deployments, human-AI collaboration workflows, prototyping, any context where transparency is more important than query power.
+
+**When to avoid:** High-volume concurrent writes, real-time analytics, datasets requiring complex cross-file queries.
+
+---
+
+## 6.5 Memory Security: Protecting Private Context
+
+The most security-critical aspect of OpenClaw's memory architecture is a rule that seems simple but has profound implications: **`MEMORY.md` must never load in shared or group contexts**.
+
+### The Security Boundary
+
+When an OpenClaw agent participates in a Discord server, a group Telegram chat, or any multi-user context, it withholds `MEMORY.md` entirely. The reason is straightforward: `MEMORY.md` contains personal context about the agent's primary operator—their preferences, ongoing projects, personal decisions, private notes. Loading this file in a shared context would expose that information to every participant in the conversation.
+
+```python
+# session_loader.py — enforcing the MEMORY.md security boundary
+
+def should_load_long_term_memory(session_context: dict) -> bool:
+    """
+    MEMORY.md must ONLY load in private main sessions.
+    Never in Discord, Telegram groups, or any shared context.
+    """
+    channel = session_context.get("channel_type", "unknown")
+    participants = session_context.get("participant_count", 1)
+    
+    # Explicit deny list
+    SHARED_CHANNELS = {
+        "discord_server", "telegram_group",
+        "slack_channel", "group_chat"
+    }
+    
+    if channel in SHARED_CHANNELS:
+        return False  # Never in shared contexts
+    
+    if participants > 1:
+        return False  # Never when multiple participants detected
+    
+    if session_context.get("is_main_session", False):
+        return True   # Safe: private, direct session
+    
+    return False  # Default: deny
+```
+
+### What Loads Where
+
+| Context | MEMORY.md | Daily Notes | AGENTS.md | SOUL.md |
+|---------|-----------|-------------|-----------|---------|
+| Main session (direct chat) | Yes | Yes | Yes | Yes |
+| Discord server | No | Partial | Yes | Yes |
+| Group Telegram | No | Partial | Yes | Yes |
+| Subagent / cron job | No | Task-specific | Yes | Yes |
+
+Daily notes in shared contexts are loaded selectively—recent entries relevant to the current task, but not entries containing private information.
+
+### PII Redaction
+
+Daily notes can accumulate personally identifiable information through natural conversation. A redaction step before sharing:
+
+```python
+import re
+
+def redact_pii(text: str) -> str:
+    """Remove common PII patterns from memory text before sharing."""
+    patterns = [
+        (r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', '[EMAIL]'),
+        (r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b', '[PHONE]'),
+        (r'\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b', '[CC]'),
+        (r'\b\d{3}-\d{2}-\d{4}\b', '[SSN]'),
+    ]
+    for pattern, replacement in patterns:
+        text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
+    return text
+```
+
+### Filesystem Access Control
+
+Beyond the application-level boundary, filesystem permissions provide a second layer of protection:
+
+```bash
+# Lock MEMORY.md to owner-only read/write
+chmod 600 MEMORY.md
+
+# Daily notes: owner read/write, group read (for backup scripts)
+chmod 640 memory/*.md
+
+# Verify permissions
+ls -la MEMORY.md memory/2026-02-28.md
+# -rw------- 1 user user 4096 Feb 28 10:30 MEMORY.md
+# -rw-r----- 1 user user 2048 Feb 28 10:30 memory/2026-02-28.md
+```
+
+---
+
+## 6.6 Append-Only History Pattern
+
+A foundational sub-pattern throughout OpenClaw's memory system is the **Append-Only History Pattern**: new information is always added to the end of a file, never modifying or deleting existing entries. This creates an immutable chronological record.
+
+### Why Append-Only?
+
+Append-only design provides several critical properties:
+
+- **Auditability**: Every action is recorded; nothing can be silently overwritten
+- **Debugging**: The exact sequence of events leading to any outcome can be replayed
+- **Crash safety**: A partial append leaves all previous data intact
+- **Git compatibility**: Append-only files produce clean diffs (only additions, never conflicts)
+
+The `founder-coach` skill makes this explicit in its design contract: it "must only append to the founder profile and never overwrite existing content."
+
+### Implementation Strategies
+
+**Simple File Appending (Markdown)**:
+
 ```python
 import datetime
 
-def append_to_log(filepath, message):
-    """Append a timestamped message to a log file."""
-    timestamp = datetime.datetime.now().isoformat()
+def append_to_daily_note(workspace: str, message: str, source: str = "agent"):
+    """Append a timestamped entry to today's memory file."""
+    today = datetime.date.today().isoformat()
+    filepath = f"{workspace}/memory/{today}.md"
+    timestamp = datetime.datetime.now().strftime("%H:%M PST")
+    
     with open(filepath, 'a', encoding='utf-8') as f:
-        f.write(f"[{timestamp}] {message}\n")
-
-# Usage
-append_to_log("memory/2026-02-13.md", "User requested weather update for Seattle")
+        f.write(f"[{timestamp}] **{source}**: {message}\n")
 ```
 
-##### Structured Log Formats
-For more complex data, structured formats like JSONL (JSON Lines) provide better machine readability while maintaining append-only characteristics. Each line is a complete JSON object.
+**Structured JSONL Logging** (for high-frequency tool calls):
 
-**JSONL Implementation Example:**
 ```python
 import json
 import datetime
 
-def append_jsonl_log(filepath, event_type, data, metadata=None):
-    """Append a structured JSONL entry to a log file."""
+def append_event(filepath: str, event_type: str, data: dict):
+    """Append a structured event to a JSONL log."""
     entry = {
-        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        "event_type": event_type,
+        "ts": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "type": event_type,
         "data": data,
-        "metadata": metadata or {}
     }
-    
     with open(filepath, 'a', encoding='utf-8') as f:
         f.write(json.dumps(entry) + "\n")
 
-# Usage: Log a user interaction
-append_jsonl_log(
-    "memory/2026-02-13.jsonl",
-    "user_message",
-    {"content": "What's the weather in Seattle?", "user_id": "user123"},
-    {"session_id": "session_abc123", "agent_version": "1.2.3"}
-)
-
-# Usage: Log a tool call
-append_jsonl_log(
-    "memory/2026-02-13.jsonl",
-    "tool_call",
-    {"tool": "weather", "parameters": {"location": "Seattle"}},
-    {"session_id": "session_abc123", "status": "pending"}
-)
+# Usage: log a tool call
+append_event("memory/events.jsonl", "tool_call", {
+    "tool": "web_search",
+    "query": "OpenClaw memory architecture",
+    "status": "ok"
+})
 ```
 
-**Benefits of JSONL:**
-- Each line is independent; corruption of one line doesn't affect others
-- Supports streaming processing (read line-by-line)
-- Enables parallel processing (different lines can be processed by different workers)
-- Compresses well (gzip, zstd)
+**Log Rotation** — when daily files grow large:
 
-##### Compaction and Archiving Strategies
-Over time, append-only logs can grow large. Implementations often include:
-
-**Log Rotation:**
 ```python
-import os
-import datetime
 from pathlib import Path
+import shutil
 
-def rotate_log_if_needed(filepath, max_size_mb=10, max_age_days=7):
-    """Rotate log file if it exceeds size or age limits."""
+def rotate_if_needed(filepath: str, max_mb: float = 10.0):
+    """Archive the log file if it exceeds the size limit."""
     path = Path(filepath)
-    
-    # Check file size
-    if path.exists() and path.stat().st_size > max_size_mb * 1024 * 1024:
-        # Archive current file
-        archive_name = f"{path.stem}_{datetime.date.today().isoformat()}{path.suffix}"
-        archive_path = path.parent / "archive" / archive_name
-        archive_path.parent.mkdir(exist_ok=True)
-        path.rename(archive_path)
-        return True
-    
-    # Check file age (if file is older than max_age_days)
-    if path.exists():
-        file_age = datetime.date.today() - datetime.date.fromtimestamp(path.stat().st_mtime)
-        if file_age.days > max_age_days:
-            archive_name = f"{path.stem}_{datetime.date.fromtimestamp(path.stat().st_mtime).isoformat()}{path.suffix}"
-            archive_path = path.parent / "archive" / archive_name
-            archive_path.parent.mkdir(exist_ok=True)
-            path.rename(archive_path)
-            return True
-    
-    return False
-
-# Usage in logging function
-def safe_append_log(filepath, message):
-    """Append to log with automatic rotation."""
-    rotate_log_if_needed(filepath)
-    append_to_log(filepath, message)
+    if path.exists() and path.stat().st_size > max_mb * 1024 * 1024:
+        archive = path.parent / "archive" / \
+            f"{path.stem}-{datetime.date.today()}{path.suffix}"
+        archive.parent.mkdir(exist_ok=True)
+        shutil.move(str(path), str(archive))
 ```
 
-**Compression Strategies:**
-- **Immediate compression:** Compress old log files immediately after rotation
-- **Background compression:** Run compression as a background cron job
-- **Tiered storage:** Recent logs on fast SSD, older logs on slower storage or cloud
+### Real-World OpenClaw Examples
 
-**Retention Policies:**
-- **Time-based:** Delete logs older than X days/months/years
-- **Size-based:** Keep only the most recent N GB of logs
-- **Compliance-based:** Retain logs for regulatory requirements (GDPR, HIPAA, etc.)
+- **Gateway logs**: `gateway.log` and `gateway.err.log` are append-only records of all system activity
+- **Daily notes**: Each session appends timestamped entries to `memory/YYYY-MM-DD.md`
+- **Heartbeat state**: `memory/heartbeat-state.json` is updated with timestamps as the "history"
 
-##### Integrity Checks and Validation
-To ensure log integrity and prevent tampering:
+---
 
-**Checksums and Hashes:**
-```python
-import hashlib
-import json
+## 6.7 Contextual Loading Pattern
 
-def append_log_with_integrity(filepath, entry):
-    """Append log entry with integrity hash."""
-    # Calculate hash of entry
-    entry_str = json.dumps(entry, sort_keys=True)
-    entry_hash = hashlib.sha256(entry_str.encode()).hexdigest()
-    
-    # Add hash to entry
-    entry["_integrity"] = {
-        "hash": entry_hash,
-        "algorithm": "SHA-256"
-    }
-    
-    # Write to file
-    with open(filepath, 'a', encoding='utf-8') as f:
-        f.write(json.dumps(entry) + "\n")
-
-def verify_log_integrity(filepath):
-    """Verify integrity of all entries in a log file."""
-    with open(filepath, 'r', encoding='utf-8') as f:
-        for line_num, line in enumerate(f, 1):
-            if line.strip():
-                try:
-                    entry = json.loads(line)
-                    # Extract hash from entry
-                    integrity_info = entry.pop("_integrity", None)
-                    if not integrity_info:
-                        print(f"Line {line_num}: Missing integrity info")
-                        continue
-                    
-                    # Recalculate hash
-                    entry_str = json.dumps(entry, sort_keys=True)
-                    calculated_hash = hashlib.sha256(entry_str.encode()).hexdigest()
-                    
-                    if calculated_hash != integrity_info["hash"]:
-                        print(f"Line {line_num}: Integrity check failed")
-                        return False
-                except json.JSONDecodeError:
-                    print(f"Line {line_num}: Invalid JSON")
-                    return False
-    
-    return True
-```
-
-**Write-Ahead Logging (WAL):**
-- Write entry to a temporary WAL file first
-- After successful write, move to main log
-- Provides atomicity for multi-step operations
-
-**Digital Signatures:**
-- Sign each log entry with a private key
-- Enable verification of authenticity and non-repudiation
-- Essential for audit trails in regulated environments
-
-**Implementation Best Practices:**
-1.  **Atomic writes:** Ensure each append operation is atomic (not interleaved with other writes)
-2.  **Flush guarantees:** Use appropriate flushing to ensure data reaches disk
-3.  **Error handling:** Handle disk full, permission errors gracefully
-4.  **Monitoring:** Monitor log growth rate and alert on anomalies
-5.  **Backup integration:** Ensure logs are included in backup strategies
-
-#### 6.3.3 Use Cases
-
-*   **Audit Trails:** An append-only log provides a complete and tamper-evident history of an agent's actions.
-*   **Debugging:** Developers can replay the exact sequence of events that led to an error.
-*   **Training Data:** The interaction log can be used as a valuable source of training data for future AI models.
-*   **Compliance:** For regulated industries, append-only logs satisfy requirements for immutable audit trails.
-
-#### 6.3.4 OpenClaw Examples
-
-*   **Gateway Logs:** The OpenClaw gateway maintains `gateway.log` and `gateway.err.log` files, which are append-only logs of all system activity.
-*   **`founder-coach` Profile:** The `founder-coach` skill explicitly follows this pattern, stating that it "must only append to the founder profile and never overwrite existing content."
-
-![Memory System Class Diagram](../diagrams/chapter-06/diagram-04-class-diagram.svg)
-
-## 6.4 Contextual Loading Pattern
-
-An AI agent cannot load its entire memory into the context window of an LLM. The **Contextual Loading Pattern** addresses this by intelligently selecting the most relevant pieces of information from the file-based memory.
+An AI agent cannot load its entire memory history into a single context window. The **Contextual Loading Pattern** addresses this by intelligently selecting the most relevant memory slices for the current task.
 
 ![Contextual Loading Decision Flow](../diagrams/chapter-06/diagram-01-flowchart.svg)
 
-#### 6.4.1 Pattern Definition
+### Loading Strategy
 
-The goal is to provide the LLM with just enough context to perform the current task effectively, without exceeding the token limit. This involves a process of searching, filtering, and ranking information from the memory files.
+OpenClaw's default loading strategy is *recency + relevance*:
 
-#### 6.4.2 Implementation Approaches
+1. **Always load**: Tier 3 config files (AGENTS.md, SOUL.md, USER.md, TOOLS.md)
+2. **Load if main session**: MEMORY.md (Tier 1)
+3. **Load recent**: Today's and yesterday's daily notes
+4. **Load on demand**: Older daily notes, project-specific files, skill documentation
 
-*   **Recency-Based Loading:** The simplest approach is to load the most recent entries from the daily memory file. This is often surprisingly effective, as recent interactions are a strong predictor of current context.
-*   **Semantic Similarity:** A more advanced technique involves using vector embeddings. The agent's memory is chunked and converted into vector embeddings, which are stored in a vector database. To retrieve context, the current user query is embedded, and a similarity search is performed to find the most relevant chunks of memory.
-*   **Hybrid Approaches:** The most effective systems often use a hybrid approach, combining recency, semantic similarity, and other heuristics (e.g., keyword matching, entity recognition).
+For most interactions, this is sufficient. When deeper historical context is needed, the `memory_search` tool performs keyword or semantic search across the full memory history without loading everything into context.
 
-#### 6.4.3 OpenClaw Implementation
+### Recency-Based Loading
 
-OpenClaw agents typically use a recency-based approach as a baseline. For example, an agent might be prompted to "load the last 50 lines of `memory/YYYY-MM-DD.md` and the entire contents of `MEMORY.md`". More sophisticated skills can incorporate semantic search by using tools that interface with a vector database.
+The simplest effective strategy—load the most recent N lines from daily notes:
 
-**Implementation Details:**
-1.  **Memory File Parsing and Chunking:** Memory files are parsed into logical chunks (e.g., by section headers in Markdown, by time windows in logs).
-2.  **Context Window Management:** The system tracks token counts and prioritizes chunks to stay within the LLM's context limit.
-3.  **Relevance Heuristics:** Simple heuristics include:
-    - Prioritizing entries from the current session
-    - Looking for keywords from the current query
-    - Considering temporal proximity
-4.  **Performance Optimization:** Caching frequently accessed chunks, precomputing embeddings, and using efficient search algorithms.
+```python
+def load_recent_context(memory_dir: str, lines: int = 50) -> str:
+    """Load the most recent entries from today's memory file."""
+    today = datetime.date.today().isoformat()
+    filepath = f"{memory_dir}/{today}.md"
+    
+    if not os.path.exists(filepath):
+        return ""
+    
+    with open(filepath, 'r') as f:
+        all_lines = f.readlines()
+    
+    recent = all_lines[-lines:] if len(all_lines) > lines else all_lines
+    return "".join(recent)
+```
 
-#### 6.4.4 Vector Embedding Implementation
+### Token Budget Management
 
-For sophisticated contextual loading, semantic search using vector embeddings is often required. This involves converting memory chunks into numeric vectors that capture their semantic meaning, enabling the system to find relevant information based on conceptual similarity rather than just keyword matches.
+Context windows have hard token limits. A robust loading system tracks budget as it fills:
 
-**Detailed Workflow for Vector-Based Context Loading:**
+```python
+class ContextBudget:
+    def __init__(self, max_tokens: int = 100_000):
+        self.max_tokens = max_tokens
+        self.used = 0
+        self.chunks = []
+    
+    def add(self, content: str, priority: int = 0) -> bool:
+        """Add content if budget allows. Returns True if added."""
+        estimated = len(content) // 4  # rough token estimate
+        if self.used + estimated > self.max_tokens:
+            return False
+        self.chunks.append((priority, content))
+        self.used += estimated
+        return True
+    
+    def build(self) -> str:
+        """Return all chunks sorted by priority."""
+        return "\n\n".join(c for _, c in sorted(self.chunks, reverse=True))
+```
 
-1.  **Chunking:** Breakdown memory files into smaller, manageable pieces (e.g., 500-1000 tokens). Markdown headers provide natural boundaries for chunking.
-2.  **Embedding Generation:** Use an embedding model (like OpenAI's `text-embedding-3-small` or HuggingFace's `all-MiniLM-L6-v2`) to convert each chunk into a vector.
-3.  **Vector Storage:** Store these vectors in a specialized vector database (e.g., Pinecone, Chroma, Milvus) or a simple flat-file vector store.
-4.  **Query Embedding:** When the user asks a question, generate an embedding for the query.
-5.  **Similarity Search:** Perform a nearest-neighbor search to find chunks whose vectors are closest to the query vector (typically using Cosine Similarity).
+### Advanced Techniques
 
-**Implementation Example (Python using ChromaDB):**
+- **Summarization for context compression**: Summarize old chunks before loading them, preserving information while reducing tokens
+- **Entity extraction**: Prioritize chunks containing entities mentioned in the current query
+- **Semantic similarity**: Use vector search to find relevant older entries (see §6.9)
+- **Temporal decay**: Weight recent entries higher; surface older entries only when explicitly relevant
+
+---
+
+## 6.8 Progressive Summarization Pattern
+
+As an agent's memory grows across months of operation, even intelligent contextual loading becomes inefficient. The **Progressive Summarization Pattern** manages this by creating increasingly condensed layers of memory over time.
+
+### Summarization Hierarchy
+
+```
+Raw Daily Notes (e.g., 50,000 words/month)
+    | nightly distillation
+    v
+Daily Summaries (500-1,000 words each)
+    | weekly distillation
+    v
+Weekly Insights (200-400 words each)
+    | periodic human review
+    v
+MEMORY.md (curated, timeless wisdom)
+```
+
+Each layer preserves the most important information while dramatically reducing volume.
+
+### Implementation Example
+
+```python
+def summarize_daily_note(date_str: str, workspace: str, llm_client) -> str:
+    """Distill a day's raw notes into a structured summary."""
+    raw_path = f"{workspace}/memory/{date_str}.md"
+    summary_path = f"{workspace}/memory/summaries/{date_str}-summary.md"
+    
+    with open(raw_path, 'r') as f:
+        raw_content = f.read()
+    
+    prompt = f"""Distill these daily agent notes into a concise summary.
+
+Raw notes from {date_str}:
+{raw_content}
+
+Create a structured summary with:
+1. Key accomplishments (2-5 bullets)
+2. Important decisions made (with rationale)
+3. Problems encountered and solutions
+4. Open items / next actions
+5. Lessons learned
+
+Target: 300-500 words. Preserve specific facts and decisions."""
+    
+    summary = llm_client.generate(prompt)
+    os.makedirs(os.path.dirname(summary_path), exist_ok=True)
+    with open(summary_path, 'w') as f:
+        f.write(f"# Summary: {date_str}\n\n{summary}")
+    return summary
+```
+
+### Benefits and Challenges
+
+**Benefits:**
+- Reduced token usage: a 300-word weekly summary replaces 5,000 words of raw notes
+- Preserved knowledge: important insights survive even if raw logs are archived
+- Human review friendly: reviewing a 500-word summary takes minutes
+
+**Challenges:**
+- Information loss is inevitable—summarizers must be calibrated carefully
+- Summarization introduces latency and LLM cost
+- Bias: what the LLM considers "important" may not match the operator's judgment
+
+**Mitigation:** For high-stakes decisions, always preserve source references in summaries so the original entry can be retrieved if needed.
+
+---
+
+## 6.9 Heartbeat-Driven Memory Maintenance
+
+The heartbeat mechanism is OpenClaw's solution to a fundamental challenge: keeping the agent's long-term memory (MEMORY.md) fresh and relevant without burdening every conversation with maintenance overhead.
+
+![Heartbeat-Driven Memory Maintenance](../diagrams/chapter-06/illus-03.png)
+
+### How Heartbeats Work
+
+OpenClaw agents receive periodic "heartbeat" messages—typically every 30–60 minutes—that prompt proactive maintenance tasks. When a heartbeat arrives, the agent checks `HEARTBEAT.md` for pending work:
+
+```markdown
+# HEARTBEAT.md
+
+## Active Checks (run each heartbeat)
+- [ ] Check unread emails — important only
+- [ ] Calendar: any events in next 2 hours?
+- [ ] Review today's memory for MEMORY.md updates
+
+## Pending Tasks
+- [ ] Summarize yesterday's notes (2026-02-27)
+- [ ] Update MEMORY.md with Chapter 6 revision decisions
+
+## Last Memory Maintenance: 2026-02-27
+```
+
+AGENTS.md instructs agents to perform memory maintenance periodically:
+
+> "Periodically (every few days), use a heartbeat to: (1) Read through recent memory/YYYY-MM-DD.md files; (2) Identify significant events, lessons, or insights worth keeping long-term; (3) Update MEMORY.md with distilled learnings; (4) Remove outdated info from MEMORY.md that's no longer relevant."
+
+### The Distillation Algorithm
+
+Memory maintenance requires judgment about what deserves long-term retention:
+
+```python
+def heartbeat_memory_maintenance(workspace: str, llm_client,
+                                  days_to_review: int = 3):
+    """Distill recent daily notes into MEMORY.md updates."""
+    from datetime import date, timedelta
+    
+    # 1. Gather recent daily notes
+    recent_notes = []
+    for i in range(days_to_review):
+        date_str = (date.today() - timedelta(days=i)).isoformat()
+        filepath = f"{workspace}/memory/{date_str}.md"
+        if os.path.exists(filepath):
+            recent_notes.append((date_str, open(filepath).read()))
+    
+    # 2. Read current MEMORY.md
+    memory_path = f"{workspace}/MEMORY.md"
+    current_memory = open(memory_path).read() \
+        if os.path.exists(memory_path) else ""
+    
+    # 3. Ask LLM: what's worth adding or removing?
+    prompt = f"""You are maintaining an AI agent's long-term memory.
+
+CURRENT MEMORY.MD:
+{current_memory}
+
+RECENT DAILY NOTES (last {days_to_review} days):
+{''.join(f'=== {d} ===\n{n}\n' for d, n in recent_notes)}
+
+Your task:
+1. Identify NEW information worth adding to MEMORY.md
+2. Identify OUTDATED information to remove or update
+3. Return a concise proposed update
+
+Focus on: user preferences, project decisions, lasting lessons.
+Skip: routine completions, temporary info, one-off observations."""
+    
+    updates = llm_client.generate(prompt)
+    return updates  # Present to human for review before applying
+```
+
+### Heartbeat State Tracking
+
+The heartbeat mechanism tracks when each type of maintenance last ran:
+
+```json
+{
+  "lastChecks": {
+    "email": 1709136000,
+    "calendar": 1709133600,
+    "memory_maintenance": 1709050000,
+    "weather": null
+  },
+  "pendingTasks": [
+    "summarize 2026-02-27 notes",
+    "update MEMORY.md chapter status"
+  ]
+}
+```
+
+### Human-in-the-Loop Review
+
+For significant MEMORY.md updates, human review is recommended before persisting:
+
+```markdown
+## Proposed MEMORY.md Update (2026-02-28)
+
+### ADD to "Project: OpenClaw Book"
+- Chapter 6 revised from 7,317 to ~9,200 words
+- Now covers: three-tier memory architecture, session continuity,
+  heartbeat maintenance, vector memory
+
+### ADD to "User Preferences"
+- User wants Z.AI scrapbook illustrations, not Mermaid SVG diagrams
+
+### REMOVE from "Open Items"
+- Chapter 6 revision — now complete
+
+Approve? [y/n]
+```
+
+---
+
+## 6.10 Vector Memory: Semantic Retrieval at Scale
+
+File-based memory works exceptionally well for hundreds to thousands of entries—the scale at which most AI agents operate. But as memory grows into tens of thousands of documents, a different approach becomes necessary: **vector memory**, where text is converted into high-dimensional numerical representations that enable semantic search.
+
+![Vector Memory Architecture](../diagrams/chapter-06/illus-04.png)
+
+### What Is Vector Memory?
+
+Vector memory transforms text into numerical embeddings—dense vectors of 384 to 3,072 floating-point numbers—where semantically similar text produces mathematically similar vectors. This means a query like *"what did we discuss about costs?"* can retrieve relevant entries even if those entries never used the word "costs"—they might have said "expenses," "budget," or "pricing."
+
+Contrast this with flat-file search:
+
+| Approach | Mechanism | Strength | Weakness |
+|----------|-----------|----------|---------|
+| **File search (grep)** | Exact keyword matching | Fast, transparent, no infra | Misses synonyms, context, paraphrase |
+| **Vector memory** | Semantic similarity in embedding space | Fuzzy recall, context-aware | Requires embedding infra, opaque retrieval |
+
+### Architecture
+
+A vector memory system has four components:
+
+```
++--------------------------------------------------------------+
+|  1. CHUNKER                                                  |
+|  Split memory files into segments (300-800 tokens)          |
+|  Preserve metadata: source file, date, section header       |
++--------------------------------------------------------------+
+|  2. EMBEDDER                                                 |
+|  Convert each chunk to a dense vector                       |
+|  OpenAI text-embedding-3-small / sentence-transformers      |
++--------------------------------------------------------------+
+|  3. VECTOR STORE                                             |
+|  Store vectors + metadata for nearest-neighbor search       |
+|  ChromaDB / FAISS / Qdrant                                  |
++--------------------------------------------------------------+
+|  4. RETRIEVER                                                |
+|  Embed query -> find K nearest vectors -> return chunks     |
+|  Optional: re-rank, filter by date/source                   |
++--------------------------------------------------------------+
+```
+
+### Embedding Models
+
+| Model | Dimensions | Cost | Latency | Use Case |
+|-------|-----------|------|---------|----------|
+| `text-embedding-3-small` | 1,536 | $0.02/1M tokens | Fast | General purpose, good cost/quality |
+| `text-embedding-3-large` | 3,072 | $0.13/1M tokens | Moderate | High-accuracy retrieval |
+| `all-MiniLM-L6-v2` | 384 | Free (local) | Very fast | Local deployments, privacy-sensitive |
+| `nomic-embed-text` | 768 | Free (local) | Fast | Good local accuracy |
+
+For OpenClaw deployments, `text-embedding-3-small` or `all-MiniLM-L6-v2` cover most use cases well.
+
+### Implementation with ChromaDB
+
+ChromaDB requires no separate server, stores data in a local directory, and integrates naturally with the file-based workspace:
+
 ```python
 import chromadb
 from chromadb.utils import embedding_functions
+from pathlib import Path
 
-# 1. Initialize ChromaDB
+# Initialize ChromaDB in the workspace
 client = chromadb.PersistentClient(path="memory/vector_store")
-embedding_fn = embedding_functions.OpenAIEmbeddingFunction(api_key="your_api_key")
+embedding_fn = embedding_functions.SentenceTransformerEmbeddingFunction(
+    model_name="all-MiniLM-L6-v2"  # Local, no API key required
+)
 collection = client.get_or_create_collection(
     name="agent_memory",
     embedding_function=embedding_fn
 )
 
-# 2. Chunk and Index Memory Files
-def index_memory_file(filepath):
+def index_memory_file(filepath: str):
+    """Chunk and index a memory file into the vector store."""
     with open(filepath, 'r') as f:
         content = f.read()
-        # Simple chunking by header
-        chunks = content.split('## ')
-        for i, chunk in enumerate(chunks):
-            if chunk.strip():
-                collection.add(
-                    ids=[f"{filepath}_{i}"],
-                    documents=[chunk],
-                    metadatas=[{"source": filepath, "chunk_index": i}]
-                )
+    
+    # Chunk by paragraph (for Markdown, could split on ## headers)
+    chunks = [p.strip() for p in content.split('\n\n') if len(p.strip()) > 50]
+    
+    for i, chunk in enumerate(chunks):
+        chunk_id = f"{filepath}::{i}"
+        collection.upsert(
+            ids=[chunk_id],
+            documents=[chunk],
+            metadatas=[{
+                "source": filepath,
+                "chunk_index": i,
+                "date": Path(filepath).stem,  # "2026-02-28" from filename
+            }]
+        )
 
-# 3. Query for Context
-def get_relevant_context(query, n_results=5):
+def search_memory(query: str, n_results: int = 5,
+                  since_date: str = None) -> list[dict]:
+    """Semantic search across all indexed memory."""
+    where_filter = {}
+    if since_date:
+        where_filter["date"] = {"$gte": since_date}
+    
     results = collection.query(
         query_texts=[query],
-        n_results=n_results
+        n_results=n_results,
+        where=where_filter if where_filter else None,
     )
-    return results['documents'][0]
+    
+    return [
+        {
+            "content": doc,
+            "source": meta["source"],
+            "date": meta["date"]
+        }
+        for doc, meta in zip(
+            results["documents"][0],
+            results["metadatas"][0]
+        )
+    ]
 
 # Usage
-index_memory_file("memory/2026-02-13.md")
-relevant_chunks = get_relevant_context("What did we discuss about file coordination?")
+index_memory_file("memory/2026-02-28.md")
+hits = search_memory("what did we decide about the chapter structure?")
+for hit in hits:
+    print(f"[{hit['date']}] {hit['content'][:200]}")
 ```
 
-**Trade-offs of Vector-Based Approaches:**
-- **Pros:** Concept-based retrieval, handles synonyms well, scales to very large datasets.
-- **Cons:** Higher computational cost, requires external API or library, lost of temporal sequence, complexity in management.
+### Implementation with FAISS
 
-#### 6.4.5 Advanced Techniques
+For high-performance local search across millions of vectors, FAISS (Meta AI) offers excellent throughput:
 
-Building on basic contextual loading, several advanced techniques can further improve the relevance and efficiency of memory retrieval:
+```python
+import faiss
+import numpy as np
+from sentence_transformers import SentenceTransformer
 
-*   **Summarization for Context Compression:** Before loading a chunk into the agent's main context, generate a concise summary. This preserves the core information while significantly reducing token usage, allowing the agent to "remember" more within its limited window.
-    - *Technique:* Use a small, fast model to summarize chunks before they enter the main context.
-    - *Implementation:* `summarized_context = llm.generate_summary(raw_chunk, target_tokens=100)`.
+model = SentenceTransformer("all-MiniLM-L6-v2")
+dimension = 384  # Output dimension of all-MiniLM-L6-v2
 
-*   **Entity Extraction for Focused Context:** Extract named entities (people, projects, concepts) from the current query and prioritize memory chunks containing those entities. This ensures the most specifically relevant facts are loaded first.
-    - *Technique:* Use NER (Named Entity Recognition) on the query and memory chunks.
-    - *Implementation:* Prioritize chunks where `chunk.entities.intersection(query.entities)` is largest.
+# Flat L2 index for small-scale; use IVF index for >100K vectors
+index = faiss.IndexFlatL2(dimension)
 
-*   **Topic Modeling for Thematic Relevance:** Use unsupervised topic modeling to categorize memory chunks and select those matching the current topic. This provides a broader thematic context than simple similarity search.
-    - *Technique:* LDA (Latent Dirichlet Allocation) or similar algorithms.
-    - *Implementation:* Classify the query into a topic, then load chunks from the same topic bucket.
+# Index your memory chunks
+chunks = load_all_memory_chunks()  # your chunking function
+embeddings = model.encode(chunks)
+index.add(np.array(embeddings, dtype=np.float32))
 
-*   **Interaction Graph Analysis:** Build a graph of entities and their relationships from memory. Use graph algorithms like PageRank or Spreading Activation to find chunks that are related to the query even if they don't share keywords or high semantic similarity.
-    - *Technique:* Construct a knowledge graph from memory entries.
-    - *Implementation:* Start from query entities, traverse the graph to find connected nodes (chunks).
+# Search
+query_vec = model.encode(["what did we discuss about costs?"])
+distances, indices = index.search(
+    np.array(query_vec, dtype=np.float32), k=5
+)
 
-*   **Temporal Decay and Weighting:** Apply a decay function to memory chunks, giving higher weight to recent information while still allowing older, high-importance information to surface.
-    - *Formula:* `score = similarity * decay_function(timestamp)`.
-    - *Decay Functions:* Linear decay, exponential decay, or step-function decay based on session boundaries.
+# Persist to disk
+faiss.write_index(index, "memory/faiss.index")
+# Reload later
+index = faiss.read_index("memory/faiss.index")
+```
 
-**Example Multi-Stage Retrieval Pipeline:**
+### When to Use Vector Memory
 
-1.  **Stage 1: Broad Search (Vector Search).** Find top 20 candidate chunks based on semantic similarity.
-2.  **Stage 2: Re-ranking (Cross-Encoder).** Use a more powerful model to precisely score the top 20 candidates based on the query.
-3.  **Stage 3: Filtering (Metadata).** Remove chunks that are too old or from irrelevant projects.
-4.  **Stage 4: Context Assembly.** Select top-scoring chunks and arrange them chronologically or by importance.
-5.  **Stage 5: Summarization (Optional).** Summarize selected chunks if they exceed the token budget.
+Vector memory is not always the right tool:
 
-This multi-stage approach balances speed (Initial vector search) with accuracy (re-ranking) and relevance (filtering and assembly).
+| Scale | Recommendation |
+|-------|---------------|
+| < 1,000 memory entries | File search (grep/ripgrep) is fine |
+| 1,000–10,000 entries | Consider adding vector search for better recall |
+| > 10,000 entries | Vector memory strongly recommended |
 
-#### 6.4.6 Performance Optimization Techniques
+Also consider: do you need fuzzy/semantic matching? If keyword search covers your use cases, stick with files. Does your deployment have privacy requirements that preclude external embedding APIs? Use local sentence-transformers.
 
-Managing contextual loading efficiently requires several optimization strategies:
+### The Hybrid Model: Files + Vector Store
 
-- **Caching Frequently Accessed Chunks:** Store recently used memory chunks in an in-memory cache (like Redis or local LRU cache) to avoid repeated filesystem or database reads.
-- **Precomputing Embeddings:** Generate and store embeddings as memory files are written, rather than at query time. This drastically reduces latency during interaction.
-- **Using Small Models for Pre-processing:** Use smaller, faster models for tasks like entity extraction or initial summarization to minimize overall response time.
-- **Incremental Indexing:** Update your search index incrementally rather than re-indexing the entire memory store on every update.
-- **Efficient Chunking Strategies:** Experiment with different chunk sizes and overlapping windows (e.g., 500 tokens with 50-token overlap) to find the sweet spot for your specific model and data.
+The most robust architecture combines both approaches:
+
+```
+MEMORY.md          -> Load fully into context (small, curated, always visible)
+Daily Notes        -> Recent: load directly; Older: search via vector store
+Project Files      -> Index and search semantically as needed
+Skill Docs         -> Index and search semantically
+```
+
+```python
+def smart_memory_load(query: str, workspace: str,
+                       context_budget: int = 8000) -> str:
+    """Load memory intelligently: always MEMORY.md + semantic history search."""
+    context_parts = []
+    tokens_used = 0
+    
+    # Always: MEMORY.md (curated, high-signal)
+    memory_md = read_file(f"{workspace}/MEMORY.md")
+    context_parts.append("## Long-Term Memory\n" + memory_md)
+    tokens_used += len(memory_md) // 4  # rough token estimate
+    
+    # Always: Today's notes (immediate context)
+    today_notes = read_file(f"{workspace}/memory/{today()}.md")
+    if today_notes:
+        context_parts.append("## Today's Notes\n" + today_notes)
+        tokens_used += len(today_notes) // 4
+    
+    # If budget remains: semantic search for relevant history
+    remaining = context_budget - tokens_used
+    if remaining > 500:
+        hits = search_memory(query, n_results=3)
+        for hit in hits:
+            snippet = hit["content"][:remaining // max(len(hits), 1)]
+            context_parts.append(
+                f"## Relevant History ({hit['date']})\n{snippet}"
+            )
+    
+    return "\n\n".join(context_parts)
+```
+
+### OpenClaw Context: memory_search and memory_get
+
+OpenClaw's built-in `memory_search` tool performs hybrid retrieval. When an agent calls `memory_search("Chapter 6 revision decisions")`, the tool:
+
+1. Checks the vector index for semantically relevant entries
+2. Returns matching excerpts with source file and date
+3. Falls back to recency-based loading if the vector index is empty or not configured
+
+The `memory_get` tool complements this by retrieving specific named entries—useful when the agent knows exactly what it's looking for.
+
+For most current OpenClaw deployments (small to medium memory stores), file-based search is the default. Vector memory is the recommended next step for agents with large accumulated histories.
+
+### Trade-offs Summary
+
+| Dimension | File-Based (MEMORY.md + grep) | Vector Memory |
+|-----------|------------------------------|---------------|
+| **Transparency** | Fully readable | Opaque (vector space) |
+| **Portability** | Any text editor | Requires vector store |
+| **Infrastructure** | Zero dependencies | Embedding model + DB |
+| **Fuzzy recall** | Exact keywords only | Semantic similarity |
+| **Scale** | Degrades > 10K entries | Scales to millions |
+| **Setup cost** | None | Moderate |
+| **Rebuild from scratch** | Trivial | Re-embed all content |
+
+The right answer for most teams: start with file-based, add vector search when search quality or scale demands it.
 
 ---
 
-## 6.5 Progressive Summarization Pattern
+## 6.11 File Coordination Patterns
 
-As an agent's memory grows, even contextual loading can become inefficient. The **Progressive Summarization Pattern** is a strategy for managing this information overload by creating layers of summaries.
+When multiple agents (or a human and an agent) need to access the same memory files concurrently, coordination mechanisms prevent data corruption and race conditions.
 
-![Progressive Summarization Timeline](../diagrams/chapter-06/diagram-03-timeline.svg)
+![File Coordination Patterns](../diagrams/chapter-06/illus-05.png)
 
-#### 6.5.1 Pattern Definition
+### File Locking
 
-This pattern involves a multi-stage process of condensing information over time:
+Before writing, acquire an exclusive lock:
 
-1.  **Raw Logs:** The daily memory files contain the raw, unfiltered log of all activities.
-2.  **Daily Summaries:** At the end of each day, the agent (or a separate summarization agent) creates a summary of the key events and learnings.
-3.  **Weekly/Monthly Insights:** These daily summaries can be further condensed into higher-level insights.
-4.  **Long-Term Memory:** The most important and timeless insights are "promoted" to the `MEMORY.md` file.
+```python
+import fcntl
 
-#### 6.5.2 Implementation Examples
-
-The curation of OpenClaw's `MEMORY.md` file is a prime example of this pattern in practice. The process is often a collaboration between the AI and its human operator. The AI might propose a summary, which the human then reviews, edits, and approves before it is added to the long-term memory.
-
-**Detailed Workflow:**
-1.  **Daily Processing:** At midnight, a cron job triggers a summarization agent.
-2.  **Raw Log Analysis:** The agent reads the day's memory file, identifying key events, decisions, and learnings.
-3.  **Summary Generation:** Using the LLM, generate a structured summary including:
-    - Key accomplishments
-    - Important decisions made
-    - Problems encountered and solutions
-    - New learnings or insights
-4.  **Human Review:** The summary is presented to the human operator for review and approval.
-5.  **Archive Storage:** The approved summary is stored in a `summaries/` directory with filename `YYYY-MM-DD-summary.md`.
-6.  **Weekly Aggregation:** At week's end, another agent summarizes the seven daily summaries into a weekly overview.
-7.  **Long-Term Curation:** Periodically (e.g., monthly), the human and AI review summaries to extract timeless principles for `MEMORY.md`.
-
-#### 6.5.3 Benefits
-
-*   **Preserves Knowledge Density:** Summarization distills the most important information, reducing noise.
-*   **Manages Context Window:** Loading a summary of past events is far more token-efficient than loading the raw logs.
-*   **Facilitates Human Review:** It is much easier for a human to review a concise summary than to read through days of raw logs.
-*   **Enables Pattern Recognition:** Summaries at different time scales reveal patterns that might be invisible in raw data.
-
-#### 6.5.4 Challenges
-
-*   **Information Loss During Summarization:** The summarization process inevitably loses detail and nuance.
-*   **Bias Introduction in Abstraction Process:** Summarizers may introduce their own biases in what they consider important.
-*   **Computational Cost of Summarization:** Regular summarization requires significant LLM usage.
-*   **Validation of Summary Accuracy:** Ensuring summaries accurately reflect the original content requires careful validation.
-*   **Temporal Context Preservation:** Summaries may lose the temporal sequence and causality present in raw logs.
-
-**Mitigation Strategies:**
-1.  **Multi-Pass Summarization:** First extract facts, then synthesize insights, preserving source references.
-2.  **Human-in-the-Loop Review:** Require human approval for summaries before archival.
-3.  **Source Linking:** Include references to the original log entries in summaries.
-4.  **Incremental Summarization:** Update existing summaries with new information rather than recreating from scratch.
-
-## 6.6 File Coordination Patterns
-
-When multiple agents (or a human and an agent) need to access the same memory files, a coordination mechanism is required to prevent conflicts.
-
-#### 6.6.1 Multi-Agent File Access
-
-*   **File Locking:** A common strategy is to use file locks. Before writing to a file, an agent acquires a lock. If another agent tries to acquire a lock on the same file, it must wait until the first agent releases the lock. This prevents race conditions and data corruption.
+class FileLock:
+    def __init__(self, filepath: str):
+        self.filepath = filepath
+        self._file = None
     
-    **Implementation Example (Python pseudocode):**
-    ```python
-    import fcntl
-    import time
+    def __enter__(self):
+        self._file = open(self.filepath, 'a')
+        fcntl.flock(self._file.fileno(), fcntl.LOCK_EX)
+        return self
     
-    class FileLock:
-        def __init__(self, filename):
-            self.filename = filename
-            self.file = None
-            
-        def acquire(self):
-            self.file = open(self.filename, 'a')
-            fcntl.flock(self.file.fileno(), fcntl.LOCK_EX)
-            
-        def release(self):
-            if self.file:
-                fcntl.flock(self.file.fileno(), fcntl.LOCK_UN)
-                self.file.close()
-                self.file = None
-                
-    # Usage
-    lock = FileLock('memory/2026-02-13.md')
-    try:
-        lock.acquire()
-        # Perform file operations
-        with open('memory/2026-02-13.md', 'a') as f:
-            f.write("[09:00] **Agent A**: Writing to file\\n")
-    finally:
-        lock.release()
-    ```
+    def __exit__(self, *args):
+        if self._file:
+            fcntl.flock(self._file.fileno(), fcntl.LOCK_UN)
+            self._file.close()
+            self._file = None
 
-*   **Conflict Resolution:** If conflicts do occur (e.g., two agents trying to append to the same file simultaneously), a conflict resolution strategy is needed. For append-only logs, this can be as simple as retrying the write operation. For more complex edits, strategies include:
-    - **Last Write Wins:** The most recent edit overwrites previous ones (risky for data loss).
-    - **Merge Strategies:** Attempt to automatically merge changes (complex but preserves all data).
-    - **Conflict Markers:** Insert conflict markers and require manual resolution.
-
-#### 6.6.2 Directory Structure Conventions
-
-A standardized directory structure is a form of passive coordination. When all agents agree on where to find and store files, it reduces the risk of conflicts and makes the system more predictable.
-
-**Example Standard Structure:**
-```
-workspace/
-├── memory/
-│   ├── YYYY-MM-DD.md        # Daily logs
-│   ├── summaries/           # Progressive summaries
-│   │   ├── YYYY-MM-DD-summary.md
-│   │   └── weekly/
-│   ├── profiles/            # User/agent profiles
-│   └── archive/             # Compressed historical logs
-├── config/
-│   ├── agents/              # Agent configurations
-│   └── skills/              # Skill configurations
-├── data/
-│   ├── raw/                 # Raw data files
-│   └── processed/           # Processed data
-└── projects/
-    ├── project-a/           # Project-specific files
-    └── project-b/
+# Usage in multi-agent context
+with FileLock("memory/2026-02-28.md"):
+    with open("memory/2026-02-28.md", 'a') as f:
+        f.write(f"[{timestamp}] Agent B: Completed subtask\n")
 ```
 
-#### 6.6.3 File Change Detection
+### Directory Structure Conventions
 
-Monitoring file changes enables reactive coordination patterns:
+Standardized layouts reduce coordination overhead—when every agent agrees on where to find and store files, implicit coordination emerges from convention. The standard OpenClaw workspace layout (shown in §6.4) serves as the coordination contract.
 
-*   **Filesystem Monitoring:** Using system APIs like `inotify` (Linux), `FSEvents` (macOS), or `ReadDirectoryChangesW` (Windows) to detect file changes in real-time.
-*   **Polling Strategies:** For cross-platform compatibility or when filesystem APIs aren't available,定期 polling files for changes.
-*   **Change Notification Propagation:** When a file changes, notify interested agents through a message bus or event system.
-*   **Cache Invalidation:** Invalidate cached file contents when the source file changes.
+### File Change Detection
 
-**Implementation Example using Watchdog (Python):**
+For reactive multi-agent coordination, filesystem monitoring enables agents to respond when memory files are updated:
+
 ```python
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-class MemoryFileHandler(FileSystemEventHandler):
+class MemoryWatcher(FileSystemEventHandler):
     def on_modified(self, event):
         if event.src_path.endswith('.md'):
-            print(f"Memory file changed: {event.src_path}")
-            # Notify agents or update cache
-            
+            print(f"Memory updated: {event.src_path}")
+            # Invalidate cache, notify waiting agents
+
 observer = Observer()
-observer.schedule(MemoryFileHandler(), path='memory/', recursive=True)
+observer.schedule(MemoryWatcher(), path='memory/', recursive=False)
 observer.start()
 ```
 
-![File-Based Memory Concepts](../diagrams/chapter-06/diagram-05-radial-concept.svg)
+### Conflict Resolution
 
-## 6.7 Performance Considerations
+For append-only files, conflict resolution is straightforward: if two agents try to append simultaneously, the file lock ensures sequential writes and both entries are preserved. For editable files like MEMORY.md, a more deliberate strategy is required:
 
-While the simplicity of file-based memory is a major advantage, performance can become a challenge at scale.
-
-#### 6.7.1 Scalability Limits
-
-*   **File Size:** Very large files can be slow to read and process. Most filesystems have optimal file sizes for performance.
-*   **File Count:** A very large number of files in a single directory can slow down directory traversal operations (e.g., `ls`, file search).
-*   **Memory Mapping:** Large memory-mapped files can consume significant virtual address space.
-*   **Disk I/O Bottlenecks:** Heavy read/write operations can saturate disk bandwidth, especially with rotational drives.
-
-**Quantitative Guidelines:**
-- **Optimal File Size:** 1MB to 10MB for text files (balances read speed with manageability)
-- **Directory File Count:** Under 10,000 files per directory for good performance
-- **Total Dataset:** Under 100GB for single-disk, single-machine deployments
-
-#### 6.7.2 Optimization Techniques
-
-*   **Lazy Loading and Caching:** Only load file contents when needed, and cache frequently accessed files in memory.
-*   **Background Indexing and Preprocessing:** Build search indexes or embeddings in the background to speed up queries.
-*   **Compression for Large Files:** Use transparent compression (e.g., zstd, gzip) for historical data that's infrequently accessed.
-*   **Archival Strategies:** Move old files to separate storage (cold storage, cloud storage) while keeping metadata for retrieval.
-*   **Read/Write Batching:** Group multiple operations into batches to reduce filesystem overhead.
-
-#### 6.7.3 Hybrid Approaches
-
-For very large-scale systems, a hybrid approach may be necessary:
-
-*   **Hot/Cold Data Separation:** Recent memory in files for fast access, older memory in compressed archives or databases.
-*   **Metadata/Content Separation:** Store metadata (timestamps, tags, summaries) in a database for fast querying, with content in files.
-*   **Caching Layers:** Use in-memory caches (Redis, Memcached) for frequently accessed memory chunks.
-*   **Distributed File Systems:** Scale beyond single machines with distributed filesystems (NFS, S3, IPFS).
-*   **Migration Strategies:** Start with file-based for simplicity, migrate to hybrid or database as scale demands.
-
-**Migration Example:**
-```python
-# Simple migration from file-based to hybrid
-def migrate_to_hybrid(memory_dir, database_conn):
-    # 1. Scan memory files
-    for filename in os.listdir(memory_dir):
-        if filename.endswith('.md'):
-            filepath = os.path.join(memory_dir, filename)
-            
-            # 2. Extract metadata
-            metadata = extract_metadata(filepath)
-            
-            # 3. Store metadata in database
-            store_in_database(database_conn, metadata, filepath)
-            
-            # 4. Optionally compress old files
-            if is_old_file(filename):
-                compress_file(filepath)
-```
-
-## 6.8 Security and Privacy
-
-Storing an AI's memory in files raises important security and privacy considerations.
-
-#### 6.8.1 Access Control
-
-*   **Filesystem Permissions:** Standard filesystem permissions (e.g., `chmod`, `chown`) can be used to control which users and processes have access to the memory files.
-*   **Access Control Lists (ACLs):** For more granular control, use filesystem ACLs to specify permissions for multiple users and groups.
-*   **Encryption at Rest:** For sensitive information, memory files should be encrypted at rest using filesystem encryption (e.g., LUKS, FileVault) or application-level encryption.
-*   **Audit Logging:** Log all access attempts to sensitive memory files for security monitoring.
-
-#### 6.8.2 Data Protection
-
-If an agent interacts with users and stores personal or sensitive information, it is crucial to have a strategy for data protection:
-
-*   **Personally Identifiable Information (PII) Handling:** Implement automatic detection and redaction of PII before storage.
-*   **Sensitive Data Detection:** Use pattern matching and ML models to detect sensitive data (financial information, health data, etc.).
-*   **Compliance with Regulations:** Ensure compliance with GDPR, CCPA, HIPAA, or other applicable regulations.
-*   **Secure Deletion:** Implement secure deletion methods (multiple overwrites, cryptographic shredding) for when data must be removed.
-*   **Backup and Disaster Recovery:** Encrypted backups with access controls and regular testing of restoration procedures.
-
-**PII Redaction Example:**
-```python
-import re
-
-def redact_pii(text):
-    # Email addresses
-    text = re.sub(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', 
-                  '[EMAIL_REDACTED]', text)
-    
-    # Phone numbers (US format)
-    text = re.sub(r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b', 
-                  '[PHONE_REDACTED]', text)
-    
-    # Credit card numbers (simplified)
-    text = re.sub(r'\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b', 
-                  '[CC_REDACTED]', text)
-    
-    return text
-
-# Before storing in memory
-clean_text = redact_pii(user_input)
-append_to_memory(clean_text)
-```
-
-#### 6.8.3 Multi-User Environments
-
-When multiple users share an AI system:
-
-*   **User Isolation:** Use separate directory trees for each user's memory files.
-*   **Shared File Access:** Implement permission models for collaborative files (read-only, read-write, etc.).
-*   **Collaboration Patterns:** Design workflows for shared editing with conflict resolution.
-*   **Quota Management:** Implement disk usage quotas to prevent any single user from consuming all resources.
-
-## 6.9 Tooling Ecosystem
-
-The effectiveness of file-based memory is greatly enhanced by a rich tooling ecosystem.
-
-#### 6.9.1 File Management Tools
-
-*   **Text Editors with AI Integration:** Modern editors like VS Code with AI extensions (GitHub Copilot, Cursor) provide intelligent editing and analysis of memory files.
-*   **File Search and Navigation:** Tools like `ripgrep`, `fzf`, and `fd` enable fast searching through memory files from the command line.
-*   **Batch Processing and Transformation:** Scripting with `jq` (for JSON), `yq` (for YAML), and `pandoc` (for format conversion) enables powerful manipulation of memory files.
-*   **Visualization and Analysis:** Tools for visualizing file relationships, temporal patterns, and content analysis.
-
-#### 6.9.2 Version Control Integration
-
-As mentioned earlier, Git is a killer app for file-based memory:
-
-*   **Automated Commit Workflows:** Set up hooks to automatically commit memory changes at regular intervals.
-*   **Branching Strategies:** Use feature branches for experimental memory edits, merging only validated changes.
-*   **Merge Conflict Resolution:** Develop strategies for resolving conflicts in AI-generated content.
-*   **Git Attributes:** Use `.gitattributes` to handle large files, binary files, and custom diff/merge drivers.
-
-**Example Git Hook for Auto-Committing Memory:**
-```bash
-#!/bin/bash
-# .git/hooks/post-command
-
-# After any tool call that modifies memory files
-MEMORY_FILES_CHANGED=$(git status --porcelain memory/ | wc -l)
-
-if [ "$MEMORY_FILES_CHANGED" -gt 0 ]; then
-    git add memory/
-    git commit -m "Auto-commit: Update memory files [$(date +%Y-%m-%d_%H:%M:%S)]"
-fi
-```
-
-#### 6.9.3 Backup and Synchronization
-
-*   **Automated Backup Strategies:** Regular backups to local and cloud storage with versioning.
-*   **Cross-Device Synchronization:** Sync memory files across multiple devices using tools like `rsync`, Syncthing, or cloud storage.
-*   **Conflict Resolution in Sync:** Handle conflicts that arise when the same memory file is modified on multiple devices.
-*   **Recovery Procedures:** Document and test recovery procedures for different failure scenarios.
-
-## 6.10 Case Studies
-
-Let's look at how these patterns come together in real-world examples.
-
-#### 6.10.1 OpenClaw Memory System
-
-The core OpenClaw memory system is a textbook implementation of these patterns:
-
-*   **Daily Memory Files:** Each session creates entries in `memory/YYYY-MM-DD.md` with timestamps and structured content.
-*   **Long-Term Memory Curation:** Manual process of distilling insights from daily logs into `MEMORY.md`.
-*   **Contextual Loading in Practice:** Agents instructed to "read the last N lines" of recent memory files.
-*   **Performance Assessment:** Handles moderate-scale usage well; would need optimization for enterprise-scale deployments.
-*   **Usability:** Developers appreciate the transparency and ease of debugging.
-
-**Lessons Learned:**
-1.  The simplicity of the file-based approach lowers the barrier to entry for new developers.
-2.  Human readability enables effective collaboration between developers and AI.
-3.  Version control integration provides built-in auditability.
-4.  Performance becomes a concern with very large memory files or high-frequency updates.
-
-#### 6.10.2 Founder-Coach Profile System
-
-The `founder-coach` skill demonstrates a domain-specific application:
-
-*   **Append-Only Profile Updates:** Strict adherence to appending only, preserving complete history.
-*   **Structured Data in Markdown:** Uses Markdown headers and sections for organization while remaining human-readable.
-*   **Integration with Coaching Logic:** The AI reads the profile at session start to personalize interactions.
-*   **User Experience:** Founders appreciate the continuity across sessions and ability to review their own progress.
-*   **Effectiveness:** The persistent profile enables deeper, more contextual coaching over time.
-
-**Implementation Details:**
-```markdown
-# Founder Profile: Jane Doe
-
-## Current Goals
-1. Launch MVP by Q2 2026
-2. Secure first 100 users
-3. Hire first engineer
-
-## Recent Challenges
-- Technical debt accumulating in prototype
-- Difficulty balancing feature development with user research
-
-## Past Successes
-- Successfully validated problem with 20 user interviews
-- Built working prototype in 4 weeks
-
-## Coaching Notes
-[2026-02-10]: Discussed prioritizing technical debt reduction...
-[2026-02-13]: Explored user onboarding strategies...
-```
-
-#### 6.10.3 Research Agent Knowledge Base
-
-A specialized agent for academic or market research demonstrates advanced patterns:
-
-*   **File-Based Research Note Organization:** Each research topic gets its own directory with structured notes.
-*   **Progressive Summarization of Findings:** Raw notes → summary → insights → actionable recommendations.
-*   **Cross-Reference Linking:** Markdown links between related research notes create a knowledge graph.
-*   **Search and Retrieval Performance:** Uses `ripgrep` for text search and simple keyword indexing.
-*   **Collaboration Features:** Multiple researchers can contribute to shared knowledge base.
-
-**Directory Structure:**
-```
-research/
-├── topics/
-│   ├── ai-memory-patterns/
-│   │   ├── notes.md
-│   │   ├── sources.md
-│   │   └── summary.md
-│   └── vector-databases/
-│       ├── notes.md
-│       └── comparison.md
-├── summaries/
-│   ├── weekly/
-│   └── monthly/
-└── insights.md
-```
-
-#### 6.10.4 Enterprise Knowledge Management
-
-Scaling file-based memory to team use presents unique challenges:
-
-*   **Team Collaboration Patterns:** Role-based access controls, change notifications, and collaborative editing workflows.
-*   **Integration with Existing Systems:** Connecting file-based memory with existing document management systems (SharePoint, Confluence, Notion).
-*   **Migration from Database-Centric Approaches:** Gradual migration strategies that maintain backward compatibility.
-*   **Governance and Compliance:** Implementing retention policies, audit trails, and compliance reporting.
-
-**Enterprise Implementation Challenges and Solutions:**
-
-1.  **Challenge:** Version conflicts when multiple team members edit the same memory file.
-    **Solution:** Implement optimistic locking with merge strategies and conflict resolution workflows.
-
-2.  **Challenge:** Search performance across terabytes of memory files.
-    **Solution:** Hybrid approach with search index (Elasticsearch, Meilisearch) for metadata and file system for content.
-
-3.  **Challenge:** Backup and recovery at enterprise scale.
-    **Solution:** Enterprise backup solutions with incremental backups, point-in-time recovery, and testing procedures.
-
-4.  **Challenge:** Regulatory compliance for sensitive data.
-    **Solution:** Encryption at rest and in transit, access logging, data retention policies, and regular audits.
-
-**Success Metrics for Enterprise Adoption:**
-- **Adoption Rate:** Percentage of teams using the file-based memory system
-- **Search Performance:** Average query response time
-- **Data Integrity:** Rate of data corruption or loss incidents
-- **User Satisfaction:** Survey scores for usability and effectiveness
-- **Compliance:** Audit findings and regulatory compliance status
+- **Last write wins**: Simple but risks data loss—suitable only for low-contention files
+- **Merge strategies**: Diff both versions, merge non-conflicting changes, flag conflicts
+- **Human arbitration**: Surface conflicts to the operator for manual resolution
 
 ---
 
-This chapter has provided a comprehensive overview of file-based memory patterns in AI-native development. By embracing the simplicity and transparency of the file system, we can build AI systems that are more robust, auditable, and collaborative. The patterns discussed here—from file-based memory and append-only history to contextual loading and progressive summarization—provide a powerful toolkit for managing the state and memory of your AI agents.
+## 6.12 Performance Considerations
 
-Each pattern comes with trade-offs that must be carefully considered based on your specific use case, scale requirements, and team capabilities. The key insight is that for many AI-native applications, the benefits of human readability, version control compatibility, and simplicity outweigh the limitations of file-based approaches compared to traditional databases.
+File-based memory performs well at the scale most OpenClaw deployments operate—hundreds to a few thousand files, each under 1MB. Performance concerns emerge at significantly larger scales.
 
-As AI systems continue to evolve and become more integrated into our workflows, the patterns explored in this chapter will likely become even more important. They represent a bridge between human cognitive patterns and AI processing capabilities, enabling truly collaborative intelligence.
+### Scalability Guidelines
 
-In the next chapter, we will explore another fundamental aspect of AI-native systems: the use of cron and scheduled automation patterns to create proactive and autonomous agents that operate on predictable schedules while maintaining the flexibility to adapt to changing circumstances.
+| Metric | Comfortable Range | Caution Zone | Requires Optimization |
+|--------|------------------|--------------|-----------------------|
+| Files per directory | < 5,000 | 5K–20K | > 20K |
+| Single file size | < 1MB | 1–50MB | > 50MB |
+| Total memory store | < 1GB | 1–10GB | > 10GB |
+| Daily notes age range | < 1 year | 1–3 years | > 3 years |
+
+### Optimization Techniques
+
+**Lazy loading**: Only load file contents when needed; cache in memory for the session duration.
+
+**Compression for archives**:
+
+```bash
+# Archive and compress notes older than 30 days
+find memory/ -name "*.md" -mtime +30 | while read f; do
+    gzip -9 "$f"
+    mv "${f}.gz" memory/archive/
+done
+```
+
+**Background indexing**: Build search indexes asynchronously after file writes rather than blocking on them.
+
+**Hybrid hot/cold storage**: Recent notes on fast SSD, older archives on HDD or cloud storage with on-demand retrieval.
+
+### Hybrid Approaches
+
+For very large-scale systems:
+
+- **Hot/Cold Data Separation**: Recent memory in files for fast access, older memory in compressed archives or databases
+- **Metadata/Content Separation**: Store metadata (timestamps, tags, summaries) in SQLite for fast querying, with content in files
+- **Caching Layers**: Use in-memory caches (Redis, local LRU) for frequently accessed memory chunks
+
+---
+
+## 6.13 Tooling Ecosystem
+
+### Essential CLI Tools
+
+```bash
+# Fast full-text search across all memory files
+rg "chapter revision" memory/
+
+# Find recent memory files
+fd --extension md memory/ | sort -r | head -10
+
+# Extract and process JSON state
+cat memory/heartbeat-state.json | jq '.lastChecks'
+
+# Word count across all memory files
+wc -w memory/*.md | sort -n
+```
+
+### Git Workflows for Memory
+
+```bash
+# Auto-commit memory updates at session end
+git add memory/ MEMORY.md
+git commit -m "memory: $(date +%Y-%m-%d) session notes"
+
+# Review what changed in memory over the week
+git log --oneline --since="1 week ago" -- memory/
+
+# Inspect MEMORY.md evolution
+git diff HEAD~7 MEMORY.md
+```
+
+### Automated Backup
+
+```bash
+#!/bin/bash
+# backup-memory.sh — run nightly via cron (see Chapter 7)
+WORKSPACE="$HOME/.openclaw/workspace"
+BACKUP_DIR="$HOME/backups/openclaw"
+DATE=$(date +%Y-%m-%d)
+
+mkdir -p "$BACKUP_DIR"
+tar czf "$BACKUP_DIR/memory-$DATE.tar.gz" \
+    "$WORKSPACE/memory/" \
+    "$WORKSPACE/MEMORY.md" \
+    "$WORKSPACE/AGENTS.md"
+
+# Keep 30 days of backups
+find "$BACKUP_DIR" -name "memory-*.tar.gz" -mtime +30 -delete
+echo "Backup complete: memory-$DATE.tar.gz"
+```
+
+---
+
+## 6.14 Case Studies
+
+### OpenClaw Agent Memory in Production
+
+A deployed OpenClaw skill-engineer agent illustrates the three-tier system in practice. Each session begins by loading AGENTS.md (~3,000 tokens), SOUL.md (~500 tokens), USER.md (~300 tokens), MEMORY.md (~2,000 tokens), and the last two daily notes (~1,500 tokens). Total overhead: ~7,300 tokens out of a 200,000-token context window—less than 4%.
+
+The remaining 96% is available for the actual task. When historical context is needed beyond the loaded files, `memory_search` retrieves relevant excerpts without loading everything into context.
+
+**Production lessons:**
+1. MEMORY.md should stay under 2,000 words—quality over quantity
+2. Daily notes grow fast; implement rotation after 30 days
+3. Security discipline (never loading MEMORY.md in shared contexts) must be enforced at the session loader level, not just documented as a guideline
+4. Heartbeat-driven maintenance keeps MEMORY.md accurate without burdening every session
+
+### Founder-Coach Profile System
+
+The `founder-coach` skill demonstrates append-only discipline over time. Over 6 months of coaching, a typical profile grows to ~3,000 words covering goals, challenges, breakthroughs, and behavioral patterns. The append-only constraint means the complete history is always available for longitudinal analysis—coaches can see not just where the founder is today, but how their thinking evolved.
+
+### Research Agent with Vector Memory
+
+A research agent indexes its findings as it works: each retrieved paper, web article, or data source is chunked and added to a ChromaDB collection. When the agent needs to recall prior research, semantic search finds relevant entries even when the user's query uses different terminology than the original source. The file system stores the source documents; the vector store handles recall. This hybrid approach—files as source of truth, vectors as search index—makes the system both transparent and scalable.
+
+---
+
+This chapter has mapped the complete landscape of file-based memory for AI-native systems—from the foundational session continuity model to the emerging vector memory layer that scales semantic retrieval to large histories. The key architectural insight is that for AI agents, **files are not a convenience—they are the only persistence that survives across the fundamental amnesia of each new LLM context**. The three-tier system (MEMORY.md + daily notes + behavioral config) gives agents the combination of stable identity, recent context, and accumulated wisdom they need to function as genuine collaborators rather than stateless tools.
+
+The patterns explored here form the memory foundation that Chapter 7 builds upon: the cron and scheduled automation patterns that let agents act proactively on timers—checking inboxes, running maintenance tasks, and triggering heartbeat-driven memory distillation—without requiring a human to be present to activate every turn.
+
+---
+
+## Chapter Metadata
+
+| Field | Value |
+|-------|-------|
+| **Subject Repo** | [openclaw/openclaw](https://github.com/openclaw/openclaw) |
+| **Subject Repo Commit** | [`8090cb4c`](https://github.com/openclaw/openclaw/commit/8090cb4c) |
+| **Subject Repo Version** | v2026.2.27 |
+| **Book Repo** | [chunhualiao/openclaw-paradigm-book](https://github.com/chunhualiao/openclaw-paradigm-book) |
+| **Book-Writer Skill** | [git-repo-to-book](https://clawhub.ai/chunhualiao/git-repo-to-book) |
+| **Research Source** | AGENTS.md (workspace) + OpenClaw skill analysis |
+| **Illustrations** | 6 × Z.AI scrapbook |
+| **Illustration Cost** | $0.09 |
+| **Writer Model** | `anthropic/claude-sonnet-4-6` |
+| **Reviewer Model** | `anthropic/claude-sonnet-4-6` |
+| **Revision Date** | 2026-02-28 |
+| **Word Count** | 8,839 |
+
+**⚠️ Freshness Note:** This chapter describes OpenClaw as of commit `8090cb4c` (v2026.2.27).
+
+---
+
+## Appendix 6.A: Pattern Reference Card
+
+This quick reference summarizes all major patterns covered in this chapter and their applicability.
+
+### Pattern Decision Matrix
+
+| Pattern | When to Apply | Key Files | Complexity |
+|---------|--------------|-----------|-----------|
+| Three-Tier Memory | All OpenClaw deployments | MEMORY.md, memory/YYYY-MM-DD.md, AGENTS.md | Low |
+| Session Continuity | Every session | All Tier 3 files | Low (framework handles it) |
+| Append-Only History | Audit trails, daily logs | memory/YYYY-MM-DD.md, events.jsonl | Low |
+| Contextual Loading | Context window management | Recent daily notes + MEMORY.md | Low-Medium |
+| Progressive Summarization | Memory stores > 30 days old | summaries/, MEMORY.md | Medium |
+| Heartbeat Maintenance | Long-running deployments | HEARTBEAT.md, heartbeat-state.json | Medium |
+| Memory Security Boundary | Any shared context deployment | Session loader | Low (policy) |
+| Vector Memory | > 10K entries or fuzzy recall needed | memory/vector_store/ | High |
+| File Coordination | Multi-agent scenarios | Lock files, conventions | Medium |
+
+### Choosing Between File Search and Vector Search
+
+The following heuristic covers most real-world scenarios:
+
+```
+1. Memory entries < 1,000 AND queries use exact terminology?
+   → grep / ripgrep is sufficient
+
+2. Memory entries 1,000–10,000 OR queries are phrased differently from stored content?
+   → Add ChromaDB with local sentence-transformers (all-MiniLM-L6-v2)
+   → Zero cloud cost, runs locally, good enough accuracy for personal deployments
+
+3. Memory entries > 10,000 OR production multi-user deployment?
+   → Qdrant or Pinecone for managed vector search
+   → OpenAI text-embedding-3-small for high-quality embeddings
+
+4. Privacy-sensitive data that cannot leave the machine?
+   → FAISS + all-MiniLM-L6-v2, fully local, zero external calls
+```
+
+### Memory Maintenance Schedule
+
+For a typical single-agent deployment:
+
+| Frequency | Task |
+|-----------|------|
+| Every session | Load Tier 3 + today's/yesterday's notes |
+| Every heartbeat (~30 min) | Check HEARTBEAT.md, note important developments |
+| Every few days | Review recent notes, update MEMORY.md |
+| Weekly | Generate weekly summary from daily summaries |
+| Monthly | Prune MEMORY.md for outdated info; archive old daily notes |
+| As needed | Re-index vector store after significant new content |
+
+---
+
+## Appendix 6.B: Implementation Checklist
+
+Use this checklist when setting up file-based memory for a new OpenClaw agent:
+
+### Initial Setup
+
+```bash
+# Create workspace structure
+mkdir -p workspace/{memory/summaries,memory/archive,skills}
+
+# Initialize required files
+touch workspace/AGENTS.md workspace/SOUL.md workspace/USER.md
+touch workspace/TOOLS.md workspace/MEMORY.md workspace/HEARTBEAT.md
+
+# Set appropriate permissions
+chmod 600 workspace/MEMORY.md
+chmod 644 workspace/AGENTS.md workspace/SOUL.md workspace/USER.md
+
+# Initialize git for version control
+cd workspace && git init
+echo "memory/archive/" >> .gitignore
+echo "memory/vector_store/" >> .gitignore
+echo "memory/heartbeat-state.json" >> .gitignore  # optional: track or ignore
+git add .
+git commit -m "init: workspace structure"
+```
+
+### Session Loader Verification
+
+Before deploying, verify the session loader correctly enforces the MEMORY.md security boundary:
+
+```python
+# Test: main session should load MEMORY.md
+ctx = load_session_context("main", workspace)
+assert any("MEMORY.md" in f for f in ctx), "MEMORY.md must load in main session"
+
+# Test: shared context should NOT load MEMORY.md
+ctx = load_session_context("discord_server", workspace)
+assert not any("MEMORY.md" in f for f in ctx), \
+    "MEMORY.md must NOT load in shared contexts"
+
+print("Security boundary tests passed.")
+```
+
+### Daily Operation Checklist
+
+```markdown
+## Agent Daily Health Check
+
+- [ ] Today's memory file created (memory/YYYY-MM-DD.md exists)
+- [ ] MEMORY.md < 2,000 words (trim if exceeded)
+- [ ] Heartbeat state file updated (memory/heartbeat-state.json)
+- [ ] Files older than 30 days rotated to archive/
+- [ ] Git commit pushed (memory files version controlled)
+- [ ] Vector index up to date (if using vector memory)
+```
+
+---
+
+## Appendix 6.C: Qdrant for Production Vector Memory
+
+For production deployments requiring high throughput, filtering, and cloud hosting, Qdrant provides a more robust alternative to ChromaDB:
+
+```python
+from qdrant_client import QdrantClient
+from qdrant_client.models import Distance, VectorParams, PointStruct
+import uuid
+
+# Connect to Qdrant (local or cloud)
+client = QdrantClient("localhost", port=6333)
+# For cloud: QdrantClient(url="https://xxx.cloud.qdrant.io", api_key="...")
+
+# Create collection
+client.create_collection(
+    collection_name="agent_memory",
+    vectors_config=VectorParams(size=384, distance=Distance.COSINE),
+)
+
+def index_chunks(chunks: list[dict], embeddings: list[list[float]]):
+    """Index memory chunks into Qdrant."""
+    points = [
+        PointStruct(
+            id=str(uuid.uuid4()),
+            vector=emb,
+            payload={
+                "content": chunk["text"],
+                "source": chunk["source"],
+                "date": chunk["date"],
+                "section": chunk.get("section", ""),
+            }
+        )
+        for chunk, emb in zip(chunks, embeddings)
+    ]
+    client.upsert(collection_name="agent_memory", points=points)
+
+def search_qdrant(query_embedding: list[float], 
+                   since_date: str = None, 
+                   top_k: int = 5) -> list[dict]:
+    """Search Qdrant with optional date filtering."""
+    from qdrant_client.models import Filter, FieldCondition, Range
+    
+    query_filter = None
+    if since_date:
+        query_filter = Filter(
+            must=[FieldCondition(
+                key="date",
+                range=Range(gte=since_date)
+            )]
+        )
+    
+    results = client.search(
+        collection_name="agent_memory",
+        query_vector=query_embedding,
+        query_filter=query_filter,
+        limit=top_k,
+    )
+    
+    return [
+        {"content": r.payload["content"],
+         "source": r.payload["source"],
+         "date": r.payload["date"],
+         "score": r.score}
+        for r in results
+    ]
+```
+
+Qdrant advantages over ChromaDB for production:
+- **Filtering**: Rich payload filters (by date, source, tags) combined with vector search
+- **Scalability**: Distributed mode for multi-node deployments
+- **Performance**: Optimized HNSW index with configurable accuracy/speed tradeoffs
+- **Cloud hosting**: Qdrant Cloud with serverless pricing option
+- **Snapshots**: Built-in backup and restore capabilities
+
+The trade-off: Qdrant requires a running server (Docker or cloud), adding infrastructure overhead. For solo deployments, ChromaDB's zero-server model is usually preferable.
+
+
+---
+
+## Appendix 6.D: The Memory-Aware Agent Lifecycle
+
+Understanding how memory flows through a complete agent lifecycle helps make the abstract architecture concrete. Let's trace a hypothetical OpenClaw agent—call it Aria—through a full week of operation, observing how each memory tier is used and updated.
+
+### Day 1: First Session
+
+Aria is deployed for the first time. AGENTS.md, SOUL.md, and USER.md are pre-populated with the operator's configuration. MEMORY.md is empty. No daily notes exist yet.
+
+At session start, the loader finds MEMORY.md empty and both today's and yesterday's note files absent. The only context loaded is the Tier 3 config. This is intentional—on Day 1, Aria has no accumulated memory. She introduces herself, learns the operator's immediate goals, and begins working.
+
+Throughout the session, Aria appends timestamped entries to `memory/2026-02-28.md`:
+
+```markdown
+[09:00] Session start. User: "Help me draft a blog post about AI memory."
+[09:01] Loaded: AGENTS.md, SOUL.md, USER.md. MEMORY.md empty. No prior notes.
+[09:05] User preference noted: informal tone, avoid jargon.
+[09:45] Draft completed. User approved with minor edits.
+[09:50] User: "Remember I always want informal tone."
+[09:51] Wrote preference to daily note. Will promote to MEMORY.md at heartbeat.
+```
+
+### Day 1: First Heartbeat
+
+Thirty minutes after session end, a heartbeat fires. Aria reads `HEARTBEAT.md` and finds the maintenance task: "Promote new preferences to MEMORY.md."
+
+She reads the day's notes, identifies the informal tone preference, and writes it to MEMORY.md:
+
+```markdown
+# MEMORY.md
+
+## User Preferences
+- Writing style: informal tone, avoid jargon
+- First interaction: 2026-02-28
+```
+
+MEMORY.md now has its first entry. The heartbeat state file is updated with the current timestamp.
+
+### Day 3: Memory in Action
+
+By Day 3, two daily note files exist alongside the growing MEMORY.md. The session loader brings all of it into context:
+
+- MEMORY.md: user's informal preference + two entries from Days 1-2
+- memory/2026-03-01.md: yesterday's session (Day 2 work)
+- memory/2026-03-02.md: today's file (empty at session start)
+- All Tier 3 config files
+
+When the operator asks for another blog post, Aria already knows the tone preference without being told. The accumulated memory is working.
+
+### Week 2: Progressive Summarization Kicks In
+
+After 7 days, daily notes are accumulating. The heartbeat-driven maintenance kicks into progressive summarization mode:
+
+```markdown
+[HEARTBEAT - 2026-03-07]
+Review: 7 daily notes (2026-02-28 through 2026-03-06)
+Action: Generate weekly summary
+
+Weekly Summary (2026-02-28 to 2026-03-06):
+- Completed 4 blog posts (informal tone, AI/productivity topics)
+- User consistently prefers examples over theory
+- Established: draft → review → light edit workflow
+- Key decision: user wants posts under 1,000 words
+```
+
+This weekly summary is stored in `memory/summaries/week-2026-02-28.md`. The daily notes can now be compressed without losing key insights.
+
+### Month 2: The Full Picture
+
+After 30+ days, Aria's memory landscape looks like this:
+
+```
+MEMORY.md (1,200 words, curated):
+  - User preferences (6 entries)
+  - Project patterns (4 entries)
+  - Key decisions (3 entries)
+  - Lessons learned (5 entries)
+
+memory/summaries/:
+  - 4 weekly summaries (~400 words each)
+
+memory/archive/:
+  - Days 1-25: compressed daily notes
+  - Total: ~15MB uncompressed, ~3MB compressed
+
+memory/2026-03-28.md (today's live log):
+  - Current session entries
+
+memory/vector_store/:
+  - 2,400 indexed chunks from all notes
+  - Semantic search available for deeper recall
+```
+
+When the operator asks "what have we learned about blog post length over the past month?", Aria can:
+1. Check MEMORY.md for curated decisions → finds "under 1,000 words" preference
+2. Search the vector store for "blog length" → retrieves 3 relevant weekly summary excerpts
+3. Synthesize a complete answer drawing on both tiers
+
+This is the full three-tier system in mature operation: curated wisdom on top, indexed history beneath, behavioral config as the always-present foundation.
+
+### The Memory Lifecycle Principle
+
+The lifecycle above illustrates a key principle: **memory quality improves with time and attention**. An agent with 30 days of maintained memory is dramatically more effective than one starting fresh. But this only holds if:
+
+1. Daily notes are written consistently (append-only discipline)
+2. Heartbeat maintenance runs regularly (distillation into MEMORY.md)
+3. Progressive summarization prevents the memory store from becoming unwieldy
+4. The security boundary is respected (MEMORY.md stays out of shared contexts)
+
+This is why AGENTS.md treats memory maintenance as a first-class responsibility, not an optional feature. The investment in memory quality compounds: a well-maintained MEMORY.md from Month 1 saves significant context overhead and re-explanation time in Month 6.
+
+
+---
+
+## Appendix 6.E: Common Pitfalls and How to Avoid Them
+
+Building file-based memory systems for AI agents introduces failure modes that are distinct from traditional software. These pitfalls have been observed across many OpenClaw deployments; understanding them upfront saves significant debugging time.
+
+### Pitfall 1: MEMORY.md Bloat
+
+**Symptom**: MEMORY.md grows to 5,000+ words and starts consuming a significant portion of the context window. The agent becomes sluggish to start (more tokens to load) and less effective (good information diluted by outdated or minor entries).
+
+**Cause**: Treating MEMORY.md like a log rather than a curated knowledge base. Every heartbeat adds entries; nothing is ever removed.
+
+**Fix**: Enforce a size limit and require active curation:
+
+```python
+def enforce_memory_limit(memory_path: str, max_words: int = 2000):
+    """Alert when MEMORY.md exceeds size limit."""
+    with open(memory_path, 'r') as f:
+        content = f.read()
+    word_count = len(content.split())
+    
+    if word_count > max_words:
+        print(f"WARNING: MEMORY.md has {word_count} words (limit: {max_words})")
+        print("Review and trim: remove outdated entries, merge similar points.")
+        return False
+    return True
+```
+
+MEMORY.md should be under 2,000 words for a solo agent. It should read like a well-organized briefing document, not a journal.
+
+### Pitfall 2: The "Mental Note" Failure Mode
+
+**Symptom**: The agent says "I'll remember that for next time" but fails to recall it in the next session. Users lose trust. Information must be re-explained repeatedly.
+
+**Cause**: The agent failed to write information to a file. It produced a "mental note"—which evaporates at session end.
+
+**Fix**: Establish a strict rule in AGENTS.md and enforce it programmatically:
+
+```markdown
+# AGENTS.md (excerpt)
+
+### Memory Discipline
+- NEVER use "mental note" — write to memory/YYYY-MM-DD.md immediately
+- After any "I'll remember..." statement, immediately append to daily note
+- At session end, review what should be promoted to MEMORY.md
+- If you didn't write it down, you don't remember it
+```
+
+Some teams implement a post-session hook that prompts the agent to review the conversation and append anything important that wasn't logged during the session.
+
+### Pitfall 3: Shared Context Memory Leak
+
+**Symptom**: Private information about the operator appears in a Discord channel or group chat. Users in the shared channel can see details about the operator's private projects, preferences, or decisions.
+
+**Cause**: The session loader failed to enforce the MEMORY.md security boundary. MEMORY.md was loaded despite the session being a group/shared context.
+
+**Fix**: This must be enforced in code, not just policy. The session loader must check context type before loading MEMORY.md:
+
+```python
+# Audit log when MEMORY.md load is blocked
+def load_with_security_audit(session_context, workspace, logger):
+    if session_context["channel"] in SHARED_CHANNELS:
+        logger.warning(
+            f"MEMORY.md load blocked for shared channel "
+            f"'{session_context['channel']}'. "
+            f"Session: {session_context['session_id']}"
+        )
+        return load_without_memory(session_context, workspace)
+    return load_full_context(session_context, workspace)
+```
+
+Add integration tests that specifically verify MEMORY.md does not load in shared context scenarios.
+
+### Pitfall 4: Vector Index Drift
+
+**Symptom**: The vector store returns stale results. Queries for recent topics return old entries; recently indexed content is missing or underrepresented.
+
+**Cause**: The vector index was not updated when memory files changed. Index drift occurs when file writes and index updates are decoupled without a reliable sync mechanism.
+
+**Fix**: Implement incremental indexing triggered by file modification:
+
+```python
+def update_vector_index_incremental(memory_dir: str, 
+                                     index_state_file: str):
+    """Re-index only files modified since last index update."""
+    import json
+    
+    # Load last index state
+    state = {}
+    if os.path.exists(index_state_file):
+        with open(index_state_file) as f:
+            state = json.load(f)
+    
+    updated = []
+    for filepath in Path(memory_dir).glob("*.md"):
+        mtime = filepath.stat().st_mtime
+        last_indexed = state.get(str(filepath), 0)
+        
+        if mtime > last_indexed:
+            index_memory_file(str(filepath))  # re-index
+            state[str(filepath)] = mtime
+            updated.append(str(filepath))
+    
+    # Save updated state
+    with open(index_state_file, 'w') as f:
+        json.dump(state, f)
+    
+    return updated
+```
+
+Run this incrementally at each heartbeat rather than doing a full re-index each time.
+
+### Pitfall 5: Session Start Latency from Large Files
+
+**Symptom**: Agent responses are slow to start because the session loader is reading and loading large memory files.
+
+**Cause**: MEMORY.md or daily note files have grown to 10MB+ and loading them takes noticeable time.
+
+**Fix**: Multiple approaches:
+- Enforce size limits proactively (Pitfall 1 fix above)
+- Implement lazy loading: only load MEMORY.md content on first reference, not at session start
+- Cache file contents in memory for the session duration so subsequent loads are instant
+- Pre-process daily notes into summaries so the loaded content is already condensed
+
+### Pitfall 6: Git Conflicts in Memory Files
+
+**Symptom**: git merge conflicts appear in MEMORY.md or daily note files when multiple team members or agents work from the same repository.
+
+**Cause**: Multiple writers editing the same files without coordination.
+
+**Fix**:
+- Daily notes: use per-agent filenames (`memory/YYYY-MM-DD-agent-aria.md`) to avoid conflicts entirely
+- MEMORY.md: treat as owner-editable only; other agents propose changes that the owner reviews before merging
+- Use append-only for daily notes (no conflicts possible; only additions)
+- Consider Git's merge drivers for Markdown files: `--union` merge resolves simple line-level conflicts automatically
+
+```bash
+# .gitattributes: use union merge for append-only memory files
+memory/*.md merge=union
+```
+
+### Summary: The Ten Commandments of AI Memory
+
+1. **Write it down or lose it.** Mental notes die at session end.
+2. **MEMORY.md stays private.** Never load in shared contexts.
+3. **Append-only for daily notes.** Never modify past entries.
+4. **Keep MEMORY.md under 2,000 words.** Quality over quantity.
+5. **Heartbeats maintain memory.** Don't let notes go unreviewed.
+6. **Files are the source of truth.** Vector indexes are search caches.
+7. **Security in code, not policy.** Enforce memory boundaries programmatically.
+8. **ISO 8601 dates for all note files.** `YYYY-MM-DD.md`, always.
+9. **Version control memory files.** Git is your audit trail and backup.
+10. **Summarize periodically.** Raw logs compress to wisdom.
+
