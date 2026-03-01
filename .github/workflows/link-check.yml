@@ -1,0 +1,36 @@
+name: Link Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    name: Validate internal links
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run link validator
+        run: |
+          echo "=== Checking for broken links ==="
+          set +e
+          python3 scripts/validate_links.py .
+          exit_code=$?
+          set -e
+          echo "=== Link check complete ==="
+          if [ $exit_code -ne 0 ]; then
+            echo ""
+            echo "❌ Broken links found — see details above."
+            echo "   Fix the broken paths, then push again to re-run this check."
+            exit 1
+          fi
+          echo "✅ All internal links valid"
