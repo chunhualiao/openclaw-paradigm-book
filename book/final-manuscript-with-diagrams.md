@@ -6487,7 +6487,7 @@ The Tool-Based Error Recovery Pattern provides a systematic approach to handling
 
 ### 10.2.2 Implementation Examples
 
-![Tool Error Recovery Flow](../diagrams/chapter-10/diagram-01-tool-error-recovery.svg)
+![Tool Error Recovery Flow](../diagrams/chapter-10/diagram-01-flowchart.svg)
 
 **OpenClaw Health-Check Skill:**
 
@@ -6840,7 +6840,7 @@ Effective debugging requires comprehensive logging tailored to AI-native systems
 }
 ```
 
-![Structured Logging System Architecture](../diagrams/chapter-10/diagram-03-structured-logging-system.svg)
+![Structured Logging System Architecture](../diagrams/chapter-10/diagram-03-architecture.svg)
 
 **Key Logging Components:**
 
@@ -7200,7 +7200,7 @@ Multi-agent systems introduce coordination challenges requiring specialized debu
 3. **Protocol Compliance:** Ensure agents follow communication protocols.
 4. **Timeout Analysis:** Identify delayed or missing responses.
 
-![Multi-Agent Debug Interaction](../diagrams/chapter-10/diagram-02-multi-agent-debug-interaction.svg)
+![Multi-Agent Debug Interaction](../diagrams/chapter-10/diagram-02-sequence.svg)
 
 **OpenClaw Example:**
 
@@ -8446,7 +8446,7 @@ Unlike traditional security models that focus primarily on preventing unauthoriz
 
 ## 11.1 Security Challenges in AI-Native Systems
 
-![AI-Native Security Concepts](../diagrams/chapter-11/diagram-03-security-concepts.svg)
+![AI-Native Security Concepts](../diagrams/chapter-11/diagram-03-concept-map.svg)
 
 ### Unique Attack Surfaces in AI Systems
 
@@ -8518,7 +8518,7 @@ Security extends beyond technical measures to ethical considerations:
 
 **OpenClaw Approach:** Explicit guardrails in skills define ethical boundaries, with safety constraints implemented at multiple levels.
 
-![AI-Native Security Architecture](../diagrams/chapter-11/diagram-01-security-layers.svg)
+![AI-Native Security Architecture](../diagrams/chapter-11/diagram-01-architecture.svg)
 
 ## 11.2 Environment-First Configuration Pattern (Security Aspects)
 
@@ -9092,7 +9092,7 @@ class ABACPermissionManager:
 
 ### 11.4.2 Implementation Examples
 
-![Permission-Based Tool Access Flow](../diagrams/chapter-11/diagram-02-permission-check.svg)
+![Permission-Based Tool Access Flow](../diagrams/chapter-11/diagram-02-flowchart.svg)
 
 **File System Access Controls:**
 
@@ -10225,7 +10225,7 @@ The most significant shift in AI-native development will be the transition from 
    - Humans provide strategic direction and oversight
    - Systems evolve beyond current patterns to novel architectures optimized for self-modification
 
-![Evolution of AI-Native Development](../diagrams/chapter-12/diagram-01-ai-dev-evolution.svg)
+![Evolution of AI-Native Development](../diagrams/chapter-12/diagram-01-timeline.svg)
 
 ### The Role of Open-Source in Shaping the Future
 
@@ -10247,7 +10247,7 @@ The OpenClaw ecosystem exemplifies this open-source advantage, with its patterns
 
 ## 12.2 Emerging Technologies and Trends
 
-![Emerging Technologies in AI-Native Development](../diagrams/chapter-12/diagram-03-emerging-tech.svg)
+![Emerging Technologies in AI-Native Development](../diagrams/chapter-12/diagram-03-concept-map.svg)
 
 ### 12.2.1 Advanced AI Architectures
 
@@ -10307,7 +10307,7 @@ The AI landscape will bifurcate into two complementary approaches: massive gener
 - **Challenges:** Coordination overhead, integration complexity, consistency maintenance
 - **Best for:** Complex systems requiring diverse expertise and high reliability
 
-![Model Architecture Strategies](../diagrams/chapter-12/diagram-02-model-strategies.svg)
+![Model Architecture Strategies](../diagrams/chapter-12/diagram-02-comparison.svg)
 
 **Hybrid Approaches:**
 
