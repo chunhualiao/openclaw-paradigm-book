@@ -1,0 +1,20 @@
+%%{init: {'theme':'base', 'themeVariables': { 'actorBkg':'#4A90E2','actorBorder':'#2E5C8A','actorTextColor':'#fff','signalColor':'#333','signalTextColor':'#333','labelBoxBkgColor':'#7B68EE','labelBoxBorderColor':'#5A4FCF','labelTextColor':'#fff','loopTextColor':'#333','noteBorderColor':'#FFD700','noteBkgColor':'#FFFACD','noteTextColor':'#333'}}}%%
+sequenceDiagram
+    participant User as User
+    participant Gateway as Gateway Server
+    participant Provider as AI Provider
+    
+    User->>Gateway: Send message via channel
+    activate Gateway
+    Note over Gateway: Route to agent session
+    Gateway->>Provider: Inference request with tools
+    activate Provider
+    Provider-->>Gateway: Streaming tokens
+    deactivate Provider
+    Gateway-->>User: Formatted reply to channel
+    deactivate Gateway
+    
+    opt Tool use required
+        User->>Provider: Execute tool call
+        Provider-->>User: Tool result
+    end

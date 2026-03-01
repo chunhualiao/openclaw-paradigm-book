@@ -1,6 +1,6 @@
 {
-  "source": "content-enhanced.json",
-  "generated": "2026-02-15T16:38:14.318Z",
+  "source": "/tmp/openclaw-paradigm-book/diagrams/chapter-02/content.json",
+  "generated": "2026-03-01T01:55:50.506Z",
   "diagrams": [
     {
       "index": 1,
@@ -13,47 +13,38 @@
     },
     {
       "index": 2,
-      "template": "flowchart",
+      "template": "sequence",
       "files": {
-        "source": "diagram-02-flowchart.mmd",
-        "svg": "diagram-02-flowchart.svg",
-        "png": "diagram-02-flowchart.png"
+        "source": "diagram-02-sequence.mmd",
+        "svg": "diagram-02-sequence.svg",
+        "png": "diagram-02-sequence.png"
       }
     },
     {
       "index": 3,
-      "template": "comparison",
+      "template": "flowchart",
       "files": {
-        "source": "diagram-03-comparison.mmd",
-        "svg": "diagram-03-comparison.svg",
-        "png": "diagram-03-comparison.png"
+        "source": "diagram-03-flowchart.mmd",
+        "svg": "diagram-03-flowchart.svg",
+        "png": "diagram-03-flowchart.png"
       }
     },
     {
       "index": 4,
-      "template": "sequence",
+      "template": "radial-concept",
       "files": {
-        "source": "diagram-04-sequence.mmd",
-        "svg": "diagram-04-sequence.svg",
-        "png": "diagram-04-sequence.png"
+        "source": "diagram-04-radial-concept.mmd",
+        "svg": "diagram-04-radial-concept.svg",
+        "png": "diagram-04-radial-concept.png"
       }
     },
     {
       "index": 5,
-      "template": "gantt",
-      "files": {
-        "source": "diagram-05-gantt.mmd",
-        "svg": "diagram-05-gantt.svg",
-        "png": "diagram-05-gantt.png"
-      }
-    },
-    {
-      "index": 6,
       "template": "mindmap",
       "files": {
-        "source": "diagram-06-mindmap.mmd",
-        "svg": "diagram-06-mindmap.svg",
-        "png": "diagram-06-mindmap.png"
+        "source": "diagram-05-mindmap.mmd",
+        "svg": "diagram-05-mindmap.svg",
+        "png": "diagram-05-mindmap.png"
       }
     }
   ]

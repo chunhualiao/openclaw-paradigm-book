@@ -914,7 +914,7 @@ This realization led to the core philosophy of OpenClaw: **pragmatic, human-cent
 
 ### Design Principles
 
-![AI-Augmented vs AI-Native Comparison](../diagrams/chapter-02/diagram-03-comparison.svg)
+![AI-Augmented vs AI-Native Comparison](../diagrams/chapter-02/diagram-04-radial-concept.svg)
 
 Flowing from this core philosophy are a set of design principles that are consistently applied throughout the ecosystem:
 
@@ -934,7 +934,7 @@ The OpenClaw architecture is a masterclass in modular, AI-native design. It comp
 
 ### 2.2.1 The Gateway: Central Nervous System
 
-![Request Flow Through Gateway](../diagrams/chapter-02/diagram-02-flowchart.svg)
+![Request Flow Through Gateway](../diagrams/chapter-02/diagram-03-flowchart.svg)
 
 At the heart of OpenClaw lies the Gateway. It is the central nervous system of the entire operation, a WebSocket-based control plane that manages the flow of information and orchestrates the actions of all other components. The Gateway is the primary implementation of the **Gateway-Mediated Multi-Agent Pattern**, providing a single point of entry and control for the entire system.
 
