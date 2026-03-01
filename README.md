@@ -4,6 +4,18 @@ A practical guide to building AI-native systems, using the OpenClaw platform as 
 
 **This book documents AI-native development patterns by using those exact patterns to create itself** — 5 parallel AI agents wrote 88,000+ words in under 5 hours. See [how it was built](project-notes/README.md).
 
+## Built With
+
+This book was written and revised using the **[git-repo-to-book](https://clawhub.ai/chunhualiao/git-repo-to-book)** OpenClaw skill — a multi-agent pipeline that turns any GitHub repo into a full-length illustrated technical book.
+
+The skill handles research (via [DeepWiki](https://deepwiki.com)), multi-agent parallel writing, chapter revision (R1-R7), scrapbook illustrations (Z.AI), link validation, and GitHub PR review workflows.
+
+```bash
+clawhub install git-repo-to-book
+```
+
+> **Try it:** `Write a technical book about https://github.com/your-org/your-repo`
+
 ## Read the Book
 
 - [Complete Manuscript](book/final-manuscript-with-diagrams.md) — single file, all chapters + diagrams
