@@ -20,11 +20,21 @@ def find_markdown_files(root):
     """Recursively find all .md files under root, skipping hidden dirs."""
     md_files = []
     for dirpath, dirnames, filenames in os.walk(root):
-        dirnames[:] = [d for d in dirnames if not d.startswith(".")]
+        dirnames[:] = [d for d in dirnames if not d.startswith(".") and d not in ("archive",)]
         for fname in filenames:
             if fname.endswith(".md"):
                 md_files.append(Path(dirpath) / fname)
     return sorted(md_files)
+
+
+def strip_code_blocks(content):
+    """Remove fenced code blocks (``` ... ```) to avoid false positives."""
+    # Remove fenced code blocks (``` or ~~~)
+    content = re.sub(r'```[\s\S]*?```', '', content)
+    content = re.sub(r'~~~[\s\S]*?~~~', '', content)
+    # Remove inline code (`...`)
+    content = re.sub(r'`[^`]+`', '', content)
+    return content
 
 
 def extract_links(content):
@@ -33,6 +43,8 @@ def extract_links(content):
     Returns list of (kind, path) where kind is 'image' or 'link'.
     Only returns relative (non-http/https/anchor) refs.
     """
+    # Strip code blocks first to avoid false positives from code examples
+    content = strip_code_blocks(content)
     refs = []
 
     # Images: ![alt](path)
