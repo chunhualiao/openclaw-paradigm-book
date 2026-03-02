@@ -7,12 +7,7 @@
 > clawhub install git-repo-to-book
 > ```
 >
-> - **ClawhHub (download & install):** https://clawhub.ai/chunhualiao/git-repo-to-book
-> - **GitHub (template — this run's actual config files):** https://github.com/liaosvcaf/openclaw-paradigm-book-1
->
-> The `project-notes/` files in this repo (SYSTEM.md, AGENDA.md, agent instructions, WORKLOG.md)
-> are the **actual configuration** that drove the book creation you see here. Fork the template,
-> adapt the files to your repository, and run the same multi-agent pipeline.
+> **ClawhHub (download & install):** https://clawhub.ai/chunhualiao/git-repo-to-book
 
 ---
 
