@@ -1,5 +1,17 @@
 # Project Notes: AI-Native Book Creation
 
+> **🚀 This entire workflow has been packaged as a reusable OpenClaw Agent Skill.**
+> Install it on any repo and generate a full-length technical book with one command:
+>
+> ```bash
+> clawhub install git-repo-to-book
+> ```
+>
+> **ClawhHub (download & install):** https://clawhub.ai/chunhualiao/git-repo-to-book
+
+---
+
+
 ## Meta-Level Documentation
 
 This directory contains the configuration files, agent instructions, and workflow logs that orchestrated the autonomous creation of "The OpenClaw Paradigm" book. These documents represent a **living example of AI-native development in practice**—the book was written *using* the same patterns it documents.
